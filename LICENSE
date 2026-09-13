@@ -1,21 +1,27 @@
-MIT License
+CAMP — Company Agent Maturity Profile
+Copyright © 2026 Junghoon Woo
 
-Copyright (c) 2026 Junghoon Woo
+The CAMP framework and non-software content in this repository are licensed under the Creative Commons Attribution 4.0 International License (CC BY 4.0), unless otherwise noted.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+License: https://creativecommons.org/licenses/by/4.0/
+Legal code: https://creativecommons.org/licenses/by/4.0/legalcode
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+Preferred attribution:
+CAMP — Company Agent Maturity Profile, created by Junghoon Woo
+https://github.com/junghoonwoo-stack/CAMP
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+Any software source code or scripts added to this repository should use the Apache License 2.0 unless otherwise stated.
+https://www.apache.org/licenses/LICENSE-2.0
+
+---
+
+CAMP — Company Agent Maturity Profile
+저작권 © 2026 Junghoon Woo
+
+별도 표시가 없는 한 이 저장소의 CAMP Framework 및 비소프트웨어 콘텐츠는 Creative Commons Attribution 4.0 International License (CC BY 4.0)로 공개합니다.
+
+권장 저자 표기:
+CAMP — Company Agent Maturity Profile, created by Junghoon Woo
+https://github.com/junghoonwoo-stack/CAMP
+
+향후 추가되는 Software Code나 Script는 별도 표시가 없는 한 Apache License 2.0을 사용합니다.
