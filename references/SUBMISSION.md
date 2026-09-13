@@ -36,7 +36,7 @@ When the official receiver is configured:
 python3 scripts/camp_bench.py private-submissions/my-assessment.json --submit
 ```
 
-The command displays a masked preview and requires the participant to type `SUBMIT`. Success requires a server receipt containing `status` and `receipt_id`. A network error, missing endpoint, or invalid receipt means the assessment was **not submitted**.
+The command displays the exact destination URL and a masked data preview, then requires the participant to type `SUBMIT`. Success requires a server receipt containing `status` and `receipt_id`. A network error, missing endpoint, or invalid receipt means the assessment was **not submitted**.
 
 Automation may use `--yes` only after the participant has explicitly consented in the current interaction and reviewed what will be sent.
 
@@ -102,7 +102,7 @@ python3 scripts/camp_bench.py private-submissions/my-assessment.json
 python3 scripts/camp_bench.py private-submissions/my-assessment.json --submit
 ```
 
-전송 전 Private Text를 가린 Preview를 보여주고 참여자가 `SUBMIT`을 직접 입력해야 함. Server가 `status`와 `receipt_id`를 반환해야 성공임. Network Error, Endpoint 미설정, 잘못된 Receipt는 모두 **미제출**임.
+전송 전 정확한 목적지 URL과 Private Text를 가린 Preview를 보여주고 참여자가 `SUBMIT`을 직접 입력해야 함. Server가 `status`와 `receipt_id`를 반환해야 성공임. Network Error, Endpoint 미설정, 잘못된 Receipt는 모두 **미제출**임.
 
 자동화에서 `--yes`를 쓰는 것은 현재 Interaction에서 참여자가 전송 항목을 확인하고 명시적으로 동의한 경우에만 허용함.
 

@@ -163,6 +163,8 @@ def assert_safe_endpoint(endpoint: str) -> None:
     is_local = parsed.hostname in {"localhost", "127.0.0.1", "::1"}
     if parsed.scheme != "https" and not (parsed.scheme == "http" and is_local):
         raise SubmissionError("The submission endpoint must use HTTPS (HTTP is allowed only for localhost testing).")
+    if not parsed.hostname or parsed.username or parsed.password or parsed.query or parsed.fragment:
+        raise SubmissionError("The submission endpoint must be a plain HTTPS URL without credentials, query parameters, or fragments.")
 
 
 def redacted_preview(payload: dict[str, Any]) -> str:
@@ -231,7 +233,9 @@ def main(argv: list[str] | None = None) -> int:
                 "No official CAMP Bench endpoint is configured. Nothing was sent. "
                 "Keep this file private; do not upload it to a public GitHub issue or commit."
             )
+        assert_safe_endpoint(endpoint)
 
+        print(f"\nDestination: {endpoint}")
         print("\nData preview (private text is masked in this terminal view):")
         print(redacted_preview(payload))
         if not args.yes:

@@ -62,6 +62,10 @@ class CampBenchTests(unittest.TestCase):
         with self.assertRaisesRegex(camp_bench.SubmissionError, "HTTPS"):
             camp_bench.assert_safe_endpoint("http://example.com/submit")
 
+    def test_endpoint_with_query_fails(self):
+        with self.assertRaisesRegex(camp_bench.SubmissionError, "plain HTTPS URL"):
+            camp_bench.assert_safe_endpoint("https://example.com/submit?token=secret")
+
     def test_local_submission_returns_receipt_and_idempotency_key(self):
         server = HTTPServer(("127.0.0.1", 0), ReceiptHandler)
         thread = threading.Thread(target=server.serve_forever, daemon=True)
