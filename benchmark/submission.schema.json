@@ -14,12 +14,15 @@
     "headcount_band",
     "function",
     "respondent_role",
+    "assessment_method",
     "stage",
     "total_score",
     "dimensions",
     "operations",
     "sovereignty",
-    "evidence_level"
+    "evidence_level",
+    "confidence",
+    "consent_to_benchmark"
   ],
   "properties": {
     "schema_version": {"type": "string", "const": "1.0"},
@@ -43,11 +46,11 @@
       "additionalProperties": false,
       "required": ["access", "delegation", "connection", "compounding", "transformation"],
       "properties": {
-        "access": {"type": "integer", "minimum": 0, "maximum": 20},
-        "delegation": {"type": "integer", "minimum": 0, "maximum": 20},
-        "connection": {"type": "integer", "minimum": 0, "maximum": 20},
-        "compounding": {"type": "integer", "minimum": 0, "maximum": 20},
-        "transformation": {"type": "integer", "minimum": 0, "maximum": 20}
+        "access": {"type": "integer", "enum": [0, 5, 10, 15, 20]},
+        "delegation": {"type": "integer", "enum": [0, 5, 10, 15, 20]},
+        "connection": {"type": "integer", "enum": [0, 5, 10, 15, 20]},
+        "compounding": {"type": "integer", "enum": [0, 5, 10, 15, 20]},
+        "transformation": {"type": "integer", "enum": [0, 5, 10, 15, 20]}
       }
     },
     "operations": {"type": "string", "enum": ["Weak", "Developing", "Strong"]},

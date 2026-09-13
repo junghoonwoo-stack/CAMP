@@ -1,0 +1,5 @@
+{
+  "endpoint": null,
+  "status": "not_configured",
+  "note": "The project owner must set the official HTTPS receiver before direct submission is enabled. CAMP must never claim success while this is null."
+}

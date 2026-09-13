@@ -59,6 +59,8 @@ If the connected private store is available, create or reuse the company's anony
 
 If the private store is unavailable, do not claim that submission succeeded. Produce a structured private submission package instead. Do not direct users to post real company data in a public GitHub issue.
 
+The submission UX and receiver contract are defined in [SUBMISSION.md](SUBMISSION.md). A submission is successful only when the private receiver returns a valid receipt ID. Local file creation, validation, or a network request without a valid receipt is not success.
+
 ---
 
 ## 한국어
@@ -119,3 +121,5 @@ CAMP 진단이 끝난 뒤 CAMP Bench에 결과를 포함할지 묻습니다.
 Private Store가 연결되어 있으면 회사의 익명 Organization Key를 조회하거나 생성하고, 과거 이력을 덮어쓰지 않고 새 Assessment를 추가합니다.
 
 Private Store에 접근할 수 없다면 제출됐다고 말하지 않습니다. 대신 Private Submission Package를 생성합니다. 실제 회사 데이터를 Public GitHub Issue에 올리도록 안내하지 않습니다.
+
+제출 UX와 Receiver 계약은 [SUBMISSION.md](SUBMISSION.md)에 정의합니다. Private Receiver가 유효한 Receipt ID를 반환한 경우에만 제출 성공입니다. 로컬 파일 생성·검증 또는 유효한 Receipt가 없는 Network Request는 성공이 아닙니다.

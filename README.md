@@ -8,6 +8,8 @@ A short interview or evidence review returns a CAMP Stage, a Score /100, five-di
 
 ## Quick Start
 
+Install `git` and the CLI you intend to use first. The commands below do not install Claude Code or Codex.
+
 ### Claude Code
 
 ```bash
@@ -71,6 +73,20 @@ Submitting the **real company name** improves the analysis because CAMP Bench ca
 
 CAMP Bench uses current operating evidence, not plans or isolated pilots. Accurate submissions make both the participant's own comparison and the aggregate benchmark more useful.
 
+### Submit to CAMP Bench
+
+Completing a CAMP assessment does **not** automatically submit it. After reviewing the standalone report, the participant reviews the exact fields, explicitly consents, and submits only through the configured private HTTPS receiver.
+
+```bash
+# Validate only — sends nothing
+python3 scripts/camp_bench.py private-submissions/my-assessment.json
+
+# Submit after consent — success requires a receipt ID
+python3 scripts/camp_bench.py private-submissions/my-assessment.json --submit
+```
+
+If no official endpoint is configured, CAMP creates or validates a private submission package but must state **NOT SUBMITTED**. Never put a real submission in a public issue, discussion, pull request, or commit. See [CAMP Bench Submission](references/SUBMISSION.md).
+
 ### Privacy
 
 The participant can see **their own company** in their private report. **Every other organization remains anonymized.** Individual respondent identities are never shown.
@@ -112,6 +128,7 @@ Next target: build reusable skills and complete high-value end-to-end connection
 - [Diagnostic playbook and evidence rules](references/PLAYBOOK.md)
 - [Report format](references/REPORT_TEMPLATE.md)
 - [CAMP Bench methodology](references/BENCHMARK.md)
+- [CAMP Bench submission](references/SUBMISSION.md)
 
 ## License
 
@@ -128,6 +145,8 @@ CAMP는 약 10분 동안 **우리 회사나 팀이 얼마나 Agent-native한지,
 짧은 질의응답이나 자료 검토를 통해 CAMP Stage, 총점 /100, 5개 영역 분석, 가장 큰 병목, 향후 90일 Action을 제공합니다.
 
 ## 바로 시작
+
+먼저 `git`과 사용할 CLI를 설치해야 합니다. 아래 명령은 Claude Code나 Codex 자체를 설치하지 않습니다.
 
 ### Claude Code
 
@@ -192,6 +211,20 @@ CAMP Bench에 진단 결과를 제출하면 다음과 비교할 수 있습니다
 
 CAMP Bench는 계획이나 단일 Pilot보다 **현재 반복적으로 운영되는 상태**를 기준으로 합니다. 정확한 답변을 제출할수록 본인 회사의 비교도, 전체 Benchmark도 더 유용해집니다.
 
+### CAMP Bench에 제출
+
+CAMP 진단을 완료해도 자동으로 제출되지는 않습니다. Standalone Report를 확인한 뒤 실제 전송 항목을 검토하고 명시적으로 동의한 경우에만 설정된 Private HTTPS Receiver로 제출합니다.
+
+```bash
+# 검증만 수행 — 전송하지 않음
+python3 scripts/camp_bench.py private-submissions/my-assessment.json
+
+# 동의 후 제출 — Receipt ID가 있어야 성공
+python3 scripts/camp_bench.py private-submissions/my-assessment.json --submit
+```
+
+공식 Endpoint가 설정되어 있지 않으면 Private Submission Package를 만들거나 검증하되 반드시 **NOT SUBMITTED**라고 표시합니다. 실제 제출 파일을 Public Issue, Discussion, Pull Request, Commit에 올리면 안 됩니다. 자세한 절차는 [CAMP Bench Submission](references/SUBMISSION.md)을 참고합니다.
+
 ### Privacy
 
 참여자는 자신의 Private Report에서 **자기 회사**를 볼 수 있습니다. **다른 회사는 모두 익명화**됩니다. 개인 응답자의 identity는 표시하지 않습니다.
@@ -233,6 +266,7 @@ CAMP Score: 40 / 100
 - [진단 Playbook과 Evidence 기준](references/PLAYBOOK.md)
 - [Report 형식](references/REPORT_TEMPLATE.md)
 - [CAMP Bench 기준](references/BENCHMARK.md)
+- [CAMP Bench 제출 절차](references/SUBMISSION.md)
 
 ## License
 

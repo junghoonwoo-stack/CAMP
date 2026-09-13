@@ -7,7 +7,7 @@ description: CAMP assesses how agent-native an organization is through a short i
 
 ## English
 
-CAMP diagnoses the **current recurring operating model**, not AI ambition, spending, or the number of AI projects. Use `references/STAGES.md`, `references/PLAYBOOK.md`, `references/REPORT_TEMPLATE.md`, and `references/BENCHMARK.md` as the detailed methodology.
+CAMP diagnoses the **current recurring operating model**, not AI ambition, spending, or the number of AI projects. Use `references/STAGES.md`, `references/PLAYBOOK.md`, `references/REPORT_TEMPLATE.md`, `references/BENCHMARK.md`, and `references/SUBMISSION.md` as the detailed methodology.
 
 Use **Interview Mode** for a short assessment. In **Evidence Mode**, read supplied strategy, architecture, project, usage, or operating documents first and ask only what remains uncertain.
 
@@ -134,11 +134,23 @@ Benchmark rules:
 
 If the connected private CAMP Bench store is available and the user agrees, save a new assessment without overwriting history. If it is unavailable, do **not** claim submission succeeded; prepare a structured private submission package instead. Never direct users to post real company data in a public GitHub issue.
 
+Use this submission sequence exactly:
+
+1. Deliver the complete standalone report first.
+2. Ask whether the participant wants to join CAMP Bench. Do not assume consent.
+3. If Yes, summarize the fields to be sent: real company name, optional scope label, organization profile, Stage/Score, five dimensions, supporting capabilities, evidence level/confidence, and optional evidence summary. State that personal name/email and raw documents are excluded.
+4. Ask for explicit confirmation to privately store those fields and use anonymized/aggregate results for benchmarking.
+5. Only after confirmation, create the JSON under `private-submissions/` and validate it with `python3 scripts/camp_bench.py <file>` when repository tools are available.
+6. If an official endpoint is configured, submit with `--submit --yes`. Report success only when a valid `receipt_id` is returned.
+7. If no endpoint or receipt is available, say **NOT SUBMITTED**, provide the private package, and explain that it must be kept private. Do not invent an upload destination.
+
+Never include personal respondent name, email, phone, employee ID, credentials, or raw confidential documents in the submission package. Never retry a failed request blindly; preserve the idempotency key and surface the failure.
+
 ---
 
 ## 한국어
 
-CAMP는 AI 투자액이나 AI 프로젝트 개수가 아니라 **현재 반복적으로 작동하는 Operating Model**을 진단합니다. 상세 기준은 `references/STAGES.md`, `references/PLAYBOOK.md`, `references/REPORT_TEMPLATE.md`, `references/BENCHMARK.md`를 사용합니다.
+CAMP는 AI 투자액이나 AI 프로젝트 개수가 아니라 **현재 반복적으로 작동하는 Operating Model**을 진단합니다. 상세 기준은 `references/STAGES.md`, `references/PLAYBOOK.md`, `references/REPORT_TEMPLATE.md`, `references/BENCHMARK.md`, `references/SUBMISSION.md`를 사용합니다.
 
 **Interview Mode**에서는 아래 질문을 진행합니다. **Evidence Mode**에서는 전략자료, Architecture, 과제, Usage Data, 운영자료를 먼저 읽고 확인되지 않은 부분만 질문합니다.
 
@@ -259,3 +271,15 @@ Standalone Report 이후 CAMP Bench 제출 여부를 묻습니다. 제출 시 Ov
 공식 Benchmark는 한 회사를 Organization-level Aggregate로 한 번만 반영합니다. Cohort N < 10이면 범위를 넓히거나 표본 부족으로 표시합니다. `eligible`만 정식 Percentile에 사용하며 `provisional`은 Preliminary, `reference_only`는 Ranking에서 제외합니다.
 
 Private CAMP Bench Store가 연결되어 있고 사용자가 동의하면 새 Assessment를 저장하되 과거 이력을 덮어쓰지 않습니다. Store에 접근할 수 없다면 제출됐다고 말하지 말고 Private Submission Package를 생성합니다. 실제 회사 데이터를 Public GitHub Issue에 올리도록 안내하지 않습니다.
+
+다음 Submission Sequence를 반드시 따릅니다.
+
+1. 먼저 완전한 Standalone Report를 제공합니다.
+2. 참여자에게 CAMP Bench 참여 여부를 묻습니다. 동의를 추정하지 않습니다.
+3. Yes이면 실제 전송 항목을 요약합니다: 실제 회사명, 선택적 Scope Label, 조직 Profile, Stage/Score, 5개 Dimension, Supporting Capability, Evidence Level/Confidence, 선택적 Evidence Summary. 개인 이름/이메일과 Raw Document는 제외된다고 알립니다.
+4. 해당 Field의 Private 저장과 익명·Aggregate Benchmark 사용에 명시적으로 동의하는지 확인합니다.
+5. 확인 후에만 JSON을 `private-submissions/` 아래 만들고 Repository Tool을 쓸 수 있으면 `python3 scripts/camp_bench.py <file>`로 검증합니다.
+6. 공식 Endpoint가 설정되어 있으면 `--submit --yes`로 제출합니다. 유효한 `receipt_id`가 반환된 경우에만 성공으로 알립니다.
+7. Endpoint 또는 Receipt가 없으면 **NOT SUBMITTED**라고 말하고 Private Package를 제공하며 비공개로 보관해야 함을 설명합니다. 임의의 Upload Destination을 만들지 않습니다.
+
+개인 응답자 이름, 이메일, 전화번호, 사번, Credential, Raw Confidential Document를 Submission Package에 넣지 않습니다. 실패한 요청을 무조건 재시도하지 않으며 Idempotency Key를 유지하고 실패를 명확히 알립니다.
