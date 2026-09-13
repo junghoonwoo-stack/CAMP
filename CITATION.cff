@@ -1,10 +1,9 @@
 cff-version: 1.2.0
-message: "If you use or adapt CAMP, please cite the project and its creator."
+message: "If you use or adapt CAMP, please cite the project."
 title: "CAMP: Company Agent Maturity Profile"
 type: software
 authors:
-  - family-names: "Woo"
-    given-names: "Junghoon"
+  - name: "CAMP Project"
 version: "0.1.0"
 date-released: "2026-09-13"
 url: "https://github.com/junghoonwoo-stack/CAMP"
