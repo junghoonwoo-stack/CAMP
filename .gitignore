@@ -1,0 +1,6 @@
+# Private benchmark data must never be committed
+private/
+*.private.csv
+*.private.json
+.env
+.env.*
