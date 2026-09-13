@@ -2,21 +2,18 @@
 
 **Company Agent Maturity Profile**
 
-A ~10-minute assessment for one question: **How agent-native is your organization, and what should you do next?**
+A ~10-minute assessment: **How agent-native is your organization, and what should you do next?**
 
 CAMP returns:
-- CAMP Stage
-- CAMP Score /100
+- CAMP Stage + Score /100
 - biggest bottleneck
 - top 3 actions for the next 90 days
 - recommended AX / AI-native projects
-- optional benchmark percentile
+- optional benchmark: **Overall / Industry / Peer Group**
 
-It works in two modes:
-- **Interview:** answer a short guided survey.
-- **Evidence:** add AX proposals, agent specs, RAG/MCP architecture, usage data, or related files; CAMP reads them first and asks only what is missing.
+Company names are not collected for the benchmark. Public comparison data may show industry, broad segment, size, country, function, and anonymized scores.
 
-Multiple people from the same organization can assess separately. Use the same anonymous **Organization Group ID** and different **Respondent IDs**. CAMP can show both individual results and an aggregated organization view.
+Multiple people from one organization can assess separately using the same anonymous **Organization Group ID** and different **Respondent IDs**.
 
 ## Quick start
 
@@ -26,46 +23,30 @@ cd CAMP
 ```
 
 ### Claude Code
-
 ```bash
-npm install -g @anthropic-ai/claude-code
 claude "Read SKILL.md and run the CAMP assessment."
 ```
 
 ### Codex CLI
-
 ```bash
-npm install -g @openai/codex
-codex --login
 codex
 ```
-
 Then enter:
-
 ```text
 Read SKILL.md and run the CAMP assessment.
 ```
 
 ### ChatGPT
-
-Either connect GitHub and ask:
-
+Connect GitHub or upload `SKILL.md` + `references/`, then ask:
 ```text
-Use junghoonwoo-stack/CAMP. Read SKILL.md and run the CAMP assessment.
+Read SKILL.md and run the CAMP assessment.
 ```
 
-or upload `SKILL.md` and the Markdown files under `references/`, then use the same prompt.
+## License
 
-## License & citation
+CAMP framework and documentation use **CC BY 4.0**. Running CAMP or using its results does not require attribution. If you redistribute or publish the framework or an adapted version, retain a link to the canonical project:
 
-CAMP framework and documentation are released under **CC BY 4.0**. Reuse, adaptation, translation, education, and commercial use are welcome with attribution.
-
-Preferred attribution:
-
-> **CAMP — Company Agent Maturity Profile, created by Junghoon Woo**  
-> https://github.com/junghoonwoo-stack/CAMP
-
-GitHub also exposes a **Cite this repository** action through `CITATION.cff`.
+https://github.com/junghoonwoo-stack/CAMP
 
 ---
 
@@ -75,19 +56,16 @@ GitHub also exposes a **Cite this repository** action through `CITATION.cff`.
 
 약 10분 동안 **우리 조직이 얼마나 Agent-native한지, 다음에 무엇을 해야 하는지** 진단합니다.
 
-결과로 다음을 제공합니다.
-- CAMP Stage
-- CAMP Score /100
+결과:
+- CAMP Stage + Score /100
 - 가장 큰 병목
 - 향후 90일 Top 3 Action
 - 추천 AX / AI-native 과제
-- 선택형 Benchmark 순위
+- 선택형 Benchmark: **전체 / 업종 / Peer Group 대비**
 
-두 방식으로 사용할 수 있습니다.
-- **Interview:** 짧은 설문에 답합니다.
-- **Evidence:** AX 제안서, Agent 문서, RAG/MCP 아키텍처, 사용 데이터 등을 넣으면 먼저 읽고 부족한 부분만 질문합니다.
+Benchmark에는 회사명을 수집하지 않습니다. 공개 비교 데이터에는 업종, 넓은 산업군, 규모, 국가, Function, 익명 점수 등이 포함될 수 있습니다.
 
-한 회사에서 여러 명이 각각 진단할 수도 있습니다. 같은 익명 **Organization Group ID**를 쓰고, 사람마다 다른 **Respondent ID**를 사용하면 개인 결과와 조직 종합 결과를 함께 볼 수 있습니다.
+한 회사에서 여러 명이 진단할 수 있습니다. 같은 익명 **Organization Group ID**와 서로 다른 **Respondent ID**를 사용합니다.
 
 ## 빠른 시작
 
@@ -97,43 +75,27 @@ cd CAMP
 ```
 
 ### Claude Code
-
 ```bash
-npm install -g @anthropic-ai/claude-code
 claude "Read SKILL.md and run the CAMP assessment."
 ```
 
 ### Codex CLI
-
 ```bash
-npm install -g @openai/codex
-codex --login
 codex
 ```
-
-실행 후 입력합니다.
-
+실행 후 입력:
 ```text
 Read SKILL.md and run the CAMP assessment.
 ```
 
 ### ChatGPT
-
-GitHub를 연결한 뒤 다음과 같이 요청합니다.
-
+GitHub를 연결하거나 `SKILL.md` + `references/`를 업로드한 뒤 입력:
 ```text
-Use junghoonwoo-stack/CAMP. Read SKILL.md and run the CAMP assessment.
+Read SKILL.md and run the CAMP assessment.
 ```
 
-또는 `SKILL.md`와 `references/` 아래 Markdown 파일을 업로드한 뒤 같은 문장을 입력합니다.
+## License
 
-## 라이선스와 저자 표기
+CAMP Framework와 문서는 **CC BY 4.0**입니다. CAMP를 실행하거나 결과를 사용하는 데 별도 출처 표기는 필요하지 않습니다. Framework 자체 또는 수정본을 외부에 재배포·공개할 때는 canonical project 링크를 유지합니다.
 
-CAMP Framework와 문서는 **CC BY 4.0**으로 공개합니다. 원저자를 표시하면 수정·번역·교육·상업적 활용도 가능합니다.
-
-권장 표기:
-
-> **CAMP — Company Agent Maturity Profile, created by Junghoon Woo**  
-> https://github.com/junghoonwoo-stack/CAMP
-
-`CITATION.cff`도 추가하여 GitHub의 **Cite this repository** 기능으로 CAMP와 원저자를 바로 인용할 수 있게 했습니다.
+https://github.com/junghoonwoo-stack/CAMP
