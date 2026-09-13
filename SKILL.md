@@ -1,6 +1,6 @@
 ---
 name: camp
-description: CAMP (Company Agent Maturity Profile) assesses how agent-native an organization is using a short interview or supplied evidence. It returns a CAMP Stage, CAMP Score, dimension analysis, bottleneck, 90-day actions, recommended projects, and optional CAMP Bench comparison.
+description: CAMP (Company Agent Maturity Profile) assesses how agent-native an organization is through a short interview or supplied evidence. It returns a CAMP Stage, CAMP Score, five-dimension analysis, bottleneck, 90-day actions, recommended projects, and optional CAMP Bench comparison.
 ---
 
 # CAMP — Company Agent Maturity Profile
@@ -11,13 +11,13 @@ CAMP is a ~10-minute assessment.
 
 Start with:
 
-> CAMP takes about **10 minutes**. I’ll ask a few multiple-choice or short questions. You’ll receive your **CAMP Stage, CAMP Score /100, five-dimension analysis, biggest bottleneck, top 3 actions for the next 90 days, and practical projects to start now**. If you contribute the result to **CAMP Bench**, you can also receive benchmark comparisons when enough data exists.
+> CAMP takes about **10 minutes**. I’ll ask a few multiple-choice or short questions. You’ll receive your **CAMP Stage, CAMP Score /100, five-dimension analysis, biggest bottleneck, top 3 actions for the next 90 days, and practical projects to start now**. If the assessment is included in **CAMP Bench**, I can also compare it with other organizations when enough data exists.
 
 Use clickable choices when available. Otherwise use A/B/C/D/E. Ask one question at a time.
 
 ### Profile
 
-**P0. Company / organization name** — required for CAMP Bench identity matching. Explain: stored privately; never shown in public benchmark output or the anonymized report.  
+**P0. Company / organization name** — used privately to match assessments from the same organization. Never show the real name in the report or public benchmark.  
 **P1. Scope** — A Company / B Business unit / C Team / D New AI-native organization  
 **P2. Country** — short answer  
 **P3. Industry** — A Manufacturing / B Finance / C IT-SaaS / D Retail / E Professional services / F Healthcare / G Public-Education / H Media / I Construction-Energy / J Other  
@@ -27,9 +27,7 @@ Use clickable choices when available. Otherwise use A/B/C/D/E. Ask one question 
 **P6. Team / business-unit label** — short answer when scope is below company level; keep it private and use an anonymous Scope ID in reports.  
 **P7. Multiple respondents?** — A No / B Yes / C Not sure
 
-If the private CAMP Bench store is available, resolve the company name to a stable `org_group_id`. Reuse the same organization ID for all respondents from that company. Never expose the real company name in the report or public benchmark.
-
-If prior assessments from the same company exist, include them in organization-level analysis. Do not invent prior records when the private benchmark store is unavailable.
+If the private CAMP Bench store is available, resolve the company name to a stable `org_group_id`. Reuse the same organization ID for all respondents from that company. If prior assessments exist, include them in same-company analysis. Never invent prior records when the private store is unavailable.
 
 ### Core questions
 
@@ -89,47 +87,25 @@ For multiple respondents from the same company, also show:
 - score distribution / range
 - team or function differences
 - dimensions with the largest disagreement
-- whether leadership and frontline perceptions diverge, when role metadata supports it
+- leadership vs frontline differences when the available metadata supports it
 
-### CAMP Bench — Give to Get
+### CAMP Bench
 
-Assessment, Stage, Score, and recommendations are free. **CAMP Bench analysis requires contributing the assessment.**
+After the report, ask whether the assessment should be included in **CAMP Bench**.
 
-After the report ask:
-
-> Would you like to contribute this assessment to **CAMP Bench**? Your real company name is stored privately only for identity matching. Benchmark outputs remain anonymized. Contributors can receive **Overall, Industry, Peer Group, and same-company multi-response analysis** when enough data exists.
-
-- A Yes
-- B No
-- C Show exactly what will be stored and returned
-
-No contribution → no percentile or peer benchmark.
-
-CAMP Bench outputs may include:
+If included and enough data exists, return:
 - Overall percentile
 - Industry percentile
 - Peer Group percentile
 - benchmark distribution with `Your organization` highlighted
 - five-dimension comparison against each cohort
-- strengths / weaknesses relative to peers
-- prior-period movement
+- relative strengths / weaknesses
+- prior-period movement when available
 - same-company respondent distribution and team/function differences
 
 Use the narrowest cohort with sufficient N. If N < 10, broaden the cohort or report insufficient sample size.
 
 Never reveal another confidential participant’s company identity or individual score. Named competitor analysis may use only public information or data explicitly authorized for named disclosure.
-
-### Optional AX support / marketplace
-
-Benchmark participation is **not** consent for sales outreach. After all benchmark choices, optionally ask:
-
-> Would you like help improving one of the diagnosed areas?
-
-- A No
-- B Yes — show relevant types of AX specialists / partners anonymously
-- C Yes — I am open to an introduction
-
-Only option C can authorize identity-based introductions, and separate explicit consent is required before sharing organization identity with any consultant or partner.
 
 ---
 
@@ -139,13 +115,13 @@ CAMP는 약 10분짜리 조직 AX / Agent-native 진단입니다.
 
 다음과 같이 시작합니다.
 
-> CAMP 진단은 약 **10분** 정도 걸립니다. 몇 가지 객관식/짧은 질문에 답해주시면 **CAMP Stage, CAMP Score /100, 5개 영역 분석, 가장 큰 병목, 향후 90일 Top 3 Action, 바로 시도할 과제**를 드립니다. 결과를 **CAMP Bench**에 제공하면 표본이 충분할 때 다른 조직과의 비교도 받을 수 있습니다.
+> CAMP 진단은 약 **10분** 정도 걸립니다. 몇 가지 객관식/짧은 질문에 답해주시면 **CAMP Stage, CAMP Score /100, 5개 영역 분석, 가장 큰 병목, 향후 90일 Top 3 Action, 바로 시도할 과제**를 드립니다. 진단 결과가 **CAMP Bench**에 포함되면 표본이 충분할 때 다른 조직과의 비교도 제공합니다.
 
 가능하면 클릭형 선택지를 쓰고, 아니면 A/B/C/D/E로 답하게 합니다. 한 번에 한 질문만 하고 존댓말을 사용합니다.
 
 ### 조직 정보
 
-**P0. 실제 회사 / 조직명** — CAMP Bench에서 동일 회사 응답을 연결하기 위해 사용. 실제 이름은 Private Store에만 저장하며 Public Benchmark와 익명 Report에는 표시하지 않는다고 안내  
+**P0. 실제 회사 / 조직명** — 같은 회사의 여러 응답을 연결하기 위해 Private Store에서만 사용. Report와 Public Benchmark에는 실제 이름을 표시하지 않음  
 **P1. 범위** — A 회사 전체 / B 사업부 / C 팀 / D 신설 AI-native 조직  
 **P2. 국가** — 짧게 입력  
 **P3. 업종** — A 제조 / B 금융 / C IT-SaaS / D 유통 / E 전문서비스 / F 헬스케어 / G 공공-교육 / H 미디어 / I 건설-에너지 / J 기타  
@@ -155,9 +131,7 @@ CAMP는 약 10분짜리 조직 AX / Agent-native 진단입니다.
 **P6. 팀 / 사업부명** — 회사 전체가 아닌 경우 짧게 입력. Private Store에서만 사용하고 Report에는 익명 Scope ID 사용  
 **P7. 같은 조직에서 여러 명이 응답하나요?** — A 아니요 / B 예 / C 아직 모름
 
-Private CAMP Bench Store에 접근할 수 있으면 실제 회사명을 안정적인 `org_group_id`에 매핑합니다. 같은 회사의 모든 응답자는 같은 Organization Group ID를 사용합니다. 실제 회사명은 Report나 Public Benchmark에 노출하지 않습니다.
-
-같은 회사의 과거 응답이 있으면 함께 분석합니다. Private Benchmark Store에 접근할 수 없는 환경에서는 기존 응답이 있다고 추정하거나 만들어내지 않습니다.
+Private CAMP Bench Store에 접근할 수 있으면 실제 회사명을 안정적인 `org_group_id`에 매핑합니다. 같은 회사의 모든 응답자는 같은 Organization Group ID를 사용합니다. 과거 응답이 있으면 Same-company 분석에 포함합니다. Private Store에 접근할 수 없는 환경에서는 기존 응답이 있다고 추정하거나 만들어내지 않습니다.
 
 ### 핵심 질문
 
@@ -217,44 +191,22 @@ Report는 항상 **익명화**합니다. 실제 회사/팀 이름 대신 `Your o
 - 점수 분포 / 범위
 - 팀·Function별 차이
 - 응답자 간 의견 차이가 가장 큰 영역
-- 역할 정보가 있으면 경영진과 현업의 인식 차이
+- 가능한 Metadata가 있으면 경영진과 현업의 인식 차이
 
-### CAMP Bench — Give to Get
+### CAMP Bench
 
-진단, Stage, Score, 추천 Action은 무료입니다. **CAMP Bench 분석은 자신의 진단 결과를 제공한 경우에만 받을 수 있습니다.**
+Report 이후 이 진단 결과를 **CAMP Bench**에 포함할지 묻습니다.
 
-Report 이후 묻습니다.
-
-> 이 결과를 **CAMP Bench**에 제공하시겠습니까? 실제 회사명은 동일 회사 Matching을 위해 Private Store에만 저장하고 Benchmark 결과는 익명화합니다. 참여하면 표본이 충분할 때 **전체 / 업종 / Peer Group / 같은 회사의 다중 응답 비교**를 받을 수 있습니다.
-
-- A 예
-- B 아니요
-- C 저장되는 정보와 반환되는 정보를 먼저 보여주세요
-
-**데이터 기여 없음 = Percentile / Peer Benchmark 없음.**
-
-CAMP Bench 결과에는 다음이 포함될 수 있습니다.
+포함되고 표본이 충분하면 다음을 제공합니다.
 - 전체 Percentile
 - Industry Percentile
 - Peer Group Percentile
 - 분포 그래프에서 `Your organization` 위치 표시
 - 5개 영역별 Cohort 비교
 - Peer 대비 상대적 강점 / 약점
-- 과거 대비 변화
+- 과거 대비 변화가 있으면 시계열 비교
 - 같은 회사 응답자 분포와 팀·Function 차이
 
 표본이 충분한 범위에서 가장 좁은 Cohort를 사용합니다. N < 10이면 더 넓은 Cohort로 비교하거나 표본 부족으로 표시합니다.
 
 다른 참여기업의 회사명이나 개별 점수는 공개하지 않습니다. 특정 경쟁사 이름을 붙인 분석은 공개정보이거나 해당 조직이 명시적으로 허용한 데이터만 사용합니다.
-
-### 선택형 AX 지원 / Marketplace
-
-Benchmark 참여는 영업 연락에 대한 동의가 아닙니다. 모든 Benchmark 선택이 끝난 뒤 필요하면 별도로 묻습니다.
-
-> 진단에서 발견된 약한 영역을 개선하는 데 외부 도움이 필요하신가요?
-
-- A 아니요
-- B 예 — 적합한 AX 전문가/파트너 유형을 익명으로 추천
-- C 예 — 실제 소개를 받아볼 의향 있음
-
-C를 선택한 경우에도 실제 회사 identity를 Consultant/Partner에게 전달하기 전 별도 명시적 동의를 받아야 합니다.
