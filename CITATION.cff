@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "If you use or adapt CAMP, please cite the project and its creator."
+title: "CAMP: Company Agent Maturity Profile"
+type: software
+authors:
+  - family-names: "Woo"
+    given-names: "Junghoon"
+version: "0.1.0"
+date-released: "2026-09-13"
+url: "https://github.com/junghoonwoo-stack/CAMP"
+license: "CC-BY-4.0"
+abstract: "A practical framework and assessment skill for evaluating how agent-native an organization is and identifying the next actions for AI transformation."
