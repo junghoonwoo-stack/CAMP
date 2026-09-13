@@ -1,40 +1,57 @@
 name: CAMP Benchmark Submission
-description: Opt in to the anonymous CAMP benchmark dataset. Do not include confidential company information.
+description: Share an anonymized CAMP result for aggregate benchmarking.
 title: "[CAMP Benchmark] "
 labels: ["benchmark"]
 body:
   - type: markdown
     attributes:
       value: |
-        Thank you for contributing to CAMP Benchmark.
-        Do **not** enter a company name, personal name, email, confidential project name, customer information, or internal system details.
-        Note: your GitHub account will be visible because this is a public Issue.
+        Share an anonymized CAMP result. Do not enter a company name, person name, email, customer, project, or system name.
+        Industry, size, country, function, and anonymous IDs may be visible in the public benchmark.
+        This is a public GitHub Issue, so your GitHub account may be visible.
 
   - type: checkboxes
     id: consent
     attributes:
       label: Consent
       options:
-        - label: I voluntarily agree to share the following CAMP assessment data for aggregate benchmarking.
+        - label: I agree to share this anonymized CAMP result for aggregate benchmarking.
           required: true
-        - label: I understand that my GitHub account is publicly visible on this Issue.
+        - label: I understand that this GitHub Issue and my GitHub account may be public.
           required: true
+
+  - type: input
+    id: org_group_id
+    attributes:
+      label: Anonymous Organization Group ID
+      description: Use the same random code for respondents from the same organization. Do not encode a company name.
+      placeholder: "ORG-7F3KQ2"
+    validations:
+      required: true
+
+  - type: input
+    id: scope_id
+    attributes:
+      label: Scope ID
+      description: Use "all" for the whole company, or a random unit/team code.
+      placeholder: "all"
+    validations:
+      required: true
+
+  - type: input
+    id: respondent_id
+    attributes:
+      label: Respondent ID
+      description: Use a different anonymous code for each respondent.
+      placeholder: "R01"
+    validations:
+      required: true
 
   - type: dropdown
     id: country
     attributes:
       label: Country
-      options:
-        - South Korea
-        - United States
-        - Japan
-        - China
-        - Singapore
-        - India
-        - United Kingdom
-        - Germany
-        - France
-        - Other
+      options: [South Korea, United States, Japan, China, Singapore, India, United Kingdom, Germany, France, Other]
     validations:
       required: true
 
@@ -42,17 +59,16 @@ body:
     id: industry
     attributes:
       label: Industry
-      options:
-        - Manufacturing
-        - Financial Services / Insurance
-        - IT / SaaS
-        - Retail / Commerce
-        - Professional Services
-        - Healthcare / Bio
-        - Public / Education
-        - Media / Content
-        - Construction / Energy
-        - Other
+      options: [Manufacturing, Financial Services / Insurance, IT / SaaS, Retail / Commerce, Professional Services, Healthcare / Bio, Public / Education, Media / Content, Construction / Energy, Other]
+    validations:
+      required: true
+
+  - type: dropdown
+    id: industry_segment
+    attributes:
+      label: Broad Industry Segment
+      description: Used only to build an anonymous peer group.
+      options: [Consumer Electronics / Home Appliances, Automotive / Mobility, Semiconductor / Electronics Components, Industrial / Machinery, Chemicals / Materials, Food / Consumer Goods, Banking / Capital Markets, Insurance, Enterprise Software / SaaS, Internet / Platform / Commerce, Professional Services, Healthcare / Pharma / Bio, Media / Entertainment / Content, Construction / Energy / Utilities, Public / Education, Other / Prefer not to specify]
     validations:
       required: true
 
@@ -60,11 +76,7 @@ body:
     id: scope
     attributes:
       label: Assessment Scope
-      options:
-        - Entire company
-        - Business unit / division
-        - Team / department
-        - New AI-native organization / startup
+      options: [Entire company, Business unit / division, Team / department, New AI-native organization / startup]
     validations:
       required: true
 
@@ -72,13 +84,7 @@ body:
     id: headcount
     attributes:
       label: Assessed Headcount
-      options:
-        - 1-10
-        - 11-50
-        - 51-200
-        - 201-1000
-        - 1001-5000
-        - 5000+
+      options: [1-10, 11-50, 51-200, 201-1000, 1001-5000, 5000+]
     validations:
       required: true
 
@@ -86,17 +92,7 @@ body:
     id: function
     attributes:
       label: Primary Function
-      options:
-        - Company-wide / Multiple functions
-        - Strategy / Management
-        - R&D / Engineering
-        - Software / IT
-        - Data / AI / DX
-        - Sales / Marketing
-        - SCM / Procurement / Manufacturing
-        - Finance / HR / Legal
-        - Customer Service
-        - Other
+      options: [Company-wide / Multiple functions, Strategy / Management, R&D / Engineering, Software / IT, Data / AI / DX, Sales / Marketing, SCM / Procurement / Manufacturing, Finance / HR / Legal, Customer Service, Other]
     validations:
       required: true
 
@@ -104,13 +100,7 @@ body:
     id: stage
     attributes:
       label: CAMP Stage
-      options:
-        - Stage 0 - No AI
-        - Stage 1 - AI Access
-        - Stage 2 - AI Workforce
-        - Stage 3 - Connected AI
-        - Stage 4 - Compounding AI
-        - Stage 5 - AI-Native Company
+      options: [Stage 0 - No AI, Stage 1 - AI Access, Stage 2 - AI Workforce, Stage 3 - Connected AI, Stage 4 - Compounding AI, Stage 5 - AI-Native Company]
     validations:
       required: true
 
@@ -118,47 +108,41 @@ body:
     id: total_score
     attributes:
       label: CAMP Score (0-100)
-      placeholder: "e.g. 65"
     validations:
       required: true
 
   - type: input
     id: access
     attributes:
-      label: AI Access score (0-20)
-      placeholder: "e.g. 10"
+      label: AI Access (0-20)
     validations:
       required: true
 
   - type: input
     id: delegation
     attributes:
-      label: AI Delegation score (0-20)
-      placeholder: "e.g. 15"
+      label: AI Delegation (0-20)
     validations:
       required: true
 
   - type: input
     id: connection
     attributes:
-      label: Enterprise Connection score (0-20)
-      placeholder: "e.g. 15"
+      label: Enterprise Connection (0-20)
     validations:
       required: true
 
   - type: input
     id: compounding
     attributes:
-      label: Knowledge Compounding score (0-20)
-      placeholder: "e.g. 5"
+      label: Knowledge Compounding (0-20)
     validations:
       required: true
 
   - type: input
     id: transformation
     attributes:
-      label: Role Transformation score (0-20)
-      placeholder: "e.g. 5"
+      label: Role Transformation (0-20)
     validations:
       required: true
 
@@ -166,10 +150,7 @@ body:
     id: operations
     attributes:
       label: AI Operations
-      options:
-        - Weak
-        - Developing
-        - Strong
+      options: [Weak, Developing, Strong]
     validations:
       required: true
 
@@ -177,19 +158,6 @@ body:
     id: sovereignty
     attributes:
       label: Sovereign AI capability
-      options:
-        - API
-        - Portfolio
-        - Private
-        - Post-trained
-        - Foundation
+      options: [API, Portfolio, Private, Post-trained, Foundation]
     validations:
       required: true
-
-  - type: checkboxes
-    id: confirm
-    attributes:
-      label: Final confirmation
-      options:
-        - label: I confirm that I did not include confidential or personally identifiable information.
-          required: true
