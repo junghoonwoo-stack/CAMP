@@ -2,88 +2,104 @@
 
 ## English
 
-Share one anonymized assessment and get useful comparisons back.
+CAMP uses a **Give-to-Get** benchmark.
 
-### What participants get
+### Access rule
+- CAMP assessment, Stage, Score, and recommendations: free.
+- Benchmark percentiles and peer analysis: available only after sharing your anonymized CAMP assessment.
+- No contributed assessment = no Benchmark analysis.
+
+This keeps the benchmark useful: every comparison user also improves the dataset.
+
+### What contributors get
 When sample size is sufficient:
 - Overall percentile
 - Industry percentile
 - Peer Group percentile
-- Dimension comparison: Access, Delegation, Connection, Compounding, Transformation
+- Dimension gaps: Access, Delegation, Connection, Compounding, Transformation
+- Later: trend, custom cohorts, multi-team comparison, longitudinal movement
 
-Peer Group uses broad industry segment, size, country/region, scope, and function. Company names are never shown.
+### Data architecture
+**Public repository:** framework, schema, metadata, synthetic examples. No raw Benchmark dataset.  
+**Private benchmark store:** assessment records used for comparison.  
+**Private identity registry:** optional real company name mapped to `org_group_id` for deduplication, verification, longitudinal tracking, and better peer matching.
+
+Real company names are never part of the public benchmark dataset.
+
+### Participation levels
+1. **Anonymous contribution** — share anonymized assessment; receive Overall / Industry / Peer Group comparison.
+2. **Private identity** — optionally provide company identity privately; receive better longitudinal tracking and peer matching. Identity stays private.
+3. **Multi-respondent organization** — multiple respondents share one Organization Group ID; receive mean/median, spread, and disagreement analysis.
+4. **Future premium** — historical trends, custom peer cohorts, verified benchmarks, executive reports, API/export.
+
+Named-company scores are not sold or exposed unless they come from public sources or the organization explicitly permits named disclosure. Paid value should come from verified cohorts, trends, analytics, and private comparison—not exposing confidential submissions.
 
 ### Data quality
-Each record includes:
-- `assessment_method`: self_report / evidence_assessment / expert_evidence
-- `confidence`: Low / Medium / High
-- `benchmark_status`: eligible / provisional / reference_only
+- `eligible`: standard benchmark
+- `provisional`: preliminary benchmark only
+- `reference_only`: never used for ranking
 
-`eligible` records count toward standard percentiles.  
-`provisional` records may be used only for an explicitly labeled **Preliminary Benchmark** while the dataset is small.  
-`reference_only` records are useful cases but do not count toward ranking.
+For company ranking, one organization counts once using an organization-level aggregate.
 
-Do not convert product/vendor capability into the vendor's own CAMP maturity score unless the evidence is about that organization's internal operating model.
-
-### Public fields
-Anonymous Organization Group ID, Scope ID, Respondent ID, country, industry, broad industry segment, scope, headcount band, function, Stage, scores, AI Operations, Sovereign AI, assessment method, confidence, and benchmark status.
-
-Never publish company names, person names, email addresses, customers, projects, systems, or confidential free text.
-
-### Multiple respondents
-Use the same Organization Group ID and different Respondent IDs. For cross-company ranking, one organization counts once using an organization-level aggregate.
-
-### Peer Group rule
+### Peer Group
 Use the narrowest cohort with enough organizations:
 1. Industry
 2. Industry segment
-3. Industry segment + size
-4. Industry segment + size + country/region
-5. Add scope/function only when sample size remains sufficient
+3. Segment + size
+4. Segment + size + country/region
+5. Add scope/function only when N remains sufficient
 
-If N < 10, broaden the cohort. If the eligible dataset is still too small, show no official percentile. A Preliminary Benchmark may include provisional records only when clearly labeled with N and data quality.
+If N < 10, broaden the cohort or show insufficient sample size.
 
 ---
 
 ## 한국어
 
-익명화된 진단 결과를 공유하면 의미 있는 비교 결과를 돌려줍니다.
+CAMP Benchmark는 **Give-to-Get** 구조입니다.
+
+### 접근 원칙
+- CAMP 진단, Stage, Score, 추천 Action: 무료.
+- Benchmark Percentile과 Peer 분석: 자신의 익명 CAMP 결과를 공유한 경우에만 제공.
+- 데이터 기여 없음 = Benchmark 분석 없음.
+
+즉 비교 결과를 받는 사람은 동시에 Benchmark 데이터도 늘리게 됩니다.
 
 ### 참여자가 받는 것
 표본이 충분하면:
 - 전체 Percentile
 - Industry Percentile
 - Peer Group Percentile
-- 영역별 비교: Access, Delegation, Connection, Compounding, Transformation
+- 5개 영역별 Gap
+- 향후: 추세, Custom Cohort, 여러 팀 비교, 시계열 변화
 
-Peer Group은 넓은 Industry Segment, 규모, 국가/지역, 진단 범위, Function을 사용합니다. 회사명은 공개하지 않습니다.
+### 데이터 구조
+**Public Repository:** Framework, Schema, Metadata, 가상 Example만 공개. Raw Benchmark 데이터는 공개하지 않음.  
+**Private Benchmark Store:** 실제 비교 계산용 진단 데이터.  
+**Private Identity Registry:** 선택적으로 실제 회사명과 `org_group_id`를 연결해 중복 제거, 검증, 시계열 추적, Peer Matching에 사용.
+
+실제 회사명은 Public Benchmark Dataset에 포함하지 않습니다.
+
+### 참여 수준
+1. **Anonymous Contribution** — 익명 결과 공유 → 전체 / 업종 / Peer Group 비교.
+2. **Private Identity** — 회사명을 비공개로 알려주면 시계열 추적과 Peer Matching 정확도 향상. 회사명은 외부 비공개.
+3. **Multi-respondent Organization** — 같은 Organization Group ID로 여러 명 참여 → 평균/중앙값/분산/인식차 분석.
+4. **Future Premium** — Historical Trend, Custom Peer Cohort, Verified Benchmark, Executive Report, API/Export.
+
+회사명이 붙은 개별 점수는 공개 출처이거나 해당 조직이 명시적으로 허용한 경우가 아니면 판매하거나 공개하지 않습니다. 유료 가치는 **회사명 노출이 아니라 검증된 Cohort, 추세, 분석, 비공개 비교**에서 만듭니다.
 
 ### 데이터 품질
-각 데이터에는 다음을 표시합니다.
-- `assessment_method`: self_report / evidence_assessment / expert_evidence
-- `confidence`: Low / Medium / High
-- `benchmark_status`: eligible / provisional / reference_only
+- `eligible`: 정식 Benchmark
+- `provisional`: Preliminary Benchmark만
+- `reference_only`: 순위 제외
 
-`eligible`만 정식 Percentile에 사용합니다.  
-`provisional`은 데이터가 적은 초기 단계에서 **Preliminary Benchmark**라고 명시할 때만 사용할 수 있습니다.  
-`reference_only`는 참고 사례이며 순위 계산에서 제외합니다.
+기업 간 비교에서는 조직 단위 집계값으로 한 조직을 한 번만 반영합니다.
 
-제품이나 Vendor의 기능을 그 회사 자체의 CAMP 성숙도로 계산하지 않습니다. 반드시 해당 조직의 내부 Operating Model에 대한 Evidence가 있어야 합니다.
-
-### 공개 데이터
-익명 Organization Group ID, Scope ID, Respondent ID, 국가, 업종, 넓은 Industry Segment, Scope, 인원 구간, Function, Stage/Score, AI Operations, Sovereign AI, 평가 방식, Confidence, Benchmark Status.
-
-회사명, 개인 이름, 이메일, 고객명, 과제명, 시스템명, 자유서술형 기밀정보는 공개하지 않습니다.
-
-### 여러 명이 응답하는 경우
-같은 Organization Group ID와 서로 다른 Respondent ID를 사용합니다. 기업 간 비교에서는 조직 단위 집계값으로 한 조직을 한 번만 반영합니다.
-
-### Peer Group 원칙
+### Peer Group
 표본이 충분한 범위에서 가장 유사한 Cohort를 사용합니다.
 1. Industry
 2. Industry Segment
-3. Industry Segment + 규모
-4. Industry Segment + 규모 + 국가/지역
-5. 표본이 충분할 때만 Scope/Function 추가
+3. Segment + 규모
+4. Segment + 규모 + 국가/지역
+5. N이 충분할 때만 Scope/Function 추가
 
-N < 10이면 더 넓은 그룹으로 비교합니다. eligible 데이터가 부족하면 정식 Percentile을 제공하지 않습니다. provisional 데이터를 포함할 때는 반드시 **Preliminary Benchmark**, N, 데이터 품질을 함께 표시합니다.
+N < 10이면 더 넓은 그룹으로 비교하거나 표본 부족으로 표시합니다.
