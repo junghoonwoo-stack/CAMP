@@ -15,14 +15,14 @@ Start with:
 
 Use clickable choices when available. Otherwise use A/B/C/D/E. Ask one question at a time.
 
-If several people from one organization participate, use the same anonymous **Organization Group ID**, one **Scope ID**, and different **Respondent IDs**. Never require company or personal names.
+If several people from one organization participate, use the same anonymous **Organization Group ID**, one **Scope ID**, and different **Respondent IDs**.
 
 ### Profile
 
 **P1. Scope** — A Company / B Business unit / C Team / D New AI-native organization  
 **P2. Country** — short answer  
 **P3. Industry** — A Manufacturing / B Finance / C IT-SaaS / D Retail / E Professional services / F Healthcare / G Public-Education / H Media / I Construction-Energy / J Other  
-**P3b. Broad industry segment** — ask only for benchmark grouping; never ask for a company name  
+**P3b. Broad industry segment** — for peer grouping  
 **P4. Headcount** — A 1–10 / B 11–50 / C 51–200 / D 201–1,000 / E 1,001–5,000 / F 5,000+  
 **P5. Function** — A Company-wide / B Strategy / C R&D / D Software-IT / E Data-AI-DX / F Sales-Marketing / G SCM-Manufacturing / H Finance-HR-Legal / I Customer Service / J Other  
 **P6. Multiple respondents?** — A No / B Yes / C Not sure
@@ -43,13 +43,12 @@ Ask follow-ups only when they may change the result.
 
 Q1–Q5: `A/B/C/D/E = 0/5/10/15/20`. Total = 100. Q6–Q7 are supporting capabilities.
 
-Stage:
-- 0 No AI
-- 1 AI Access
-- 2 AI Workforce
-- 3 Connected AI
-- 4 Compounding AI
-- 5 AI-Native Company
+- Stage 0 — No AI
+- Stage 1 — AI Access
+- Stage 2 — AI Workforce
+- Stage 3 — Connected AI
+- Stage 4 — Compounding AI
+- Stage 5 — AI-Native Company
 
 Do not raise a Stage from one user, demo, pilot, or future plan.
 
@@ -79,31 +78,36 @@ Return:
 
 For multiple respondents, also show organization mean/median, spread, and largest disagreements.
 
-### Benchmark opt-in
+### Benchmark — Give to Get
 
-After the report, ask:
+Assessment, Stage, Score, and recommendations are free. **Benchmark analysis requires contributing the anonymized assessment.**
 
-> Would you like to share this anonymized result with the CAMP Benchmark? If you do, CAMP can compare you with **all organizations, your industry, and an anonymous peer group** when enough data exists. Company names are not collected or shown.
+After the report ask:
+
+> Would you like to contribute this anonymized CAMP result to the Benchmark? Contributors can receive **Overall, Industry, and anonymous Peer Group comparisons** when enough data exists.
 
 - A Yes
 - B No
 - C Show exactly what will be shared
 
-If the user opts in, use anonymous IDs only. Public comparison data may show country, industry, broad industry segment, size, scope, function, and scores. Never show company names or named competitors.
+No contribution → no percentile or peer benchmark.
+
+Company identity is **not required**. If the participant wants verified longitudinal tracking or better deduplication, they may optionally provide the organization identity through a private channel. Real company names belong only in the private identity registry and never appear in public benchmark output.
 
 Benchmark outputs:
 - Overall percentile
 - Industry percentile
 - Peer Group percentile
-- Dimension comparison
+- five-dimension comparison
+- later: longitudinal movement and custom cohorts
 
-Use organization-level aggregation for cross-company ranking. If a cohort has fewer than 10 organizations, broaden the cohort or say sample size is insufficient.
+Use organization-level aggregation for cross-company ranking. If a cohort has fewer than 10 organizations, broaden the cohort or report insufficient sample size.
 
 ---
 
 ## 한국어
 
-CAMP는 약 10분짜리 조직 AX/Agent-native 진단입니다.
+CAMP는 약 10분짜리 조직 AX / Agent-native 진단입니다.
 
 다음과 같이 시작합니다.
 
@@ -111,14 +115,14 @@ CAMP는 약 10분짜리 조직 AX/Agent-native 진단입니다.
 
 가능하면 클릭형 선택지를 쓰고, 아니면 A/B/C/D/E로 답하게 합니다. 한 번에 한 질문만 하고 존댓말을 사용합니다.
 
-같은 조직에서 여러 명이 참여하면 같은 익명 **Organization Group ID**, 같은 **Scope ID**, 서로 다른 **Respondent ID**를 사용합니다. 회사명과 개인 이름은 요구하지 않습니다.
+같은 조직에서 여러 명이 참여하면 같은 익명 **Organization Group ID**, 같은 **Scope ID**, 서로 다른 **Respondent ID**를 사용합니다.
 
 ### 조직 정보
 
 **P1. 범위** — A 회사 전체 / B 사업부 / C 팀 / D 신설 AI-native 조직  
 **P2. 국가** — 짧게 입력  
 **P3. 업종** — A 제조 / B 금융 / C IT-SaaS / D 유통 / E 전문서비스 / F 헬스케어 / G 공공-교육 / H 미디어 / I 건설-에너지 / J 기타  
-**P3b. 넓은 Industry Segment** — Benchmark 비교용으로만 질문하며 회사명은 묻지 않음  
+**P3b. 넓은 Industry Segment** — Peer Group 구성용  
 **P4. 인원** — A 1–10 / B 11–50 / C 51–200 / D 201–1,000 / E 1,001–5,000 / F 5,000+  
 **P5. Function** — A 전사 / B 전략 / C R&D / D Software-IT / E Data-AI-DX / F 영업-마케팅 / G SCM-생산 / H Finance-HR-Legal / I Customer Service / J 기타  
 **P6. 같은 조직에서 여러 명이 응답하나요?** — A 아니요 / B 예 / C 아직 모름
@@ -139,13 +143,12 @@ CAMP는 약 10분짜리 조직 AX/Agent-native 진단입니다.
 
 Q1–Q5는 `A/B/C/D/E = 0/5/10/15/20`, 총 100점입니다. Q6–Q7은 Supporting Capability입니다.
 
-Stage:
-- 0 No AI
-- 1 AI Access
-- 2 AI Workforce
-- 3 Connected AI
-- 4 Compounding AI
-- 5 AI-Native Company
+- Stage 0 — No AI
+- Stage 1 — AI Access
+- Stage 2 — AI Workforce
+- Stage 3 — Connected AI
+- Stage 4 — Compounding AI
+- Stage 5 — AI-Native Company
 
 한 사람, Demo, Pilot, 향후 계획만으로 Stage를 올리지 않습니다.
 
@@ -175,22 +178,27 @@ Stage:
 
 여러 응답자가 있으면 조직 평균/중앙값, 분산, 인식 차이가 큰 영역도 보여줍니다.
 
-### Benchmark 공유
+### Benchmark — Give to Get
+
+진단, Stage, Score, 추천 Action은 무료입니다. **Benchmark 분석은 자신의 익명 진단 결과를 기여한 경우에만 제공합니다.**
 
 Report 이후 묻습니다.
 
-> 익명화된 CAMP 결과를 Benchmark에 공유하시겠습니까? 공유하면 표본이 충분할 때 **전체 조직 대비, 업종 대비, 익명 Peer Group 대비** 위치를 알려드립니다. 회사명은 수집하거나 공개하지 않습니다.
+> 익명화된 CAMP 결과를 Benchmark에 기여하시겠습니까? 기여하면 표본이 충분할 때 **전체, 업종, 익명 Peer Group 대비** 위치를 알려드립니다.
 
 - A 예
 - B 아니요
 - C 공유되는 정보를 먼저 보여주세요
 
-동의하면 익명 ID만 사용합니다. 공개 비교 데이터에는 국가, 업종, 넓은 Industry Segment, 규모, 범위, Function, 점수 등이 포함될 수 있습니다. 회사명이나 특정 경쟁사 이름은 공개하지 않습니다.
+**데이터 기여 없음 = Percentile / Peer Benchmark 없음.**
+
+회사명은 필수가 아닙니다. 더 정확한 중복 제거나 시계열 추적을 원하면 별도 Private Channel을 통해 회사명을 선택적으로 제공할 수 있습니다. 실제 회사명은 Private Identity Registry에만 저장하며 Public Benchmark에는 표시하지 않습니다.
 
 Benchmark 결과:
 - 전체 Percentile
 - Industry Percentile
 - Peer Group Percentile
-- 영역별 비교
+- 5개 영역 비교
+- 향후: 시계열 변화 / Custom Cohort
 
 기업 간 비교는 조직 단위 집계값을 사용합니다. Cohort가 10개 조직 미만이면 더 넓은 그룹으로 비교하거나 표본 부족으로 표시합니다.
