@@ -1,91 +1,139 @@
 # CAMP Report Template
 
-진단 종료 후 아래 형식으로 Report를 생성합니다.
+## English
 
 # 🧭 CAMP Assessment Report
 
-## 1. Organization Profile
-- Scope: 회사 전체 / 사업부 / 팀 / 신설 AI-native 조직
-- Country:
-- Industry:
-- Headcount band:
-- Function:
-- Assessment date:
-- Evidence mode: Interview / Files + Interview
+### Organization
+- Scope / Country / Industry / Headcount / Function
+- Assessment date
+- Mode: Interview / Evidence + Interview
+- Organization Group ID / Scope ID / Respondent ID, if used
 
-## 2. Executive Result
-
+### Executive result
 **CAMP Stage:** `Stage N — Name`  
 **CAMP Score:** `NN / 100`  
 **Confidence:** High / Medium / Low
 
-**한 줄 진단:** 현재 Operating Model과 가장 큰 병목을 한 문장으로 설명합니다.
+**One-line diagnosis:** current operating model + biggest bottleneck.
 
-## 3. CAMP Score
+### Score
+| Dimension | Score |
+|---|---:|
+| AI Access | /20 |
+| AI Delegation | /20 |
+| Enterprise Connection | /20 |
+| Knowledge Compounding | /20 |
+| Role Transformation | /20 |
+| **Total** | **/100** |
 
-5개 핵심 Dimension × 20점 = 100점.
+Default mapping: `A/B/C/D/E = 0/5/10/15/20`. Adjust downward for shared accounts, isolated pilots, or non-operational plans.
 
-| Dimension | Score | 의미 |
-|---|---:|---|
-| AI Access | /20 | 개인 AI 접근성과 Coverage |
-| AI Delegation | /20 | 질문을 넘어 실제 업무를 위임하는 정도 |
-| Enterprise Connection | /20 | 회사 Context/Data/Tool/System 연결 정도 |
-| Knowledge Compounding | /20 | Skill/Session/Context 조직 자산화 |
-| Role Transformation | /20 | Handoff 감소, 역할 확장, 조직 재설계 |
-| **Total** | **/100** | |
+### Evidence
+**Strengths:** 2–5 evidence-backed points.  
+**Missing evidence:** only when relevant.
 
-기본 객관식 A/B/C/D/E는 `0 / 5 / 10 / 15 / 20`점으로 매핑합니다. 팀 공유 계정, Pilot 한 건, 계획 단계 등은 실제 반복 운영 여부에 따라 하향 조정할 수 있습니다.
+### Biggest bottleneck
+> The single issue most limiting the next CAMP Stage or business impact.
 
-Stage와 Score는 다릅니다. Stage는 현재 Operating Model의 질적 위치이고, Score는 다섯 축의 균형을 보여줍니다.
+### Next 90 days — Top 3
+1. Action + deliverable + success signal
+2. Action + deliverable + success signal
+3. Action + deliverable + success signal
 
-## 4. Evidence Summary
-
-**확인된 강점**
-- 2~5개
-
-**추가 증거가 필요한 부분**
-- 필요한 경우에만
-
-## 5. Biggest Bottleneck
-
-> 다음 CAMP Stage 또는 더 높은 성과를 막고 있는 가장 중요한 한 가지
-
-## 6. Next 90 Days — Top 3
-
-1. **Action 1** — 구체적 산출물과 성공조건
-2. **Action 2** — 구체적 산출물과 성공조건
-3. **Action 3** — 구체적 산출물과 성공조건
-
-가능하면 실제 AX 과제 형태로 표현합니다.
-
-## 7. Recommended AX Projects
-
+### Recommended projects
 | Priority | Project | CAMP impact | Success signal |
 |---|---|---|---|
-| P0 |  |  |  |
 
-## 8. Stop Doing
+### Stop doing
+1–3 activities consuming resources with low Agent-native impact.
 
-Agent-native 전환에 기여도가 낮으면서 자원을 소모하는 활동을 1~3개 제시합니다.
-
-## 9. Supporting Capabilities
-
+### Supporting capabilities
 **AI Operations:** Weak / Developing / Strong  
-Visibility / Cost / Quality / Security 근거를 설명합니다.
+**Sovereign AI:** API / Portfolio / Private / Post-trained / Foundation
 
-**Sovereign AI:** API / Portfolio / Private / Post-trained / Foundation  
-현재 수준과 더 높은 Sovereignty가 실제 필요한지 설명합니다.
+### Multiple respondents
+If several people share the same Organization Group ID, also show:
+- organization mean / median
+- score range or standard deviation
+- dimensions with the largest disagreement
 
-## 10. Benchmark Opt-in
+### Benchmark opt-in
+After the report, ask:
 
-Report를 먼저 제공한 뒤 별도로 묻습니다.
+> Would you like to share the anonymized CAMP result with the benchmark? If enough organizations participate, CAMP can show your position in the overall and relevant country/industry/size distributions.
 
-> CAMP Score를 익명화된 Benchmark에 공유하시겠습니까? 충분한 표본이 쌓이면 전체 조직 및 가능하면 국가·업종·규모별 분포에서 현재 위치를 알려드립니다. 회사명과 자유서술 내용은 기본적으로 수집하지 않습니다. GitHub 공개 제출 시 GitHub 계정은 노출될 수 있습니다.
+- A. Yes
+- B. No
+- C. Show me exactly what will be shared
 
-- A. 예, 공유하겠습니다.
-- B. 아니요.
-- C. 공유되는 정보를 먼저 보여주세요.
+No opt-in, no benchmark submission.
 
-동의하지 않으면 Benchmark 데이터를 기록하지 않습니다.
+## 한국어
 
-Percentile은 전체 또는 세부 그룹 표본이 각각 10개 이상일 때만 제시하고, 항상 N과 기준일을 함께 표시합니다.
+# 🧭 CAMP 진단 Report
+
+### 조직 정보
+- 범위 / 국가 / 업종 / 인원 / Function
+- 진단일
+- 방식: Interview / Evidence + Interview
+- 필요 시 Organization Group ID / Scope ID / Respondent ID
+
+### 핵심 결과
+**CAMP Stage:** `Stage N — Name`  
+**CAMP Score:** `NN / 100`  
+**Confidence:** High / Medium / Low
+
+**한 줄 진단:** 현재 Operating Model + 가장 큰 병목.
+
+### 점수
+| Dimension | Score |
+|---|---:|
+| AI Access | /20 |
+| AI Delegation | /20 |
+| Enterprise Connection | /20 |
+| Knowledge Compounding | /20 |
+| Role Transformation | /20 |
+| **Total** | **/100** |
+
+기본 매핑은 `A/B/C/D/E = 0/5/10/15/20`입니다. 공유 계정, 단일 Pilot, 계획 단계는 실제 운영 수준에 맞게 하향 조정합니다.
+
+### Evidence
+**강점:** 근거 있는 2~5개 항목.  
+**추가 Evidence:** 필요한 경우만 표시.
+
+### 가장 큰 병목
+> 다음 CAMP Stage 또는 사업성과를 막는 가장 중요한 한 가지.
+
+### 다음 90일 — Top 3
+1. Action + 산출물 + 성공조건
+2. Action + 산출물 + 성공조건
+3. Action + 산출물 + 성공조건
+
+### 추천 과제
+| Priority | Project | CAMP impact | Success signal |
+|---|---|---|---|
+
+### Stop Doing
+Agent-native 전환 기여도가 낮으면서 자원을 소모하는 활동 1~3개.
+
+### Supporting Capabilities
+**AI Operations:** Weak / Developing / Strong  
+**Sovereign AI:** API / Portfolio / Private / Post-trained / Foundation
+
+### 여러 명이 응답한 경우
+같은 Organization Group ID가 여러 개면 다음도 보여줍니다.
+- 조직 평균 / 중앙값
+- 점수 범위 또는 표준편차
+- 응답자 간 인식 차이가 가장 큰 영역
+
+### Benchmark Opt-in
+Report를 먼저 제공한 뒤 묻습니다.
+
+> 익명화된 CAMP 결과를 Benchmark에 공유하시겠습니까? 충분한 조직이 참여하면 전체 및 국가·업종·규모별 분포에서 현재 위치를 볼 수 있습니다.
+
+- A. 예
+- B. 아니요
+- C. 공유되는 정보를 먼저 보여주세요
+
+동의하지 않으면 Benchmark에 제출하지 않습니다.
