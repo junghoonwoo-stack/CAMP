@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0",
+  "assessment_date": "2026-09-13",
+  "company_name": "Example Company",
+  "scope_label": "Example Business Unit",
+  "country": "South Korea",
+  "industry": "Manufacturing",
+  "industry_segment": "Consumer Electronics",
+  "scope": "Business unit / division",
+  "headcount_band": "1001-5000",
+  "function": "Company-wide / Multiple functions",
+  "respondent_role": "Manager",
+  "assessment_method": "self_report",
+  "evidence_level": "Repeated",
+  "confidence": "High",
+  "stage": "Stage 3 - Connected AI",
+  "total_score": 60,
+  "dimensions": {
+    "access": 15,
+    "delegation": 15,
+    "connection": 15,
+    "compounding": 10,
+    "transformation": 5
+  },
+  "operations": "Developing",
+  "sovereignty": "Portfolio",
+  "evidence_summary": "Synthetic example only.",
+  "consent_to_benchmark": true
+}
