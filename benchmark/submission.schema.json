@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CAMP Bench Submission",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "assessment_date",
+    "company_name",
+    "country",
+    "industry",
+    "industry_segment",
+    "scope",
+    "headcount_band",
+    "function",
+    "respondent_role",
+    "stage",
+    "total_score",
+    "dimensions",
+    "operations",
+    "sovereignty",
+    "evidence_level"
+  ],
+  "properties": {
+    "schema_version": {"type": "string", "const": "1.0"},
+    "assessment_date": {"type": "string", "format": "date"},
+    "company_name": {"type": "string", "minLength": 1, "description": "Private identity matching only; never included in public benchmark output."},
+    "scope_label": {"type": ["string", "null"], "description": "Private business-unit or team label when relevant."},
+    "country": {"type": "string"},
+    "industry": {"type": "string"},
+    "industry_segment": {"type": "string"},
+    "scope": {"type": "string"},
+    "headcount_band": {"type": "string"},
+    "function": {"type": "string"},
+    "respondent_role": {"type": "string"},
+    "assessment_method": {"type": "string", "enum": ["self_report", "interview", "evidence_assessment", "expert_evidence"]},
+    "evidence_level": {"type": "string", "enum": ["Anecdotal", "Repeated", "Operationalized", "Institutionalized"]},
+    "confidence": {"type": "string", "enum": ["Low", "Medium", "High"]},
+    "stage": {"type": "string"},
+    "total_score": {"type": "integer", "minimum": 0, "maximum": 100},
+    "dimensions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["access", "delegation", "connection", "compounding", "transformation"],
+      "properties": {
+        "access": {"type": "integer", "minimum": 0, "maximum": 20},
+        "delegation": {"type": "integer", "minimum": 0, "maximum": 20},
+        "connection": {"type": "integer", "minimum": 0, "maximum": 20},
+        "compounding": {"type": "integer", "minimum": 0, "maximum": 20},
+        "transformation": {"type": "integer", "minimum": 0, "maximum": 20}
+      }
+    },
+    "operations": {"type": "string", "enum": ["Weak", "Developing", "Strong"]},
+    "sovereignty": {"type": "string", "enum": ["API", "Portfolio", "Private", "Post-trained", "Foundation", "Unknown"]},
+    "evidence_summary": {"type": ["string", "null"], "maxLength": 1000},
+    "consent_to_benchmark": {"type": "boolean", "const": true}
+  }
+}
