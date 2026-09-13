@@ -56,6 +56,17 @@ Use junghoonwoo-stack/CAMP. Read SKILL.md and run the CAMP assessment.
 
 or upload `SKILL.md` and the Markdown files under `references/`, then use the same prompt.
 
+## License & citation
+
+CAMP framework and documentation are released under **CC BY 4.0**. Reuse, adaptation, translation, education, and commercial use are welcome with attribution.
+
+Preferred attribution:
+
+> **CAMP — Company Agent Maturity Profile, created by Junghoon Woo**  
+> https://github.com/junghoonwoo-stack/CAMP
+
+GitHub also exposes a **Cite this repository** action through `CITATION.cff`.
+
 ---
 
 # CAMP
@@ -115,3 +126,14 @@ Use junghoonwoo-stack/CAMP. Read SKILL.md and run the CAMP assessment.
 ```
 
 또는 `SKILL.md`와 `references/` 아래 Markdown 파일을 업로드한 뒤 같은 문장을 입력합니다.
+
+## 라이선스와 저자 표기
+
+CAMP Framework와 문서는 **CC BY 4.0**으로 공개합니다. 원저자를 표시하면 수정·번역·교육·상업적 활용도 가능합니다.
+
+권장 표기:
+
+> **CAMP — Company Agent Maturity Profile, created by Junghoon Woo**  
+> https://github.com/junghoonwoo-stack/CAMP
+
+`CITATION.cff`도 추가하여 GitHub의 **Cite this repository** 기능으로 CAMP와 원저자를 바로 인용할 수 있게 했습니다.
