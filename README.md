@@ -2,59 +2,116 @@
 
 **Company Agent Maturity Profile**
 
-A ~10-minute assessment of how agent-native a company or team is — and what to do next.
+CAMP is a ~10-minute assessment for one question: **How agent-native is this company or team, and what should it do next?**
 
-## Start
+A short interview or evidence review returns a CAMP Stage, a Score /100, five-dimension analysis, the biggest bottleneck, and concrete actions for the next 90 days.
 
-| Tool | Run |
-|---|---|
-| ChatGPT | Connect this GitHub repo, or upload `SKILL.md` + `references/`, then ask: `Read SKILL.md and run the CAMP assessment.` |
-| Claude Code | `claude "Read SKILL.md and run the CAMP assessment."` |
-| Codex | Run `codex`, then enter: `Read SKILL.md and run the CAMP assessment.` |
+## Quick Start
+
+### Claude Code
 
 ```bash
-git clone https://github.com/junghoonwoo-stack/CAMP.git
-cd CAMP
+git clone https://github.com/junghoonwoo-stack/CAMP.git && cd CAMP
+claude "Read SKILL.md and run the CAMP assessment."
 ```
 
-## What CAMP returns
+### Codex
 
-| Output | What it shows |
+```bash
+git clone https://github.com/junghoonwoo-stack/CAMP.git && cd CAMP
+codex "Read SKILL.md and run the CAMP assessment."
+```
+
+### ChatGPT
+
+Connect this repository, or upload `SKILL.md` and `references/`, then enter:
+
+```text
+Read SKILL.md and run the CAMP assessment.
+```
+
+## What CAMP Measures
+
+| Dimension | Core question |
 |---|---|
-| **CAMP Stage** | Stage 0–5 maturity |
-| **CAMP Score** | Overall score /100 |
-| **5 Dimensions** | AI Access, Delegation, Enterprise Connection, Knowledge Compounding, Role Transformation |
-| **Diagnosis** | Strengths, weak spots, and the biggest bottleneck |
-| **Next 90 Days** | Top 3 actions and practical AX / AI-native projects |
-| **AI Operations / Sovereign AI** | Supporting operating and model capabilities |
+| **AI Access** | How broadly can people use AI for work? |
+| **AI Delegation** | How much real work is delegated to AI? |
+| **Enterprise Connection** | Can AI use company context, data, tools, and systems? |
+| **Knowledge Compounding** | Do skills, decisions, and session knowledge become reusable organizational assets? |
+| **Role Transformation** | Are handoffs, role boundaries, and organization design changing around AI? |
+
+Each dimension is scored 0–20 for a total **CAMP Score /100**. CAMP also reports a qualitative **Stage 0–5**. Stage and Score are intentionally separate: Stage describes the recurring operating model; Score shows how balanced the five capabilities are.
+
+**AI Operations** and **Sovereign AI** are reported separately and do not increase the CAMP Score.
+
+A CAMP report includes:
+- Stage + confidence
+- Score /100 and all five dimension scores
+- strongest and weakest areas
+- biggest bottleneck
+- Top 3 actions for the next 90 days
+- practical projects to start, refocus, merge, or stop
+- AI Operations and Sovereign AI assessment
 
 ## CAMP Bench
 
-When an assessment is included in **CAMP Bench**, the report can compare the organization with other assessments.
+CAMP Bench places an assessment in context.
 
 ![CAMP Bench — illustrative example](assets/camp-bench.svg)
 
 *Illustrative example. Actual results depend on the available sample.*
 
-| Comparison | What it shows |
-|---|---|
-| **Overall** | Position across all organizations |
-| **Industry** | Position within the same industry |
-| **Peer Group** | Similar organizations by segment, size, country/region, scope, and function |
-| **5 Dimensions** | Where the organization is unusually strong or weak |
-| **Same Company** | Mean/median, distribution, team/function differences, and areas of disagreement when multiple responses exist |
+When an assessment is submitted to CAMP Bench, it can be compared with:
+- **Overall** — all eligible organizations
+- **Industry** — organizations in the same broad industry
+- **Peer Group** — similar organizations by segment, size, country/region, scope, and function
+- **Five dimensions** — where the organization is relatively strong or weak
 
-CAMP Bench asks for the **real company name** so responses from the same organization can be matched, duplicates can be avoided, and team-level or longitudinal analysis can be performed. The company name is kept in the **private identity registry** and is not shown in benchmark reports or charts.
+Submitting the **real company name** improves the analysis because CAMP Bench can match previous assessments from the same company. If several people or teams from that company participate, the report can also show the company mean/median, score distribution, team/function differences, and dimensions with the largest internal disagreement. Repeated assessments enable longitudinal comparison.
 
-## Data
+CAMP Bench uses current operating evidence, not plans or isolated pilots. Accurate submissions make both the participant's own comparison and the aggregate benchmark more useful.
 
-| Location | Contains |
-|---|---|
-| **Public CAMP repo** | Framework, scoring logic, schema, field definitions, synthetic examples |
-| **Private benchmark store** | Company identity mapping, assessment records, team/scope relationships, history |
-| **Reports** | Anonymized organization, industry, and peer-group comparisons |
+### Privacy
 
-Named competitor scores from private submissions are not exposed. Peer comparisons use anonymized cohorts; named-company analysis requires public or explicitly authorized data.
+The participant can see **their own company** in their private report. **Every other organization remains anonymized.** Individual respondent identities are never shown.
+
+- The **private CAMP Bench store** contains real company identity mapping, raw assessment records, scope relationships, evidence, and history.
+- The **public CAMP repository** contains only the framework, methodology, schemas, and synthetic examples.
+- Public or shared benchmark views contain aggregate or anonymized results only.
+- Confidential submissions are never used to expose another company's named score. Named-company comparisons require public information or explicit authorization.
+
+Official percentiles require a sufficiently large cohort. If a cohort has fewer than 10 organizations, CAMP Bench broadens the cohort or reports that the sample is insufficient.
+
+## Example Survey
+
+```text
+CAMP: Roughly what share of employees repeatedly use AI for work?
+You: Around 40–50%.
+
+CAMP: Is AI connected to internal systems such as RAG, MCP, APIs, ERP, or databases?
+You: RAG and some MCP are already in production, but many systems remain to be connected.
+
+CAMP: Are reusable skills or session knowledge shared across the organization?
+You: We have started collecting skills, but reuse is still limited.
+```
+
+Example result:
+
+```text
+Stage 3 — Connected AI
+CAMP Score: 40 / 100
+Strongest: Enterprise Connection
+Weakest: Role Transformation
+Biggest bottleneck: Individual AI → Organizational Intelligence
+Next target: build reusable skills and complete high-value end-to-end connections.
+```
+
+## Methodology
+
+- [Stages and Agent definition](references/STAGES.md)
+- [Diagnostic playbook and evidence rules](references/PLAYBOOK.md)
+- [Report format](references/REPORT_TEMPLATE.md)
+- [CAMP Bench methodology](references/BENCHMARK.md)
 
 ## License
 
@@ -66,60 +123,117 @@ CAMP framework and documentation use **CC BY 4.0**. If you redistribute or publi
 
 **Company Agent Maturity Profile**
 
-약 10분 동안 **우리 회사나 팀이 얼마나 Agent-native한지, 다음에 무엇을 해야 하는지** 진단합니다.
+CAMP는 약 10분 동안 **우리 회사나 팀이 얼마나 Agent-native한지, 다음에 무엇을 해야 하는지** 진단합니다.
+
+짧은 질의응답이나 자료 검토를 통해 CAMP Stage, 총점 /100, 5개 영역 분석, 가장 큰 병목, 향후 90일 Action을 제공합니다.
 
 ## 바로 시작
 
-| Tool | 실행 |
-|---|---|
-| ChatGPT | 이 GitHub repo를 연결하거나 `SKILL.md` + `references/`를 업로드한 뒤 `Read SKILL.md and run the CAMP assessment.` 입력 |
-| Claude Code | `claude "Read SKILL.md and run the CAMP assessment."` |
-| Codex | `codex` 실행 후 `Read SKILL.md and run the CAMP assessment.` 입력 |
+### Claude Code
 
 ```bash
-git clone https://github.com/junghoonwoo-stack/CAMP.git
-cd CAMP
+git clone https://github.com/junghoonwoo-stack/CAMP.git && cd CAMP
+claude "Read SKILL.md and run the CAMP assessment."
 ```
 
-## CAMP 결과
+### Codex
 
-| Output | 내용 |
+```bash
+git clone https://github.com/junghoonwoo-stack/CAMP.git && cd CAMP
+codex "Read SKILL.md and run the CAMP assessment."
+```
+
+### ChatGPT
+
+이 Repository를 연결하거나 `SKILL.md`와 `references/`를 업로드한 뒤 입력합니다.
+
+```text
+Read SKILL.md and run the CAMP assessment.
+```
+
+## 무엇을 측정하나
+
+| Dimension | 핵심 질문 |
 |---|---|
-| **CAMP Stage** | Stage 0–5 현재 수준 |
-| **CAMP Score** | 총점 /100 |
-| **5개 Dimension** | AI Access, Delegation, Enterprise Connection, Knowledge Compounding, Role Transformation |
-| **Diagnosis** | 강점, 약점, 가장 큰 병목 |
-| **Next 90 Days** | Top 3 Action과 바로 시도할 AX / AI-native 과제 |
-| **AI Operations / Sovereign AI** | 운영 및 모델 관련 Supporting Capability |
+| **AI Access** | 얼마나 많은 사람이 업무에서 AI를 사용할 수 있는가? |
+| **AI Delegation** | 실제 업무를 어느 수준까지 AI에 위임하는가? |
+| **Enterprise Connection** | AI가 회사 Context, Data, Tool, System을 사용할 수 있는가? |
+| **Knowledge Compounding** | Skill, 판단, Session Knowledge가 조직 자산으로 축적·재사용되는가? |
+| **Role Transformation** | Handoff와 직무 경계, 조직 구조가 AI를 중심으로 바뀌고 있는가? |
+
+각 영역은 0–20점, 총 **CAMP Score /100**입니다. 별도로 **Stage 0–5**를 제공합니다. Stage는 현재 반복되는 Operating Model을, Score는 5개 역량의 균형을 보여주므로 둘은 반드시 같이 움직이지 않습니다.
+
+**AI Operations**와 **Sovereign AI**는 별도로 평가하며 CAMP Score에는 포함하지 않습니다.
+
+최종 Report에는 다음이 포함됩니다.
+- Stage + Confidence
+- CAMP Score /100과 5개 영역 점수
+- 가장 강한 영역과 약한 영역
+- 가장 큰 병목
+- 다음 90일 Top 3 Action
+- 시작·재집중·통합·중단할 과제
+- AI Operations / Sovereign AI
 
 ## CAMP Bench
 
-진단 결과가 **CAMP Bench**에 포함되면 다른 조직과 현재 위치를 비교할 수 있습니다.
+CAMP Bench는 진단 결과를 다른 조직의 분포 안에서 보여줍니다.
 
 ![CAMP Bench — illustrative example](assets/camp-bench.svg)
 
 *위 그림은 예시이며 실제 결과는 확보된 표본에 따라 달라집니다.*
 
-| 비교 | 내용 |
-|---|---|
-| **Overall** | 전체 조직 대비 위치 |
-| **Industry** | 같은 업종 대비 위치 |
-| **Peer Group** | Segment, 규모, 국가/지역, Scope, Function이 유사한 조직 대비 위치 |
-| **5개 Dimension** | 다른 조직 대비 특히 강한 영역과 약한 영역 |
-| **Same Company** | 여러 응답이 있으면 평균/중앙값, 분포, 팀·Function별 차이, 인식 차이가 큰 영역 |
+CAMP Bench에 진단 결과를 제출하면 다음과 비교할 수 있습니다.
+- **Overall** — 전체 적격 조직 대비
+- **Industry** — 같은 대분류 업종 대비
+- **Peer Group** — Segment, 규모, 국가/지역, Scope, Function이 유사한 조직 대비
+- **5개 Dimension** — 상대적으로 강한 영역과 약한 영역
 
-CAMP Bench에서는 **실제 회사명**을 입력받아 같은 회사의 여러 응답을 연결하고, 중복 집계를 막고, 팀별·시계열 분석에 활용합니다. 회사명은 **Private Identity Registry에만 저장**하며 Benchmark Report나 Chart에는 표시하지 않습니다.
+**실제 회사명**을 제출하면 같은 회사의 기존 진단을 연결할 수 있어 비교가 더 정확해집니다. 같은 회사에서 여러 사람이나 팀이 참여했다면 평균/중앙값, 점수 분포, 팀·Function별 차이, 내부 인식 차이가 큰 영역까지 볼 수 있습니다. 반복 진단은 시간에 따른 변화도 보여줍니다.
 
-## 데이터
+CAMP Bench는 계획이나 단일 Pilot보다 **현재 반복적으로 운영되는 상태**를 기준으로 합니다. 정확한 답변을 제출할수록 본인 회사의 비교도, 전체 Benchmark도 더 유용해집니다.
 
-| 위치 | 저장 내용 |
-|---|---|
-| **Public CAMP Repo** | Framework, Scoring Logic, Schema, Field 정의, Synthetic Example |
-| **Private Benchmark Store** | 실제 회사명 Mapping, 진단 Record, Team/Scope 관계, 이력 |
-| **Report** | 익명화된 조직 / Industry / Peer Group 비교 |
+### Privacy
 
-비공개 제출에서 특정 경쟁사의 개별 점수를 노출하지 않습니다. Peer 비교는 익명 Cohort를 사용하고, 회사명이 붙는 분석은 공개자료 또는 명시적으로 허가된 데이터만 사용합니다.
+참여자는 자신의 Private Report에서 **자기 회사**를 볼 수 있습니다. **다른 회사는 모두 익명화**됩니다. 개인 응답자의 identity는 표시하지 않습니다.
+
+- **Private CAMP Bench Store**: 실제 회사명 Mapping, 원본 진단 Record, Scope 관계, Evidence, 시계열
+- **Public CAMP Repository**: Framework, Methodology, Schema, Synthetic Example만 포함
+- 외부에 공유되는 Benchmark는 Aggregate 또는 익명화 결과만 사용
+- 비공개 제출 데이터를 이용해 다른 회사의 실명 점수를 노출하지 않음. Named Company 비교는 공개정보 또는 명시적 허가가 있는 경우만 사용
+
+공식 Percentile은 충분한 표본이 있을 때만 제공합니다. Cohort가 10개 조직 미만이면 더 넓은 그룹으로 비교하거나 표본 부족으로 표시합니다.
+
+## 설문 예시
+
+```text
+CAMP: 업무에서 AI를 반복적으로 사용하는 직원은 어느 정도인가요?
+응답: 약 40–50%입니다.
+
+CAMP: RAG, MCP, API, ERP, DB 등 사내 시스템과 AI가 연결되어 있나요?
+응답: RAG와 일부 MCP는 운영 중이지만 아직 연결할 시스템이 많이 남아 있습니다.
+
+CAMP: Skill이나 Session Knowledge가 조직 전체에 재사용되고 있나요?
+응답: Skill을 모으기 시작했지만 아직 재사용은 제한적입니다.
+```
+
+예시 결과:
+
+```text
+Stage 3 — Connected AI
+CAMP Score: 40 / 100
+강점: Enterprise Connection
+약점: Role Transformation
+가장 큰 병목: Individual AI → Organizational Intelligence
+다음 목표: 재사용 가능한 Skill과 핵심 업무의 End-to-End 연결 강화
+```
+
+## Methodology
+
+- [Stage와 Agent 정의](references/STAGES.md)
+- [진단 Playbook과 Evidence 기준](references/PLAYBOOK.md)
+- [Report 형식](references/REPORT_TEMPLATE.md)
+- [CAMP Bench 기준](references/BENCHMARK.md)
 
 ## License
 
-CAMP Framework와 문서는 **CC BY 4.0**입니다. Framework 자체 또는 수정본을 외부에 재배포·공개할 때 canonical project 링크를 유지합니다.
+CAMP Framework와 문서는 **CC BY 4.0**입니다. Framework 또는 수정본을 외부에 재배포·공개할 때 canonical project 링크를 유지합니다.
