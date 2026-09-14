@@ -1,5 +1,5 @@
 {
-  "endpoint": null,
-  "status": "not_configured",
-  "note": "The project owner must set the official HTTPS receiver before direct submission is enabled. CAMP must never claim success while this is null."
+  "endpoint": "https://camp-bench-receiver.camp-bench-jhw.workers.dev/v1/submissions",
+  "status": "active",
+  "note": "Official Cloudflare Worker receiver. Success requires an accepted or duplicate response with a valid receipt_id."
 }

@@ -30,7 +30,7 @@ A successful validation ends with `NOT SUBMITTED`. Validation alone never transm
 
 ### Submit
 
-When the official receiver is configured:
+The official receiver is configured in `benchmark/submission.config.json` and is used automatically:
 
 ```bash
 python3 scripts/camp_bench.py private-submissions/my-assessment.json --submit
@@ -98,7 +98,7 @@ python3 scripts/camp_bench.py private-submissions/my-assessment.json
 
 ### 제출
 
-공식 Receiver가 설정된 경우 다음을 실행함.
+공식 Receiver는 `benchmark/submission.config.json`에 설정되어 있으며 다음 명령에서 자동으로 사용됨.
 
 ```bash
 python3 scripts/camp_bench.py private-submissions/my-assessment.json --submit

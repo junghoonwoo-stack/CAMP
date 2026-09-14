@@ -85,7 +85,7 @@ python3 scripts/camp_bench.py private-submissions/my-assessment.json
 python3 scripts/camp_bench.py private-submissions/my-assessment.json --submit
 ```
 
-If no official endpoint is configured, CAMP creates or validates a private submission package but must state **NOT SUBMITTED**. Never put a real submission in a public issue, discussion, pull request, or commit. See [CAMP Bench Submission](references/SUBMISSION.md).
+The official receiver is configured in `benchmark/submission.config.json`, so the submit command uses it automatically. A missing endpoint, network error, or response without a valid receipt still means **NOT SUBMITTED**. Never put a real submission in a public issue, discussion, pull request, or commit. See [CAMP Bench Submission](references/SUBMISSION.md).
 
 ### Privacy
 
