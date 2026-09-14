@@ -5,11 +5,12 @@
 CAMP Bench compares a submitted CAMP assessment with other organizations while keeping other participants anonymous.
 
 ### Why submit an assessment
-Submitting an accurate current-state assessment enables:
-- Overall percentile
-- Industry percentile
-- anonymous Peer Group percentile
-- five-dimension comparison
+Submitting an accurate current-state assessment returns an actionable private comparison, not just a contribution to the dataset:
+- whether the organization is ahead of, in line with, or behind the overall benchmark
+- overall percentile, mean, median, and score distribution
+- industry position when the anonymous industry cohort has at least 10 organizations
+- five-dimension scores and gaps against the benchmark median
+- the largest capability gap and a recommended next action
 - same-company aggregate when earlier responses exist
 - team/function dispersion when multiple scopes or respondents exist
 - longitudinal movement when the organization is assessed again
@@ -43,6 +44,8 @@ If cohort N < 10 organizations, broaden the cohort or report insufficient sample
 - `provisional`: preliminary analysis only
 - `reference_only`: never used for ranking
 
+The report labels itself `official` only when its comparison cohort contains eligible records only. A cohort containing provisional records is labeled `preliminary`, and its eligible/provisional mix is disclosed in the report. Preliminary results are directional and must not be presented as an official market ranking.
+
 One organization counts once in cross-company ranking using an organization-level aggregate, even when many respondents participate.
 
 ### Privacy and storage
@@ -55,9 +58,9 @@ Public/shared benchmark views contain only aggregate or anonymized results. Conf
 ### Submission
 At the end of a CAMP assessment, ask whether the participant wants the assessment included in CAMP Bench.
 
-If the connected private store is available, create or reuse the company's anonymous organization key and append a new assessment record without overwriting history.
+The configured private receiver creates or reuses the company's anonymous organization key, appends a new assessment without overwriting history, and returns a receipt. After private ingestion, the client retrieves and displays the bilingual aggregate benchmark report. If processing is still pending, retrieve it later with the receipt ID.
 
-If the private store is unavailable, do not claim that submission succeeded. Produce a structured private submission package instead. Do not direct users to post real company data in a public GitHub issue.
+If the receiver is unavailable, do not claim that submission succeeded. Do not direct users to post real company data in a public GitHub issue.
 
 The submission UX and receiver contract are defined in [SUBMISSION.md](SUBMISSION.md). A submission is successful only when the private receiver returns a valid receipt ID. Local file creation, validation, or a network request without a valid receipt is not success.
 
@@ -68,11 +71,12 @@ The submission UX and receiver contract are defined in [SUBMISSION.md](SUBMISSIO
 CAMP Bench는 제출된 CAMP 진단 결과를 다른 조직과 비교하되 **다른 참여기업의 identity는 익명화**합니다.
 
 ### 왜 진단 결과를 제출하나
-현재 상태를 정확히 제출하면 다음을 볼 수 있습니다.
-- Overall Percentile
-- Industry Percentile
-- 익명 Peer Group Percentile
-- 5개 Dimension 비교
+현재 상태를 정확히 제출하면 단순히 Dataset에 기여하는 데서 끝나지 않고, 다음을 포함한 실행 가능한 Private 비교 Report를 받습니다.
+- 전체 Benchmark보다 앞서는지, 비슷한지, 뒤처지는지
+- Overall Percentile, 평균, 중앙값, 전체 점수 분포
+- 익명 동종업계 Cohort가 10개 조직 이상일 때 Industry 위치
+- Benchmark 중앙값 대비 5개 Dimension 점수와 격차
+- 가장 큰 Capability Gap과 권장 Next Action
 - 같은 회사의 기존 응답이 있으면 Same-company Aggregate
 - 여러 팀/응답자가 있으면 팀·Function별 분포
 - 재진단 시 시계열 변화
@@ -106,6 +110,8 @@ Cohort가 10개 조직 미만이면 더 넓은 그룹으로 비교하거나 표�
 - `provisional`: Preliminary Analysis에만 사용
 - `reference_only`: Ranking 제외
 
+비교 Cohort가 `eligible` Record로만 구성된 경우에만 Report를 `official`로 표시합니다. `provisional` Record가 하나라도 포함된 Cohort는 `preliminary`로 표시하고, Report에 eligible/provisional 구성을 공개합니다. Preliminary 결과는 방향성 참고용이며 정식 시장 Ranking으로 표현하지 않습니다.
+
 여러 명이 응답해도 기업 간 Ranking에서는 Organization-level Aggregate로 한 회사가 한 번만 반영됩니다.
 
 ### Privacy와 저장
@@ -118,8 +124,8 @@ Cohort가 10개 조직 미만이면 더 넓은 그룹으로 비교하거나 표�
 ### 제출
 CAMP 진단이 끝난 뒤 CAMP Bench에 결과를 포함할지 묻습니다.
 
-Private Store가 연결되어 있으면 회사의 익명 Organization Key를 조회하거나 생성하고, 과거 이력을 덮어쓰지 않고 새 Assessment를 추가합니다.
+설정된 Private Receiver가 회사의 익명 Organization Key를 조회하거나 생성하고, 과거 이력을 덮어쓰지 않고 새 Assessment를 추가한 뒤 Receipt를 반환합니다. Private Ingestion이 끝나면 Client가 한국어·영어 Aggregate Benchmark Report를 조회해 보여줍니다. 처리가 끝나지 않았다면 Receipt ID로 나중에 다시 조회할 수 있습니다.
 
-Private Store에 접근할 수 없다면 제출됐다고 말하지 않습니다. 대신 Private Submission Package를 생성합니다. 실제 회사 데이터를 Public GitHub Issue에 올리도록 안내하지 않습니다.
+Receiver에 접근할 수 없다면 제출됐다고 말하지 않습니다. 실제 회사 데이터를 Public GitHub Issue에 올리도록 안내하지 않습니다.
 
 제출 UX와 Receiver 계약은 [SUBMISSION.md](SUBMISSION.md)에 정의합니다. Private Receiver가 유효한 Receipt ID를 반환한 경우에만 제출 성공입니다. 로컬 파일 생성·검증 또는 유효한 Receipt가 없는 Network Request는 성공이 아닙니다.

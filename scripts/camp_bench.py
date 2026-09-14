@@ -13,6 +13,7 @@ import hashlib
 import json
 import os
 import sys
+import time
 from datetime import date
 from pathlib import Path
 from typing import Any
@@ -23,7 +24,7 @@ from urllib.request import Request, urlopen
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG_FILE = ROOT / "benchmark" / "submission.config.json"
-CLIENT_VERSION = "1.0.0"
+CLIENT_VERSION = "1.1.0"
 DIMENSIONS = ("access", "delegation", "connection", "compounding", "transformation")
 STEP_SCORES = {0, 5, 10, 15, 20}
 REQUIRED = {
@@ -212,16 +213,145 @@ def submit(payload: dict[str, Any], endpoint: str, timeout: float = 20.0) -> dic
     return result
 
 
+def status_endpoint(endpoint: str, receipt_id: str) -> str:
+    return endpoint.rstrip("/") + "/" + receipt_id
+
+
+def fetch_status(endpoint: str, receipt_id: str, timeout: float = 20.0) -> dict[str, Any]:
+    url = status_endpoint(endpoint, receipt_id)
+    assert_safe_endpoint(url)
+    headers = {
+        "Accept": "application/json",
+        "User-Agent": f"camp-bench-cli/{CLIENT_VERSION}",
+    }
+    if os.environ.get("CAMP_BENCH_TOKEN"):
+        headers["Authorization"] = f"Bearer {os.environ['CAMP_BENCH_TOKEN']}"
+    request = Request(url, method="GET", headers=headers)
+    try:
+        with urlopen(request, timeout=timeout) as response:
+            result = json.loads(response.read().decode("utf-8"))
+    except HTTPError as exc:
+        detail = exc.read().decode("utf-8", errors="replace")[:500]
+        raise SubmissionError(f"Could not read CAMP Bench status (HTTP {exc.code}): {detail}") from exc
+    except URLError as exc:
+        raise SubmissionError(f"Could not reach CAMP Bench status: {exc.reason}") from exc
+    except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+        raise SubmissionError("CAMP Bench returned an invalid status response.") from exc
+
+    if not isinstance(result, dict) or result.get("receipt_id") != receipt_id or not result.get("status"):
+        raise SubmissionError("CAMP Bench returned an invalid status response.")
+    return result
+
+
+def wait_for_report(
+    endpoint: str,
+    receipt_id: str,
+    wait_seconds: float = 90.0,
+    poll_seconds: float = 15.0,
+    timeout: float = 20.0,
+    fetcher=fetch_status,
+    sleeper=time.sleep,
+    clock=time.monotonic,
+) -> dict[str, Any]:
+    deadline = clock() + max(0.0, wait_seconds)
+    while True:
+        status = fetcher(endpoint, receipt_id, timeout)
+        if status.get("report_status") in {"ready", "unavailable", "not_available"}:
+            return status
+        if status.get("status") in {"rejected", "not_found"}:
+            return status
+        remaining = deadline - clock()
+        if remaining <= 0:
+            return status
+        sleeper(min(max(1.0, poll_seconds), remaining))
+
+
+def selected_language(value: str) -> str:
+    if value != "auto":
+        return value
+    locale = " ".join(
+        os.environ.get(key, "")
+        for key in ("LC_ALL", "LC_MESSAGES", "LANG")
+    ).lower()
+    return "ko" if "ko" in locale else "en"
+
+
+def print_report(status: dict[str, Any], company_name: str | None, language: str) -> bool:
+    report = status.get("benchmark_report")
+    if status.get("report_status") != "ready" or not isinstance(report, dict):
+        return False
+    messages = report.get("messages", {})
+    languages = ("ko", "en") if language == "both" else (language,)
+    display_name = company_name or ("귀사" if language == "ko" else "Your organization")
+    print(f"\nCAMP BENCH REPORT — {display_name}")
+    print(f"Benchmark date: {report.get('benchmark_date', 'unknown')}")
+    print(f"Benchmark type: {report.get('benchmark_type', 'unknown')}")
+
+    for code in languages:
+        localized = messages.get(code, {})
+        if language == "both":
+            print("\n한국어" if code == "ko" else "\nEnglish")
+        for key in ("overall", "industry", "priority_gap", "sample_note"):
+            if localized.get(key):
+                print(localized[key])
+
+    overall = report.get("overall", {})
+    if overall.get("available") and isinstance(overall.get("distribution"), list):
+        title = "전체 점수 분포" if language == "ko" else "Overall score distribution"
+        if language == "both":
+            title = "전체 점수 분포 / Overall score distribution"
+        print(f"\n{title} (N={overall.get('organization_count')}):")
+        for band in overall["distribution"]:
+            print(f"  {band.get('range')}: {band.get('count')} ({band.get('percent')}%)")
+
+    dimensions = report.get("dimensions", [])
+    if dimensions:
+        title = "5개 영역 비교" if language == "ko" else "Five-dimension comparison"
+        if language == "both":
+            title = "5개 영역 비교 / Five-dimension comparison"
+        print(f"\n{title}:")
+        for row in dimensions:
+            label = row.get("label", {}).get("ko" if language == "ko" else "en", row.get("key"))
+            benchmark = row.get("overall_median")
+            gap = row.get("gap")
+            if benchmark is None:
+                print(f"  {label}: {row.get('score')}/20")
+            else:
+                print(f"  {label}: {row.get('score')}/20 | median {benchmark} | gap {gap:+g}")
+    return True
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Validate or submit a private CAMP Bench assessment.")
-    parser.add_argument("submission", type=Path, help="path to CAMP Bench submission JSON")
+    parser.add_argument("submission", type=Path, nargs="?", help="path to CAMP Bench submission JSON")
     parser.add_argument("--submit", action="store_true", help="send to the configured private endpoint")
+    parser.add_argument("--status", metavar="RECEIPT_ID", help="retrieve a submitted assessment's processing status and report")
     parser.add_argument("--endpoint", help="override the endpoint (normally use CAMP_BENCH_ENDPOINT)")
     parser.add_argument("--yes", action="store_true", help="skip terminal confirmation after explicit consent was already obtained")
     parser.add_argument("--timeout", type=float, default=20.0)
+    parser.add_argument("--report-timeout", type=float, default=90.0, help="seconds to wait for the benchmark report")
+    parser.add_argument("--poll-interval", type=float, default=15.0, help="seconds between report status checks")
+    parser.add_argument("--no-wait", action="store_true", help="return after receipt without waiting for the benchmark report")
+    parser.add_argument("--language", choices=("auto", "en", "ko", "both"), default="auto")
     args = parser.parse_args(argv)
 
     try:
+        language = selected_language(args.language)
+        endpoint = configured_endpoint(args.endpoint)
+        if args.status:
+            if not endpoint:
+                raise SubmissionError("No official CAMP Bench endpoint is configured.")
+            company_name = None
+            if args.submission:
+                company_name = str(load_json(args.submission).get("company_name") or "") or None
+            status = fetch_status(endpoint, args.status, timeout=args.timeout)
+            print(json.dumps({k: v for k, v in status.items() if k != "benchmark_report"}, ensure_ascii=False, indent=2))
+            if not print_report(status, company_name, language):
+                print("REPORT NOT READY: try the same --status command again shortly.")
+            return 0
+
+        if not args.submission:
+            raise SubmissionError("A submission JSON path is required unless --status is used.")
         payload = load_json(args.submission)
         validate(payload)
         print("VALID: CAMP Bench submission schema and score checks passed.")
@@ -230,7 +360,6 @@ def main(argv: list[str] | None = None) -> int:
             print("NOT SUBMITTED: validation only. Add --submit to transmit after consent.")
             return 0
 
-        endpoint = configured_endpoint(args.endpoint)
         if not endpoint:
             raise SubmissionError(
                 "No official CAMP Bench endpoint is configured. Nothing was sent. "
@@ -250,6 +379,21 @@ def main(argv: list[str] | None = None) -> int:
         receipt = submit(payload, endpoint, timeout=args.timeout)
         print("SUBMITTED: CAMP Bench accepted the assessment.")
         print(json.dumps(receipt, ensure_ascii=False, indent=2))
+        receipt_id = str(receipt["receipt_id"])
+        if args.no_wait:
+            print(f"REPORT PENDING: check later with --status {receipt_id}.")
+            return 0
+
+        print("\nREPORT PROCESSING: waiting for the anonymous benchmark comparison...")
+        status = wait_for_report(
+            endpoint,
+            receipt_id,
+            wait_seconds=args.report_timeout,
+            poll_seconds=args.poll_interval,
+            timeout=args.timeout,
+        )
+        if not print_report(status, str(payload.get("company_name") or ""), language):
+            print(f"REPORT PENDING: check later with --status {receipt_id}.")
         return 0
     except SubmissionError as exc:
         print(f"ERROR: {exc}", file=sys.stderr)

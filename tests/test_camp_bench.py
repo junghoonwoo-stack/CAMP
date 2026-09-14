@@ -4,7 +4,9 @@ import os
 import tempfile
 import threading
 import unittest
+from contextlib import redirect_stdout
 from http.server import BaseHTTPRequestHandler, HTTPServer
+from io import StringIO
 from pathlib import Path
 
 
@@ -28,6 +30,55 @@ class ReceiptHandler(BaseHTTPRequestHandler):
         type(self).seen_payload = json.loads(self.rfile.read(length))
         body = json.dumps({"status": "accepted", "receipt_id": "CB-TEST-001", "benchmark_status": "provisional"}).encode()
         self.send_response(202)
+        self.send_header("Content-Type", "application/json")
+        self.send_header("Content-Length", str(len(body)))
+        self.end_headers()
+        self.wfile.write(body)
+
+    def do_GET(self):
+        receipt_id = self.path.rsplit("/", 1)[-1]
+        body = json.dumps({
+            "receipt_id": receipt_id,
+            "status": "processed",
+            "processing_status": "processed",
+            "report_status": "ready",
+            "benchmark_report": {
+                "benchmark_date": "2026-09-14",
+                "benchmark_type": "preliminary",
+                "overall": {
+                    "available": True,
+                    "organization_count": 12,
+                    "percentile": 67,
+                    "distribution": [
+                        {"range": "0-20", "count": 1, "percent": 8.3},
+                        {"range": "21-40", "count": 2, "percent": 16.7},
+                    ],
+                },
+                "industry": {"available": False, "organization_count": 6},
+                "dimensions": [{
+                    "key": "transformation",
+                    "label": {"en": "Role Transformation", "ko": "역할 전환"},
+                    "score": 5,
+                    "overall_median": 10,
+                    "gap": -5,
+                }],
+                "messages": {
+                    "en": {
+                        "overall": "You are ahead of the overall median.",
+                        "industry": "Industry sample is insufficient.",
+                        "priority_gap": "Role Transformation is the largest gap.",
+                        "sample_note": "Preliminary benchmark.",
+                    },
+                    "ko": {
+                        "overall": "전체 중앙값보다 앞서 있습니다.",
+                        "industry": "동종업계 표본이 부족합니다.",
+                        "priority_gap": "역할 전환이 가장 부족합니다.",
+                        "sample_note": "예비 Benchmark입니다.",
+                    },
+                },
+            },
+        }).encode()
+        self.send_response(200)
         self.send_header("Content-Type", "application/json")
         self.send_header("Content-Length", str(len(body)))
         self.end_headers()
@@ -98,6 +149,61 @@ class CampBenchTests(unittest.TestCase):
             thread.join()
             server.server_close()
         self.assertEqual(ReceiptHandler.seen_headers["Authorization"], "Bearer beta-secret")
+
+    def test_fetches_and_prints_bilingual_anonymous_report(self):
+        server = HTTPServer(("127.0.0.1", 0), ReceiptHandler)
+        thread = threading.Thread(target=server.serve_forever, daemon=True)
+        thread.start()
+        receipt_id = "CB-20260914-ABCDEF123456"
+        try:
+            status = camp_bench.fetch_status(
+                f"http://127.0.0.1:{server.server_port}/v1/submissions",
+                receipt_id,
+            )
+        finally:
+            server.shutdown()
+            thread.join()
+            server.server_close()
+
+        output = StringIO()
+        with redirect_stdout(output):
+            rendered = camp_bench.print_report(status, "My Company", "both")
+        text = output.getvalue()
+        self.assertTrue(rendered)
+        self.assertIn("My Company", text)
+        self.assertIn("전체 중앙값보다 앞서 있습니다.", text)
+        self.assertIn("You are ahead of the overall median.", text)
+        self.assertIn("전체 점수 분포 / Overall score distribution", text)
+        self.assertNotIn("Private Company", text)
+
+    def test_waits_until_report_is_ready(self):
+        responses = iter([
+            {"receipt_id": "CB-20260914-ABCDEF123456", "status": "queued", "report_status": "processing"},
+            {"receipt_id": "CB-20260914-ABCDEF123456", "status": "processed", "report_status": "ready", "benchmark_report": {}},
+        ])
+        sleeps = []
+
+        status = camp_bench.wait_for_report(
+            "https://example.com/v1/submissions",
+            "CB-20260914-ABCDEF123456",
+            fetcher=lambda *_: next(responses),
+            sleeper=sleeps.append,
+            clock=lambda: 0,
+        )
+        self.assertEqual(status["report_status"], "ready")
+        self.assertEqual(sleeps, [15.0])
+
+    def test_auto_language_supports_korean(self):
+        previous = os.environ.get("LANG")
+        os.environ["LANG"] = "ko_KR.UTF-8"
+        try:
+            self.assertEqual(camp_bench.selected_language("auto"), "ko")
+            self.assertEqual(camp_bench.selected_language("both"), "both")
+        finally:
+            if previous is None:
+                os.environ.pop("LANG", None)
+            else:
+                os.environ["LANG"] = previous
 
     def test_validation_mode_never_sends(self):
         with tempfile.TemporaryDirectory() as temp_dir:

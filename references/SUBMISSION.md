@@ -13,6 +13,7 @@ CAMP Bench submission is a separate, explicit step after the standalone assessme
 5. Validate the submission locally.
 6. Submit only to the configured official HTTPS endpoint.
 7. Keep the returned receipt ID. A valid receipt is the only proof of submission.
+8. Receive the private benchmark report: overall position and score distribution, five-dimension gaps, the largest improvement priority, and industry position when that anonymous cohort has at least 10 organizations.
 
 The real company name and optional scope label are private matching fields. They allow same-company aggregation and longitudinal analysis. Personal name, email, phone number, employee ID, raw documents, and credentials are not collected by default.
 
@@ -33,10 +34,18 @@ A successful validation ends with `NOT SUBMITTED`. Validation alone never transm
 The official receiver is configured in `benchmark/submission.config.json` and is used automatically:
 
 ```bash
-python3 scripts/camp_bench.py private-submissions/my-assessment.json --submit
+python3 scripts/camp_bench.py private-submissions/my-assessment.json --submit --language en
 ```
 
-The command displays the exact destination URL and a masked data preview, then requires the participant to type `SUBMIT`. Success requires a server receipt containing `status` and `receipt_id`. A network error, missing endpoint, or invalid receipt means the assessment was **not submitted**.
+The command displays the exact destination URL and a masked data preview, then requires the participant to type `SUBMIT`. Success requires a server receipt containing `status` and `receipt_id`. It then waits for the anonymous benchmark report and prints the overall percentile/median comparison, score distribution, industry result or sample-size notice, five-dimension comparison, and priority gap.
+
+If processing takes longer, retrieve the same report with:
+
+```bash
+python3 scripts/camp_bench.py --status CB-YYYYMMDD-XXXXXXXXXXXX --language en
+```
+
+A network error, missing endpoint, or invalid receipt means the assessment was **not submitted**. A valid receipt with a pending report means the submission succeeded but report processing is not finished.
 
 Automation may use `--yes` only after the participant has explicitly consented in the current interaction and reviewed what will be sent.
 
@@ -60,11 +69,13 @@ The official receiver accepts an HTTPS `POST` containing a schema `1.0` submissi
   "status": "accepted",
   "receipt_id": "CB-20260913-ABC123",
   "received_at": "2026-09-13T08:00:00Z",
-  "benchmark_status": "provisional"
+  "benchmark_status": "provisional",
+  "report_status": "processing",
+  "status_url": "https://receiver.example/v1/submissions/CB-20260913-ABC123"
 }
 ```
 
-For the same idempotency key it returns `status: "duplicate"` with the original `receipt_id`. It must not put company identity or raw evidence in logs, URLs, analytics, or error messages.
+The receipt status endpoint returns `report_status: "ready"` and a bilingual `benchmark_report` after private ingestion. The report contains aggregate statistics only: it never returns another organization's name or internal identifier. For the same idempotency key the POST returns `status: "duplicate"` with the original `receipt_id`.
 
 ---
 
@@ -81,6 +92,7 @@ CAMP Bench 제출은 Standalone 진단 Report가 끝난 뒤 진행하는 **별�
 5. 로컬에서 Submission을 검증함
 6. 설정된 공식 HTTPS Endpoint로만 제출함
 7. 반환된 Receipt ID를 보관함. 유효한 Receipt만 제출 성공의 근거임
+8. 전체 대비 위치와 점수 분포, 5개 Dimension 격차, 가장 큰 개선 Priority, 익명 동종업계 표본이 10개 이상일 때 Industry 위치가 포함된 Private Benchmark Report를 받음
 
 실제 회사명과 선택적 Scope Label은 Same-company 집계와 시계열 분석을 위한 Private Matching Field임. 개인 이름, 이메일, 전화번호, 사번, 원문 문서, Credential은 기본 수집하지 않음.
 
@@ -101,10 +113,18 @@ python3 scripts/camp_bench.py private-submissions/my-assessment.json
 공식 Receiver는 `benchmark/submission.config.json`에 설정되어 있으며 다음 명령에서 자동으로 사용됨.
 
 ```bash
-python3 scripts/camp_bench.py private-submissions/my-assessment.json --submit
+python3 scripts/camp_bench.py private-submissions/my-assessment.json --submit --language ko
 ```
 
-전송 전 정확한 목적지 URL과 Private Text를 가린 Preview를 보여주고 참여자가 `SUBMIT`을 직접 입력해야 함. Server가 `status`와 `receipt_id`를 반환해야 성공임. Network Error, Endpoint 미설정, 잘못된 Receipt는 모두 **미제출**임.
+전송 전 정확한 목적지 URL과 Private Text를 가린 Preview를 보여주고 참여자가 `SUBMIT`을 직접 입력해야 함. Server가 `status`와 `receipt_id`를 반환해야 제출 성공임. 그다음 익명 Benchmark Report를 기다려 Overall Percentile·중앙값 비교, 전체 점수 분포, Industry 결과 또는 표본 부족 안내, 5개 Dimension 비교, Priority Gap을 출력함.
+
+처리가 오래 걸리면 같은 Report를 다시 조회할 수 있음.
+
+```bash
+python3 scripts/camp_bench.py --status CB-YYYYMMDD-XXXXXXXXXXXX --language ko
+```
+
+Network Error, Endpoint 미설정, 잘못된 Receipt는 모두 **미제출**임. 유효한 Receipt가 있고 Report가 Pending이면 제출은 성공했지만 Report 처리가 끝나지 않은 상태임.
 
 자동화에서 `--yes`를 쓰는 것은 현재 Interaction에서 참여자가 전송 항목을 확인하고 명시적으로 동의한 경우에만 허용함.
 
@@ -128,8 +148,10 @@ Invite Token으로 보호되는 제한적 Beta에서는 환경변수 `CAMP_BENCH
   "status": "accepted",
   "receipt_id": "CB-20260913-ABC123",
   "received_at": "2026-09-13T08:00:00Z",
-  "benchmark_status": "provisional"
+  "benchmark_status": "provisional",
+  "report_status": "processing",
+  "status_url": "https://receiver.example/v1/submissions/CB-20260913-ABC123"
 }
 ```
 
-같은 Idempotency Key의 재요청에는 기존 `receipt_id`와 `status: "duplicate"`를 반환함. 회사명이나 Raw Evidence를 Log, URL, Analytics, Error Message에 남기면 안 됨.
+Private Ingestion이 끝나면 Receipt Status Endpoint가 `report_status: "ready"`와 한국어·영어 `benchmark_report`를 반환함. Report에는 Aggregate 통계만 포함하며 다른 조직의 이름이나 내부 ID를 반환하지 않음. 같은 Idempotency Key의 재요청에는 기존 `receipt_id`와 `status: "duplicate"`를 반환함.

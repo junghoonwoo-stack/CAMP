@@ -64,10 +64,12 @@ CAMP Bench places an assessment in context.
 *Illustrative example. Actual results depend on the available sample.*
 
 When an assessment is submitted to CAMP Bench, it can be compared with:
-- **Overall** — all eligible organizations
+- **Overall** — all eligible organizations for official benchmarks, or eligible and provisional organizations for an explicitly labeled preliminary benchmark
 - **Industry** — organizations in the same broad industry
 - **Peer Group** — similar organizations by segment, size, country/region, scope, and function
 - **Five dimensions** — where the organization is relatively strong or weak
+
+Submission now returns a private benchmark report. It tells the participant whether the organization is ahead of, in line with, or behind the overall median; shows percentile, mean, median, and the full score distribution; compares the five dimensions; and identifies the largest capability gap with a recommended next action. Industry ranking is added when that anonymous cohort contains at least 10 organizations.
 
 Submitting the **real company name** improves the analysis because CAMP Bench can match previous assessments from the same company. If several people or teams from that company participate, the report can also show the company mean/median, score distribution, team/function differences, and dimensions with the largest internal disagreement. Repeated assessments enable longitudinal comparison.
 
@@ -82,7 +84,10 @@ Completing a CAMP assessment does **not** automatically submit it. After reviewi
 python3 scripts/camp_bench.py private-submissions/my-assessment.json
 
 # Submit after consent — success requires a receipt ID
-python3 scripts/camp_bench.py private-submissions/my-assessment.json --submit
+python3 scripts/camp_bench.py private-submissions/my-assessment.json --submit --language en
+
+# Retrieve the report again later
+python3 scripts/camp_bench.py --status CB-YYYYMMDD-XXXXXXXXXXXX --language en
 ```
 
 The official receiver is configured in `benchmark/submission.config.json`, so the submit command uses it automatically. A missing endpoint, network error, or response without a valid receipt still means **NOT SUBMITTED**. Never put a real submission in a public issue, discussion, pull request, or commit. See [CAMP Bench Submission](references/SUBMISSION.md).
@@ -202,10 +207,12 @@ CAMP Bench는 진단 결과를 다른 조직의 분포 안에서 보여줍니다
 *위 그림은 예시이며 실제 결과는 확보된 표본에 따라 달라집니다.*
 
 CAMP Bench에 진단 결과를 제출하면 다음과 비교할 수 있습니다.
-- **Overall** — 전체 적격 조직 대비
+- **Overall** — 정식 Benchmark에서는 전체 적격 조직 대비, `preliminary`로 명시된 초기 Benchmark에서는 적격·잠정 조직 대비
 - **Industry** — 같은 대분류 업종 대비
 - **Peer Group** — Segment, 규모, 국가/지역, Scope, Function이 유사한 조직 대비
 - **5개 Dimension** — 상대적으로 강한 영역과 약한 영역
+
+제출하면 Private Benchmark Report를 돌려받습니다. 전체 중앙값보다 앞서는지, 비슷한지, 뒤처지는지와 Percentile·평균·중앙값·전체 점수 분포를 보여줍니다. 5개 Dimension을 비교해 가장 부족한 영역과 다음 Action도 알려줍니다. 동종업계 익명 표본이 10개 조직 이상이면 Industry 순위와 분포도 함께 제공합니다.
 
 **실제 회사명**을 제출하면 같은 회사의 기존 진단을 연결할 수 있어 비교가 더 정확해집니다. 같은 회사에서 여러 사람이나 팀이 참여했다면 평균/중앙값, 점수 분포, 팀·Function별 차이, 내부 인식 차이가 큰 영역까지 볼 수 있습니다. 반복 진단은 시간에 따른 변화도 보여줍니다.
 
@@ -220,10 +227,13 @@ CAMP 진단을 완료해도 자동으로 제출되지는 않습니다. Standalon
 python3 scripts/camp_bench.py private-submissions/my-assessment.json
 
 # 동의 후 제출 — Receipt ID가 있어야 성공
-python3 scripts/camp_bench.py private-submissions/my-assessment.json --submit
+python3 scripts/camp_bench.py private-submissions/my-assessment.json --submit --language ko
+
+# 나중에 Report 다시 조회
+python3 scripts/camp_bench.py --status CB-YYYYMMDD-XXXXXXXXXXXX --language ko
 ```
 
-공식 Endpoint가 설정되어 있지 않으면 Private Submission Package를 만들거나 검증하되 반드시 **NOT SUBMITTED**라고 표시합니다. 실제 제출 파일을 Public Issue, Discussion, Pull Request, Commit에 올리면 안 됩니다. 자세한 절차는 [CAMP Bench Submission](references/SUBMISSION.md)을 참고합니다.
+공식 Receiver는 `benchmark/submission.config.json`에 설정되어 있어 제출 명령이 자동으로 사용합니다. Endpoint 누락, Network Error, 유효한 Receipt가 없는 응답은 모두 **NOT SUBMITTED**입니다. 실제 제출 파일을 Public Issue, Discussion, Pull Request, Commit에 올리면 안 됩니다. 자세한 절차는 [CAMP Bench Submission](references/SUBMISSION.md)을 참고합니다.
 
 ### Privacy
 

@@ -13,7 +13,7 @@ Use **Interview Mode** for a short assessment. In **Evidence Mode**, read suppli
 
 ### Start
 
-> CAMP takes about **10 minutes**. I’ll ask a few multiple-choice or short questions. You’ll receive your **CAMP Stage, CAMP Score /100, five-dimension analysis, biggest bottleneck, top 3 actions for the next 90 days, and practical projects to start now**. You can also submit the result to **CAMP Bench** for comparison when enough data exists.
+> CAMP takes about **10 minutes**. I’ll ask a few multiple-choice or short questions. You’ll receive your **CAMP Stage, CAMP Score /100, five-dimension analysis, biggest bottleneck, top 3 actions for the next 90 days, and practical projects to start now**. If you submit to **CAMP Bench**, you will also receive a private comparison showing your overall position, score distribution, five-dimension gaps, and industry position when the anonymous industry cohort is large enough.
 
 Use clickable choices when available. Otherwise use A/B/C/D/E. Ask one question at a time.
 
@@ -122,7 +122,9 @@ Assess: Stage advancement, Agent Test, replication, knowledge compounding, hando
 
 ### CAMP Bench
 
-After the standalone report, ask whether the user wants to submit the assessment to CAMP Bench. Explain the benefit: Overall / Industry / anonymous Peer Group comparison, five-dimension comparison, same-company aggregate, team/function dispersion, and longitudinal movement when data exists.
+After the standalone report, ask whether the user wants to submit the assessment to CAMP Bench. State the concrete benefit before asking for consent:
+
+> If you submit, CAMP Bench will return a private report showing whether your organization is ahead of, in line with, or behind the overall benchmark. It includes your percentile, the overall score distribution, comparison across all five dimensions, and the largest gap with a recommended action. When at least 10 anonymous organizations are available in your industry cohort, it also includes the industry percentile and distribution. Your company may be named in your own report; every other company remains anonymous.
 
 The real company name is used privately to deduplicate and match the participant's own organization. The participant may see their own company by name; **other companies are always anonymous**.
 
@@ -141,8 +143,9 @@ Use this submission sequence exactly:
 3. If Yes, summarize the fields to be sent: real company name, optional scope label, organization profile, Stage/Score, five dimensions, supporting capabilities, evidence level/confidence, and optional evidence summary. State that personal name/email and raw documents are excluded.
 4. Ask for explicit confirmation to privately store those fields and use anonymized/aggregate results for benchmarking.
 5. Only after confirmation, create the JSON under `private-submissions/` and validate it with `python3 scripts/camp_bench.py <file>` when repository tools are available.
-6. If an official endpoint is configured, submit with `--submit --yes`. Report success only when a valid `receipt_id` is returned.
-7. If no endpoint or receipt is available, say **NOT SUBMITTED**, provide the private package, and explain that it must be kept private. Do not invent an upload destination.
+6. If an official endpoint is configured, submit with `--submit --yes --language en` for an English interaction or `--submit --yes --language ko` for a Korean interaction. Report submission success only when a valid `receipt_id` is returned.
+7. Wait for the returned benchmark report. Present the overall percentile/median position, overall score distribution, industry result or sample-size notice, five-dimension comparison, and priority gap in the interaction language. If processing is still pending, preserve the receipt and retrieve it with `--status <receipt_id>`; do not invent results.
+8. If no endpoint or receipt is available, say **NOT SUBMITTED**, provide the private package, and explain that it must be kept private. Do not invent an upload destination.
 
 Never include personal respondent name, email, phone, employee ID, credentials, or raw confidential documents in the submission package. Never retry a failed request blindly; preserve the idempotency key and surface the failure.
 
@@ -156,7 +159,7 @@ CAMP는 AI 투자액이나 AI 프로젝트 개수가 아니라 **현재 반복�
 
 ### 시작
 
-> CAMP 진단은 약 **10분** 정도 걸립니다. 몇 가지 객관식/짧은 질문에 답해주시면 **CAMP Stage, CAMP Score /100, 5개 영역 분석, 가장 큰 병목, 향후 90일 Top 3 Action, 바로 시도할 과제**를 드립니다. 원하면 **CAMP Bench**에 제출해 표본이 충분할 때 다른 조직과도 비교할 수 있습니다.
+> CAMP 진단은 약 **10분** 정도 걸립니다. 몇 가지 객관식/짧은 질문에 답해주시면 **CAMP Stage, CAMP Score /100, 5개 영역 분석, 가장 큰 병목, 향후 90일 Top 3 Action, 바로 시도할 과제**를 드립니다. **CAMP Bench**에 제출하면 전체 대비 위치, 점수 분포, 5개 영역의 격차와 익명 동종업계 표본이 충분할 때 업종 내 위치까지 담은 Private 비교 Report도 받을 수 있습니다.
 
 가능하면 클릭형 선택지를 사용하고, 아니면 A/B/C/D/E로 답하게 합니다. 한 번에 한 질문만 하고 존댓말을 사용합니다.
 
@@ -264,7 +267,9 @@ Stage 상승, Agent Test, 복제 가능성, Knowledge Compounding, Handoff 감�
 
 ### CAMP Bench
 
-Standalone Report 이후 CAMP Bench 제출 여부를 묻습니다. 제출 시 Overall / Industry / 익명 Peer Group, 5개 영역 비교, Same-company Aggregate, 팀·Function 분포, 시계열 비교를 제공할 수 있음을 설명합니다.
+Standalone Report 이후 CAMP Bench 제출 여부를 묻습니다. 동의를 묻기 전에 다음과 같이 구체적인 보상을 설명합니다.
+
+> 제출하면 귀사가 전체 Benchmark보다 앞서는지, 비슷한지, 뒤처지는지를 보여주는 Private Report를 받습니다. Percentile, 전체 점수 분포, 5개 Dimension 비교, 가장 부족한 영역과 권장 Action을 제공합니다. 같은 업종의 익명 조직이 10개 이상이면 Industry Percentile과 분포도 함께 제공합니다. 본인의 Report에는 자기 회사명을 표시할 수 있지만 다른 회사는 모두 익명입니다.
 
 실제 회사명은 Private에서 같은 회사 응답을 연결하고 중복 제거하는 데만 사용합니다. 참여자는 자기 회사를 실명으로 볼 수 있지만 **다른 회사는 모두 익명화**됩니다.
 
@@ -279,7 +284,8 @@ Private CAMP Bench Store가 연결되어 있고 사용자가 동의하면 새 As
 3. Yes이면 실제 전송 항목을 요약합니다: 실제 회사명, 선택적 Scope Label, 조직 Profile, Stage/Score, 5개 Dimension, Supporting Capability, Evidence Level/Confidence, 선택적 Evidence Summary. 개인 이름/이메일과 Raw Document는 제외된다고 알립니다.
 4. 해당 Field의 Private 저장과 익명·Aggregate Benchmark 사용에 명시적으로 동의하는지 확인합니다.
 5. 확인 후에만 JSON을 `private-submissions/` 아래 만들고 Repository Tool을 쓸 수 있으면 `python3 scripts/camp_bench.py <file>`로 검증합니다.
-6. 공식 Endpoint가 설정되어 있으면 `--submit --yes`로 제출합니다. 유효한 `receipt_id`가 반환된 경우에만 성공으로 알립니다.
-7. Endpoint 또는 Receipt가 없으면 **NOT SUBMITTED**라고 말하고 Private Package를 제공하며 비공개로 보관해야 함을 설명합니다. 임의의 Upload Destination을 만들지 않습니다.
+6. 공식 Endpoint가 설정되어 있으면 한국어 Interaction은 `--submit --yes --language ko`, 영어 Interaction은 `--submit --yes --language en`으로 제출합니다. 유효한 `receipt_id`가 반환된 경우에만 제출 성공으로 알립니다.
+7. 반환되는 Benchmark Report를 기다린 뒤 Overall Percentile·중앙값 대비 위치, 전체 점수 분포, Industry 결과 또는 표본 부족 안내, 5개 Dimension 비교, Priority Gap을 Interaction 언어로 보여줍니다. 아직 처리 중이면 Receipt를 보관하고 `--status <receipt_id>`로 다시 조회하며 결과를 임의로 만들지 않습니다.
+8. Endpoint 또는 Receipt가 없으면 **NOT SUBMITTED**라고 말하고 Private Package를 제공하며 비공개로 보관해야 함을 설명합니다. 임의의 Upload Destination을 만들지 않습니다.
 
 개인 응답자 이름, 이메일, 전화번호, 사번, Credential, Raw Confidential Document를 Submission Package에 넣지 않습니다. 실패한 요청을 무조건 재시도하지 않으며 Idempotency Key를 유지하고 실패를 명확히 알립니다.
