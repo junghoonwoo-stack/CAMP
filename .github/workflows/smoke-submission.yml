@@ -1,0 +1,19 @@
+name: Smoke test CAMP Bench submission
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/smoke-submission.yml
+
+permissions:
+  contents: read
+
+jobs:
+  submit-synthetic-example:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Submit synthetic example and require a receipt
+        run: python3 scripts/camp_bench.py benchmark/submission.example.json --submit --yes
