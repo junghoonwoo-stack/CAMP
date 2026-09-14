@@ -1,5 +1,6 @@
 import importlib.util
 import json
+import os
 import tempfile
 import threading
 import unittest
@@ -79,6 +80,24 @@ class CampBenchTests(unittest.TestCase):
         self.assertEqual(receipt["receipt_id"], "CB-TEST-001")
         self.assertEqual(ReceiptHandler.seen_payload, self.payload)
         self.assertEqual(ReceiptHandler.seen_headers["Idempotency-Key"], camp_bench.idempotency_key(self.payload))
+
+    def test_optional_beta_token_is_sent_as_bearer(self):
+        server = HTTPServer(("127.0.0.1", 0), ReceiptHandler)
+        thread = threading.Thread(target=server.serve_forever, daemon=True)
+        thread.start()
+        previous = os.environ.get("CAMP_BENCH_TOKEN")
+        os.environ["CAMP_BENCH_TOKEN"] = "beta-secret"
+        try:
+            camp_bench.submit(self.payload, f"http://127.0.0.1:{server.server_port}/v1/submissions")
+        finally:
+            if previous is None:
+                os.environ.pop("CAMP_BENCH_TOKEN", None)
+            else:
+                os.environ["CAMP_BENCH_TOKEN"] = previous
+            server.shutdown()
+            thread.join()
+            server.server_close()
+        self.assertEqual(ReceiptHandler.seen_headers["Authorization"], "Bearer beta-secret")
 
     def test_validation_mode_never_sends(self):
         with tempfile.TemporaryDirectory() as temp_dir:

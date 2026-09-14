@@ -40,6 +40,8 @@ The command displays the exact destination URL and a masked data preview, then r
 
 Automation may use `--yes` only after the participant has explicitly consented in the current interaction and reviewed what will be sent.
 
+For a limited beta protected by an invite token, set `CAMP_BENCH_TOKEN` in the environment. The client sends it as a Bearer token and never writes it into the submission JSON.
+
 ### Privacy and failure rules
 
 - Never commit a real submission file to this public repository.
@@ -105,6 +107,8 @@ python3 scripts/camp_bench.py private-submissions/my-assessment.json --submit
 전송 전 정확한 목적지 URL과 Private Text를 가린 Preview를 보여주고 참여자가 `SUBMIT`을 직접 입력해야 함. Server가 `status`와 `receipt_id`를 반환해야 성공임. Network Error, Endpoint 미설정, 잘못된 Receipt는 모두 **미제출**임.
 
 자동화에서 `--yes`를 쓰는 것은 현재 Interaction에서 참여자가 전송 항목을 확인하고 명시적으로 동의한 경우에만 허용함.
+
+Invite Token으로 보호되는 제한적 Beta에서는 환경변수 `CAMP_BENCH_TOKEN`을 설정함. Client는 이를 Bearer Token으로 보내며 Submission JSON에는 기록하지 않음.
 
 ### Privacy와 실패 원칙
 

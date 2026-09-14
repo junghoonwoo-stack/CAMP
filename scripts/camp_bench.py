@@ -180,17 +180,20 @@ def redacted_preview(payload: dict[str, Any]) -> str:
 
 def submit(payload: dict[str, Any], endpoint: str, timeout: float = 20.0) -> dict[str, Any]:
     assert_safe_endpoint(endpoint)
+    headers = {
+        "Content-Type": "application/json; charset=utf-8",
+        "Accept": "application/json",
+        "User-Agent": f"camp-bench-cli/{CLIENT_VERSION}",
+        "Idempotency-Key": idempotency_key(payload),
+        "X-CAMP-Schema-Version": str(payload["schema_version"]),
+    }
+    if os.environ.get("CAMP_BENCH_TOKEN"):
+        headers["Authorization"] = f"Bearer {os.environ['CAMP_BENCH_TOKEN']}"
     request = Request(
         endpoint,
         data=canonical_bytes(payload),
         method="POST",
-        headers={
-            "Content-Type": "application/json; charset=utf-8",
-            "Accept": "application/json",
-            "User-Agent": f"camp-bench-cli/{CLIENT_VERSION}",
-            "Idempotency-Key": idempotency_key(payload),
-            "X-CAMP-Schema-Version": str(payload["schema_version"]),
-        },
+        headers=headers,
     )
     try:
         with urlopen(request, timeout=timeout) as response:
