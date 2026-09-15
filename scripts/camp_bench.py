@@ -9,9 +9,12 @@ CAMP_BENCH_ENDPOINT environment variable.
 from __future__ import annotations
 
 import argparse
+import errno
 import hashlib
 import json
 import os
+import socket
+import ssl
 import sys
 import time
 from datetime import date
@@ -24,7 +27,7 @@ from urllib.request import Request, urlopen
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG_FILE = ROOT / "benchmark" / "submission.config.json"
-CLIENT_VERSION = "1.3.0"
+CLIENT_VERSION = "1.3.1"
 DIMENSIONS = ("access", "delegation", "connection", "compounding", "transformation")
 STEP_SCORES = {0, 5, 10, 15, 20}
 REQUIRED = {
@@ -72,6 +75,40 @@ class SubmissionError(ValueError):
 
 class TransportError(SubmissionError):
     """A send was attempted, but acceptance could not be confirmed."""
+
+
+class RetryableTransportError(TransportError):
+    """A temporary connection or server failure permits a bounded retry."""
+
+
+def temporary_network_error(error: Exception) -> bool:
+    reason = getattr(error, "reason", error)
+    if isinstance(reason, (ssl.SSLError, PermissionError)):
+        return False
+    if isinstance(reason, (TimeoutError, ConnectionError)):
+        return True
+    if getattr(reason, "errno", None) in {socket.EAI_AGAIN, errno.ECONNRESET, errno.ECONNREFUSED, errno.ETIMEDOUT, errno.ENETUNREACH, errno.EHOSTUNREACH}:
+        return True
+    return "temporary failure in name resolution" in str(reason).lower()
+
+
+def submit_with_retries(payload, endpoint, timeout=20.0, attempts=3, language="en", sender=None, sleeper=None):
+    sender = sender or submit
+    sleeper = sleeper or time.sleep
+    if attempts not in (1, 2, 3):
+        raise SubmissionError("Submission attempts must be between 1 and 3.")
+    for attempt in range(1, attempts + 1):
+        try:
+            return sender(payload, endpoint, timeout=timeout)
+        except RetryableTransportError:
+            if attempt == attempts:
+                raise
+            delay = 2 ** attempt
+            if language in {"ko", "both"}:
+                print(f"일시적인 연결 오류입니다. {delay}초 후 다시 시도합니다 ({attempt + 1}/{attempts}). 같은 파일로 중복 없이 재시도합니다.", file=sys.stderr, flush=True)
+            if language in {"en", "both"}:
+                print(f"Temporary connection error. Retrying in {delay}s ({attempt + 1}/{attempts}) with the same submission and idempotency key.", file=sys.stderr, flush=True)
+            sleeper(delay)
 
 
 def browser_recovery(endpoint: str, path: Path, language: str) -> None:
@@ -220,9 +257,12 @@ def submit(payload: dict[str, Any], endpoint: str, timeout: float = 20.0) -> dic
             result = json.loads(body)
     except HTTPError as exc:
         detail = exc.read().decode("utf-8", errors="replace")[:500]
+        if exc.code in {408, 502, 503, 504}:
+            raise RetryableTransportError(f"Temporary CAMP Bench server error (HTTP {exc.code}).") from exc
         raise SubmissionError(f"Server rejected the submission (HTTP {exc.code}): {detail}") from exc
     except (URLError, OSError) as exc:
-        raise TransportError(f"Could not confirm CAMP Bench receipt: {getattr(exc, 'reason', exc)}") from exc
+        error_type = RetryableTransportError if temporary_network_error(exc) else TransportError
+        raise error_type(f"Could not confirm CAMP Bench receipt: {getattr(exc, 'reason', exc)}") from exc
     except (UnicodeDecodeError, json.JSONDecodeError) as exc:
         raise TransportError("CAMP Bench returned an invalid receipt.") from exc
 
@@ -380,6 +420,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--endpoint", help="override the endpoint (normally use CAMP_BENCH_ENDPOINT)")
     parser.add_argument("--yes", action="store_true", help="skip terminal confirmation after explicit consent was already obtained")
     parser.add_argument("--timeout", type=float, default=20.0)
+    parser.add_argument("--attempts", type=int, choices=(1, 2, 3), default=3, help="total send attempts for temporary failures (default: 3)")
     parser.add_argument("--report-timeout", type=float, default=90.0, help="seconds to wait for the benchmark report")
     parser.add_argument("--poll-interval", type=float, default=15.0, help="seconds between report status checks")
     parser.add_argument("--no-wait", action="store_true", help="return after receipt without waiting for the benchmark report")
@@ -430,7 +471,7 @@ def main(argv: list[str] | None = None) -> int:
                 return 2
 
         try:
-            receipt = submit(payload, endpoint, timeout=args.timeout)
+            receipt = submit_with_retries(payload, endpoint, timeout=args.timeout, attempts=args.attempts, language=language)
         except TransportError:
             browser_recovery(endpoint, args.submission, language)
             raise

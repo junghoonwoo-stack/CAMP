@@ -277,10 +277,10 @@ class CampBenchTests(unittest.TestCase):
                 original = json.dumps(self.payload)
                 path.write_text(original, encoding="utf-8")
                 output = StringIO()
-                with patch.object(camp_bench, "urlopen", side_effect=error) as send, patch.dict(os.environ, {}, clear=True), redirect_stdout(StringIO()), redirect_stderr(output):
+                with patch.object(camp_bench.time, "sleep"), patch.object(camp_bench, "urlopen", side_effect=error) as send, patch.dict(os.environ, {}, clear=True), redirect_stdout(StringIO()), redirect_stderr(output):
                     result = camp_bench.main([str(path), "--submit", "--yes", "--no-wait", "--language", "ko"])
                 self.assertEqual(result, 1)
-                self.assertEqual(send.call_count, 1)
+                self.assertEqual(send.call_count, 3)
                 self.assertIn("/submit?lang=ko", output.getvalue())
                 self.assertIn(str(path), output.getvalue())
                 self.assertEqual(path.read_text(encoding="utf-8"), original)
@@ -290,6 +290,35 @@ class CampBenchTests(unittest.TestCase):
         with redirect_stderr(output):
             camp_bench.browser_recovery("https://custom.example/v1/submissions", Path("private.json"), "en")
         self.assertEqual(output.getvalue(), "")
+
+    def test_retry_stops_on_receipt_and_preserves_payload_and_key(self):
+        seen, delays = [], []
+        def sender(payload, endpoint, timeout):
+            seen.append((camp_bench.canonical_bytes(payload), camp_bench.idempotency_key(payload), endpoint))
+            if len(seen) < 3:
+                raise camp_bench.RetryableTransportError("temporary")
+            return {"status": "duplicate", "receipt_id": "existing"}
+        with redirect_stderr(StringIO()):
+            result = camp_bench.submit_with_retries(self.payload, "https://example.com", sender=sender, sleeper=delays.append)
+        self.assertEqual(result["status"], "duplicate")
+        self.assertEqual(len(seen), 3)
+        self.assertTrue(all(item == seen[0] for item in seen))
+        self.assertEqual(delays, [2, 4])
+
+    def test_permanent_failures_and_invalid_receipts_are_not_retried(self):
+        for error in (camp_bench.SubmissionError("HTTP 403"), camp_bench.TransportError("invalid receipt")):
+            from unittest.mock import Mock
+            sender = Mock(side_effect=error)
+            sleeper = Mock()
+            with self.assertRaises(camp_bench.SubmissionError):
+                camp_bench.submit_with_retries(self.payload, "https://example.com", sender=sender, sleeper=sleeper)
+            self.assertEqual(sender.call_count, 1)
+            sleeper.assert_not_called()
+
+    def test_permission_and_certificate_failures_are_not_temporary(self):
+        import ssl
+        self.assertFalse(camp_bench.temporary_network_error(PermissionError("blocked")))
+        self.assertFalse(camp_bench.temporary_network_error(URLError(ssl.SSLCertVerificationError("certificate"))))
 
 
 if __name__ == "__main__":
