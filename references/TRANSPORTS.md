@@ -4,6 +4,7 @@ CAMP Bench has one receiver and several ways to reach it. A repository URL or a 
 
 | Environment | Preferred transport | User action | Success |
 |---|---|---|---|
+| Local computer or VM | Local CLI (`camp_bench.py`) | Review fields and consent; submit from the same machine | Matching `receipt_id` |
 | ChatGPT with a configured CAMP Action | `submitCampAssessment` | Confirm fields and consent; approve platform confirmation | Matching `receipt_id` |
 | Claude with a configured CAMP MCP connector | `camp_bench_submit` | Confirm fields and consent; approve connector call | Matching `receipt_id` |
 | Gemini with a configured function/extension | CAMP submission function | Confirm fields and consent; approve function call | Matching `receipt_id` |
