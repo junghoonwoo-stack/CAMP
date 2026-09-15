@@ -15,5 +15,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Submit synthetic example and require a receipt
-        run: python3 scripts/camp_bench.py benchmark/submission.example.json --submit --yes
+      - name: Submit synthetic example and require the bilingual report
+        shell: bash
+        run: |
+          set -euo pipefail
+          output="$(python3 scripts/camp_bench.py benchmark/submission.example.json \
+            --submit --yes --language both --report-timeout 180 --poll-interval 10)"
+          printf '%s\n' "$output"
+          grep -q "CAMP BENCH REPORT" <<<"$output"
+          grep -q "전체 점수 분포 / Overall score distribution" <<<"$output"
+          grep -q "Five-dimension comparison" <<<"$output"
