@@ -5,7 +5,8 @@
 A participant's **private report may show their own company and scope name**. Every other organization in CAMP Bench remains anonymous. For a public/shared report, anonymize the participant's own company by default unless they explicitly request otherwise.
 
 ### Executive result
-- Organization / scope
+- Organization / exact assessed scope
+- Respondent perspective category
 - CAMP Stage + Confidence
 - **CAMP Score /100**
 - one-line diagnosis
@@ -27,6 +28,7 @@ Always explain:
 - weakest 1–2 dimensions and why
 - major gaps or imbalance
 - what the pattern implies for the next CAMP Stage
+- when relevant, the difference between the strongest proven core production case and adoption across the full assessed scope
 
 ### Action
 - next 90 days: Top 3 actions + success signals
@@ -68,7 +70,8 @@ The participant may see their own company name. Other participant organizations 
 참여자의 **Private Report에는 본인 회사/Scope 이름을 표시할 수 있습니다.** CAMP Bench의 다른 회사는 모두 익명화합니다. 외부 공유용 Report는 사용자가 별도로 요청하지 않는 한 본인 회사도 기본적으로 익명화합니다.
 
 ### 핵심 결과
-- 조직 / Scope
+- 조직 / 정확한 진단 범위
+- 응답자 관점 범주
 - CAMP Stage + Confidence
 - **CAMP 총점 /100**
 - 한 줄 진단
@@ -90,6 +93,7 @@ The participant may see their own company name. Other participant organizations 
 - 가장 약한 1~2개 영역과 이유
 - 영역 간 큰 Gap / 불균형
 - 이 패턴이 다음 CAMP Stage에 의미하는 것
+- 필요한 경우, 핵심 조직의 가장 앞선 실제 운영사례와 진단 범위 전체의 보급 수준 차이
 
 ### Action
 - 향후 90일 Top 3 Action + Success Signal

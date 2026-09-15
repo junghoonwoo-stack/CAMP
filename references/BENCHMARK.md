@@ -29,6 +29,8 @@ If multiple people from the same company participate, CAMP Bench may show:
 
 Individual respondent identities are never shown.
 
+Use broad respondent categories: new joiner/early career (0–2 years), junior/practitioner (3–7), senior/expert (8+), manager/team leader, executive/C-level, and other/prefer not. A role-level cut is shown only as an anonymous aggregate and only when each displayed category contains at least three responses; otherwise report that the sample is insufficient.
+
 ### Peer Group
 Use the narrowest cohort with enough organizations:
 1. Industry
@@ -94,6 +96,8 @@ CAMP Bench는 제출된 CAMP 진단 결과를 다른 조직과 비교하되 **�
 - 표본이 충분하면 Role Level별 인식 차이
 
 개별 응답자의 identity는 표시하지 않습니다.
+
+응답자 관점은 신입·초기 경력(0–2년), 주니어·실무자(3–7년), 시니어·전문가(8년 이상), 매니저·팀장, 임원·경영진, 기타·응답하지 않음으로 넓게 구분합니다. 역할별 결과는 익명 집계로만 보여주며, 표시되는 각 역할에 응답이 최소 3개 있을 때만 제공합니다. 부족하면 표본 부족으로 안내합니다.
 
 ### Peer Group
 표본이 충분한 범위에서 가장 좁은 Cohort를 사용합니다.

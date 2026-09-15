@@ -110,6 +110,15 @@ class CampBenchTests(unittest.TestCase):
         with self.assertRaisesRegex(camp_bench.SubmissionError, "consent_to_benchmark"):
             camp_bench.validate(self.payload)
 
+    def test_missing_profile_fails_before_submission(self):
+        for key in ("company_name", "industry", "industry_segment", "scope", "respondent_role"):
+            self.payload.pop(key)
+        with self.assertRaises(camp_bench.SubmissionError) as caught:
+            camp_bench.validate(self.payload)
+        message = str(caught.exception)
+        for key in ("company_name", "industry", "industry_segment", "scope", "respondent_role"):
+            self.assertIn(key, message)
+
     def test_personal_identity_field_fails(self):
         self.payload["email"] = "person@example.com"
         with self.assertRaisesRegex(camp_bench.SubmissionError, "personal respondent fields"):
@@ -224,7 +233,7 @@ class CampBenchTests(unittest.TestCase):
             clock=lambda: 0,
         )
         self.assertEqual(status["report_status"], "ready")
-        self.assertEqual(sleeps, [15.0])
+        self.assertEqual(sleeps, [5.0])
 
     def test_auto_language_supports_korean(self):
         previous = os.environ.get("LANG")

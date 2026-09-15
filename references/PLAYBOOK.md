@@ -12,6 +12,17 @@ Do not raise an organization’s Stage based on one power user, demo, or pilot.
 
 Plans and proposals do not count as current capability.
 
+### Scope and flagship-case rule
+
+Confirm the assessed scope before scoring: entire company, business unit/division, team/department, or a new AI-native organization. Every answer refers to that scope.
+
+Keep two questions separate:
+
+- **Does the capability exist?** A strategically important, recurring production case in a core organization can establish that it does, even before broad rollout.
+- **How widely is it adopted?** Q1 measures coverage across the assessed population. A flagship case must not be described as company-wide adoption.
+
+The representative case must be real work, used repeatedly by several people, and have a responsible owner. A showcase demo, isolated power user, or unowned pilot does not qualify. In the report, state both the strongest proven capability and its actual coverage.
+
 ### AX project types
 - AI-made IT
 - AI-enabled application
@@ -69,6 +80,17 @@ Power User 한 명, Demo 하나, Pilot 하나만으로 조직 Stage를 높이지
 - **Institutionalized:** 기본 업무방식
 
 계획·제안 단계는 현재 Capability로 계산하지 않습니다.
+
+### 진단 범위와 대표사례 원칙
+
+채점 전에 회사 전체, 사업부·본부, 팀·부서, 신설 AI 중심 조직 중 어디를 진단하는지 확정합니다. 이후 모든 답변은 그 범위만을 기준으로 합니다.
+
+다음 두 가지를 분리해서 봅니다.
+
+- **그 역량이 실제로 존재하는가?** 핵심 조직이 주도하는 전략적으로 중요한 운영사례가 반복적으로 돌아간다면, 전사 확산 전이라도 역량이 존재한다는 근거가 될 수 있습니다.
+- **얼마나 널리 보급됐는가?** 진단 범위 내 보급률은 Q1에서 따로 측정합니다. 대표사례 하나를 전사 보급으로 표현하면 안 됩니다.
+
+대표사례는 여러 사람이 실제 업무에서 반복 사용하고 담당자가 있어야 합니다. 보여주기용 Demo, 한 명의 Power User, 담당자가 없는 Pilot은 해당하지 않습니다. Report에는 확인된 가장 높은 역량과 실제 보급 범위를 모두 씁니다.
 
 ### AX 과제 유형
 - AI-made IT

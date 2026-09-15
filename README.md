@@ -83,14 +83,14 @@ Completing a CAMP assessment does **not** automatically submit it. After reviewi
 # Validate only — sends nothing
 python3 scripts/camp_bench.py private-submissions/my-assessment.json
 
-# Submit after consent — success requires a receipt ID
-python3 scripts/camp_bench.py private-submissions/my-assessment.json --submit --language en
+# Fast submit after consent — returns as soon as a receipt is accepted
+python3 scripts/camp_bench.py private-submissions/my-assessment.json --submit --no-wait --language en
 
 # Retrieve the report again later
 python3 scripts/camp_bench.py --status CB-YYYYMMDD-XXXXXXXXXXXX --language en
 ```
 
-The receipt includes both `status_url` for JSON/API use and `report_url` for a bilingual, human-readable web report.
+Submission acceptance and report generation are separate. A valid receipt confirms the submission immediately; the comparison report normally follows shortly. The receipt includes both `status_url` for JSON/API use and `report_url` for a bilingual, human-readable web report.
 
 The official receiver is configured in `benchmark/submission.config.json`, so the submit command uses it automatically. A missing endpoint, network error, or response without a valid receipt still means **NOT SUBMITTED**. Never put a real submission in a public issue, discussion, pull request, or commit. See [CAMP Bench Submission](references/SUBMISSION.md).
 
@@ -108,15 +108,22 @@ Official percentiles require a sufficiently large cohort. If a cohort has fewer 
 ## Example Survey
 
 ```text
-CAMP: Roughly what share of employees repeatedly use AI for work?
-You: Around 40–50%.
+CAMP · Progress 1/13  █░░░░░░░░░░░░ 8%
+Which organization are we assessing, and in which country is it based?
+You: Example Corp, Korea.
 
-CAMP: Is AI connected to internal systems such as RAG, MCP, APIs, ERP, or databases?
-You: RAG and some MCP are already in production, but many systems remain to be connected.
+CAMP · Progress 2/13  ██░░░░░░░░░░░ 15%
+Should these answers describe the whole company, a business unit, or a team?
+Why this matters: a team score and a company-wide score mean different things.
+You: Business unit — Home Appliances.
 
-CAMP: Are reusable skills or session knowledge shared across the organization?
-You: We have started collecting skills, but reuse is still limited.
+CAMP · Progress 8/13  ████████░░░░░ 62%
+In the strongest real production case, what company information or systems can AI use?
+Why this matters: one core production case can prove the capability exists; Q1 separately measures how widely it has spread.
+[A] External only  [B] Internal documents  [C] Work tools  [D] Core systems  [E] Can also take action
 ```
+
+When the chat product supports native choice controls, the options appear as clickable choices. Otherwise the participant can answer with one letter. See the complete [interview wording and scope rule](references/QUESTION_GUIDE.md).
 
 Example result:
 
@@ -133,6 +140,7 @@ Next target: build reusable skills and complete high-value end-to-end connection
 
 - [Stages and Agent definition](references/STAGES.md)
 - [Diagnostic playbook and evidence rules](references/PLAYBOOK.md)
+- [Participant-facing interview guide](references/QUESTION_GUIDE.md)
 - [Report format](references/REPORT_TEMPLATE.md)
 - [CAMP Bench methodology](references/BENCHMARK.md)
 - [CAMP Bench submission](references/SUBMISSION.md)
@@ -147,7 +155,7 @@ CAMP framework and documentation use **CC BY 4.0**. If you redistribute or publi
 
 **Company Agent Maturity Profile**
 
-CAMP는 약 10분 동안 **우리 회사나 팀이 얼마나 Agent-native한지, 다음에 무엇을 해야 하는지** 진단합니다.
+CAMP는 약 8–10분 동안 **우리 회사나 팀이 AI를 업무에 얼마나 실제로 활용하고 있으며, 다음에 무엇을 해야 하는지** 진단합니다.
 
 짧은 질의응답이나 자료 검토를 통해 CAMP Stage, 총점 /100, 5개 영역 분석, 가장 큰 병목, 향후 90일 Action을 제공합니다.
 
@@ -228,14 +236,14 @@ CAMP 진단을 완료해도 자동으로 제출되지는 않습니다. Standalon
 # 검증만 수행 — 전송하지 않음
 python3 scripts/camp_bench.py private-submissions/my-assessment.json
 
-# 동의 후 제출 — Receipt ID가 있어야 성공
-python3 scripts/camp_bench.py private-submissions/my-assessment.json --submit --language ko
+# 동의 후 빠른 제출 — Receipt가 오면 즉시 반환
+python3 scripts/camp_bench.py private-submissions/my-assessment.json --submit --no-wait --language ko
 
 # 나중에 Report 다시 조회
 python3 scripts/camp_bench.py --status CB-YYYYMMDD-XXXXXXXXXXXX --language ko
 ```
 
-Receipt에는 개발·연동용 JSON `status_url`과 한·영 사용자용 웹 리포트 `report_url`이 함께 제공됩니다.
+제출 접수와 리포트 생성은 별도입니다. 유효한 Receipt가 오면 제출은 즉시 완료된 것이며, 비교 리포트는 보통 잠시 뒤 준비됩니다. Receipt에는 개발·연동용 JSON `status_url`과 한·영 사용자용 웹 리포트 `report_url`이 함께 제공됩니다.
 
 공식 Receiver는 `benchmark/submission.config.json`에 설정되어 있어 제출 명령이 자동으로 사용합니다. Endpoint 누락, Network Error, 유효한 Receipt가 없는 응답은 모두 **NOT SUBMITTED**입니다. 실제 제출 파일을 Public Issue, Discussion, Pull Request, Commit에 올리면 안 됩니다. 자세한 절차는 [CAMP Bench Submission](references/SUBMISSION.md)을 참고합니다.
 
@@ -253,15 +261,22 @@ Receipt에는 개발·연동용 JSON `status_url`과 한·영 사용자용 웹 �
 ## 설문 예시
 
 ```text
-CAMP: 업무에서 AI를 반복적으로 사용하는 직원은 어느 정도인가요?
-응답: 약 40–50%입니다.
+CAMP · 진행 1/13  █░░░░░░░░░░░░ 8%
+어느 회사 또는 조직을 진단할까요? 국가는 어디인가요?
+응답: 예시전자, 한국.
 
-CAMP: RAG, MCP, API, ERP, DB 등 사내 시스템과 AI가 연결되어 있나요?
-응답: RAG와 일부 MCP는 운영 중이지만 아직 연결할 시스템이 많이 남아 있습니다.
+CAMP · 진행 2/13  ██░░░░░░░░░░░ 15%
+회사 전체, 사업부·본부, 팀·부서 중 어느 범위를 기준으로 답할까요?
+왜 묻나요: 한 팀의 점수와 회사 전체의 점수는 의미가 다릅니다.
+응답: 사업본부 — 생활가전.
 
-CAMP: Skill이나 Session Knowledge가 조직 전체에 재사용되고 있나요?
-응답: Skill을 모으기 시작했지만 아직 재사용은 제한적입니다.
+CAMP · 진행 8/13  ████████░░░░░ 62%
+이 범위 안의 가장 앞선 실제 운영 사례에서, AI는 어떤 회사 자료나 시스템까지 사용할 수 있나요?
+왜 묻나요: 핵심 운영사례 하나로 역량의 존재를 확인할 수 있고, 얼마나 널리 퍼졌는지는 Q1에서 따로 봅니다.
+[A] 외부지식  [B] 사내문서  [C] 협업도구  [D] 핵심시스템  [E] 실행까지
 ```
+
+대화 환경이 지원하면 선택지는 클릭형으로 표시됩니다. 지원하지 않으면 글자 하나만 답하면 됩니다. 전체 문구와 범위 기준은 [인터뷰 가이드](references/QUESTION_GUIDE.md)를 참고하세요.
 
 예시 결과:
 
@@ -278,6 +293,7 @@ CAMP Score: 40 / 100
 
 - [Stage와 Agent 정의](references/STAGES.md)
 - [진단 Playbook과 Evidence 기준](references/PLAYBOOK.md)
+- [참여자용 인터뷰 가이드](references/QUESTION_GUIDE.md)
 - [Report 형식](references/REPORT_TEMPLATE.md)
 - [CAMP Bench 기준](references/BENCHMARK.md)
 - [CAMP Bench 제출 절차](references/SUBMISSION.md)

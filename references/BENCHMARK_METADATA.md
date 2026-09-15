@@ -13,7 +13,7 @@ The public repository documents the **schema**, not the raw benchmark dataset.
 | `org_group_id` | Stable anonymous organization key | `ORG-KR-A1B2` |
 | `scope_id` | Anonymous company/unit/team scope | `S01` |
 | `respondent_id` | Anonymous respondent key | `R03` |
-| `respondent_role` | Broad role level | `Manager` |
+| `respondent_role` | Broad role perspective; no personal identity | `Manager / team leader` |
 | `assessment_method` | self_report / interview / evidence_assessment / expert_evidence | `self_report` |
 | `evidence_level` | Anecdotal / Repeated / Operationalized / Institutionalized | `Repeated` |
 | `confidence` | Low / Medium / High | `High` |
@@ -46,6 +46,8 @@ Real organization identity is stored outside the public repository. The private 
 
 Personal respondent names and emails are not required by default.
 
+Use the role labels from the interview guide: `New joiner / early career (0-2 years)`, `Junior / practitioner (3-7 years)`, `Senior / expert (8+ years)`, `Manager / team leader`, `Executive / C-level`, or `Other / prefer not to say`.
+
 The participant may see their own company name in a private report. Other organizations remain anonymous. Public/shared benchmark output uses only aggregate or anonymized data.
 
 ---
@@ -63,7 +65,7 @@ Public Repository에는 Raw Benchmark Dataset이 아니라 **Schema만 공개**�
 | `org_group_id` | 안정적인 익명 조직 Key | `ORG-KR-A1B2` |
 | `scope_id` | 회사/사업부/팀 익명 Scope | `S01` |
 | `respondent_id` | 익명 응답자 Key | `R03` |
-| `respondent_role` | Broad Role Level | `Manager` |
+| `respondent_role` | 개인식별정보가 없는 넓은 역할 관점 | `Manager / team leader` |
 | `assessment_method` | self_report / interview / evidence_assessment / expert_evidence | `self_report` |
 | `evidence_level` | Anecdotal / Repeated / Operationalized / Institutionalized | `Repeated` |
 | `confidence` | Low / Medium / High | `High` |
@@ -95,5 +97,7 @@ Public Repository에는 Raw Benchmark Dataset이 아니라 **Schema만 공개**�
 - Evidence/Provenance와 시계열 이력
 
 개인 응답자의 이름과 이메일은 기본적으로 수집하지 않습니다.
+
+역할 Label은 인터뷰 가이드에 따라 `신입·초기 경력(0–2년)`, `주니어·실무자(3–7년)`, `시니어·전문가(8년 이상)`, `매니저·팀장`, `임원·경영진`, `기타·응답하지 않음`을 사용합니다.
 
 참여자는 Private Report에서 자기 회사명을 볼 수 있지만 다른 회사는 익명화합니다. 외부 공유 Benchmark는 Aggregate 또는 익명 데이터만 사용합니다.

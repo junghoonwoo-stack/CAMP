@@ -35,7 +35,7 @@
     "scope": {"type": "string"},
     "headcount_band": {"type": "string"},
     "function": {"type": "string"},
-    "respondent_role": {"type": "string"},
+    "respondent_role": {"type": "string", "minLength": 1, "description": "Broad role perspective only; do not include a personal name or title."},
     "assessment_method": {"type": "string", "enum": ["self_report", "interview", "evidence_assessment", "expert_evidence"]},
     "evidence_level": {"type": "string", "enum": ["Anecdotal", "Repeated", "Operationalized", "Institutionalized"]},
     "confidence": {"type": "string", "enum": ["Low", "Medium", "High"]},

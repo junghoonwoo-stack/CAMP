@@ -7,17 +7,21 @@ description: CAMP assesses how agent-native an organization is through a short i
 
 ## English
 
-CAMP diagnoses the **current recurring operating model**, not AI ambition, spending, or the number of AI projects. Use `references/STAGES.md`, `references/PLAYBOOK.md`, `references/REPORT_TEMPLATE.md`, `references/BENCHMARK.md`, and `references/SUBMISSION.md` as the detailed methodology.
+CAMP diagnoses the **current recurring operating model**, not AI ambition, spending, or the number of AI projects. Use `references/STAGES.md`, `references/PLAYBOOK.md`, `references/QUESTION_GUIDE.md`, `references/REPORT_TEMPLATE.md`, `references/BENCHMARK.md`, and `references/SUBMISSION.md` as the detailed methodology. In Interview Mode, read and follow `references/QUESTION_GUIDE.md` before asking the first question.
 
 Use **Interview Mode** for a short assessment. In **Evidence Mode**, read supplied strategy, architecture, project, usage, or operating documents first and ask only what remains uncertain.
 
 ### Start
 
-> CAMP takes about **10 minutes**. I’ll ask a few multiple-choice or short questions. You’ll receive your **CAMP Stage, CAMP Score /100, five-dimension analysis, biggest bottleneck, top 3 actions for the next 90 days, and practical projects to start now**. If you submit to **CAMP Bench**, you will also receive a private comparison showing your overall position, score distribution, five-dimension gaps, and industry position when the anonymous industry cohort is large enough.
+> CAMP takes about **8–10 minutes**. We will first confirm the organization, assessment scope, industry, and your role perspective, then ask eight short assessment questions. You’ll receive your **CAMP Stage, CAMP Score /100, five-dimension analysis, biggest bottleneck, top 3 actions for the next 90 days, and practical projects to start now**. If you submit to **CAMP Bench**, you will also receive a private comparison showing your overall position, score distribution, five-dimension gaps, and industry position when the anonymous industry cohort is large enough.
 
-Use clickable choices when available. Otherwise use A/B/C/D/E. Ask one question at a time.
+The normal interview has **13 cards: five setup cards and eight assessment cards**. The first card must ask for the company/organization name and country. The next cards must confirm scope and scope label, industry and segment, assessed headcount and function, and respondent perspective. **Never silently infer or skip the profile, even when the organization seems obvious.**
 
-### Profile
+Show `Progress n/13` and a compact visual bar on every card. A conditional follow-up stays on the same number. Use the host application's native clickable choice control for every closed question when it is available. Otherwise show compact A/B/C/D/E/F choices. Never require a long typed response to answer a closed question. Ask one question card at a time; a setup card may contain at most two tightly related fields.
+
+Use the participant-facing wording in `references/QUESTION_GUIDE.md`. Each assessment card must contain: a natural-language question, one short sentence explaining why it matters, the choices, and only when useful a brief example. Do not add decorative or unverified quotations.
+
+### Required profile — cards 1–5
 
 - **P0 Company / organization name** — ask the real name. Explain that it is used only for same-company matching if the user later submits to CAMP Bench; do not persist it before submission consent.
 - **P1 Scope** — A Entire company / B Business unit-divison / C Team-department / D New AI-native organization
@@ -27,11 +31,13 @@ Use clickable choices when available. Otherwise use A/B/C/D/E. Ask one question 
 - **P4 Assessed headcount** — 1–10 / 11–50 / 51–200 / 201–1,000 / 1,001–5,000 / 5,000+
 - **P5 Function** — Company-wide / Strategy / R&D / Software-IT / Data-AI-DX / Sales-Marketing / SCM-Manufacturing / Finance-HR-Legal / Customer Service / Other
 - **P6 Team/business-unit label** — only when scope is below company level
-- **P7 Respondent role** — Executive-Senior leader / Manager / Individual contributor / Other-Prefer not
+- **P7 Respondent perspective** — New joiner-early career (0–2 years) / Junior-practitioner (3–7 years) / Senior-expert (8+ years) / Manager-team leader / Executive-C-level / Other-prefer not
 
-Do not collect personal name or email by default.
+Do not collect personal name or email by default. These profile fields must be complete before Q1. If information is known from earlier context or supplied documents, present it for confirmation instead of silently assuming it.
 
-### Core questions
+### Assessment cards 6–13
+
+Before Q1 say: **“From here on, answer only for the scope you just confirmed.”** Use the natural participant-facing copy and background notes in `references/QUESTION_GUIDE.md`; the compact definitions below are scoring anchors, not the preferred on-screen wording.
 
 **Q1 AI Access** — share of the assessed population repeatedly using approved AI for work: A <5% / B 5–20% / C 21–50% / D 51–80% / E 81%+
 
@@ -47,7 +53,7 @@ Do not collect personal name or email by default.
 
 **Q7 Sovereign AI** — A External API / B Multi-model portfolio-routing / C Private-local-open-weight-own GPU / D Post-training / E Foundation model
 
-**Q8 Evidence basis** — A Anecdotal: one user-demo-pilot / B Repeated: multiple users or a team / C Operationalized: owner-process-metrics-production / D Institutionalized: default way of working
+**Q8 Evidence basis** — A Anecdotal: one user-demo-pilot / B Repeated: recurring production case used by several people or a core team / C Operationalized: owner-process-metrics-production / D Institutionalized: default way of working across the assessed scope
 
 Ask follow-ups only when they can materially change the Stage, Score, confidence, or actions.
 
@@ -82,7 +88,9 @@ If both are No, it is usually **IT built faster with AI**, not core Agent Transf
 
 ### Evidence rule
 
-Do not raise Stage from one power user, demo, pilot, or future plan.
+Do not raise Stage from one power user, showcase demo, isolated pilot, or future plan.
+
+Separate **capability existence** from **adoption coverage**. One representative production case in a strategically important or core organization can establish that an advanced capability exists when it is recurring, has a responsible owner, and is used by several people in real work. It does not establish company-wide adoption. Score the capability in the relevant question, measure coverage separately in Q1, and describe this distinction explicitly in the report. Do not downgrade a real core production case merely because rollout is incomplete.
 
 - Anecdotal: one user/project
 - Repeated: multiple users/teams
@@ -140,12 +148,13 @@ Use this submission sequence exactly:
 
 1. Deliver the complete standalone report first.
 2. Ask whether the participant wants to join CAMP Bench. Do not assume consent.
-3. If Yes, summarize the fields to be sent: real company name, optional scope label, organization profile, Stage/Score, five dimensions, supporting capabilities, evidence level/confidence, and optional evidence summary. State that personal name/email and raw documents are excluded.
-4. Ask for explicit confirmation to privately store those fields and use anonymized/aggregate results for benchmarking.
-5. Only after confirmation, create the JSON under `private-submissions/` and validate it with `python3 scripts/camp_bench.py <file>` when repository tools are available.
-6. If an official endpoint is configured, submit with `--submit --yes --language en` for an English interaction or `--submit --yes --language ko` for a Korean interaction. Report submission success only when a valid `receipt_id` is returned.
-7. Wait for the returned benchmark report. Give the participant the returned `report_url` for the human-readable bilingual web report, then present the overall percentile/median position, overall score distribution, industry result or sample-size notice, five-dimension comparison, and priority gap in the interaction language. Keep `status_url` as the JSON/API endpoint. If processing is still pending, preserve the receipt and retrieve it with `--status <receipt_id>`; do not invent results.
-8. If no endpoint or receipt is available, say **NOT SUBMITTED**, provide the private package, and explain that it must be kept private. Do not invent an upload destination.
+3. Run a completeness gate before asking for consent. Confirm that `company_name`, `country`, `industry`, `industry_segment`, `scope`, `headcount_band`, `function`, `respondent_role`, Stage/Score, all five dimensions, AI Operations, Sovereign AI, evidence level, and confidence are present. If anything is missing, ask only for the missing fields in one compact **Submission readiness** card. Never construct or send a partial submission.
+4. Summarize the fields to be sent: real company name, optional scope label, organization profile, respondent role category, Stage/Score, five dimensions, supporting capabilities, evidence level/confidence, and optional evidence summary. State that personal name/email and raw documents are excluded.
+5. Ask for explicit confirmation to privately store those fields and use anonymized/aggregate results for benchmarking.
+6. Only after confirmation, create the JSON under `private-submissions/`. The submit command validates it before sending; do not add a redundant validation-only run to the participant's wait.
+7. Submit through the configured endpoint with the fast receipt-first mode: `--submit --yes --no-wait --language en` for an English interaction or `--submit --yes --no-wait --language ko` for a Korean interaction. A valid `receipt_id` means the submission succeeded. Immediately show the receipt and returned human-readable `report_url`; do not wait silently for report generation.
+8. Treat submission acceptance and report readiness as separate states. Retrieve the report with `--status <receipt_id>` after a short interval. When ready, present the overall percentile/median position, overall score distribution, industry result or sample-size notice, five-dimension comparison, and priority gap in the interaction language. Keep `status_url` as the JSON/API endpoint. Do not rebuild the JSON, re-ask consent, or resubmit while polling.
+9. If no endpoint or receipt is available, say **NOT SUBMITTED**, preserve the private package, name the exact missing field or transport error, and explain the next safe step. Do not invent an upload destination.
 
 Never include personal respondent name, email, phone, employee ID, credentials, or raw confidential documents in the submission package. Never retry a failed request blindly; preserve the idempotency key and surface the failure.
 
@@ -153,17 +162,21 @@ Never include personal respondent name, email, phone, employee ID, credentials, 
 
 ## 한국어
 
-CAMP는 AI 투자액이나 AI 프로젝트 개수가 아니라 **현재 반복적으로 작동하는 Operating Model**을 진단합니다. 상세 기준은 `references/STAGES.md`, `references/PLAYBOOK.md`, `references/REPORT_TEMPLATE.md`, `references/BENCHMARK.md`, `references/SUBMISSION.md`를 사용합니다.
+CAMP는 AI 투자액이나 AI 프로젝트 개수가 아니라 **현재 반복적으로 작동하는 업무방식**을 진단합니다. 상세 기준은 `references/STAGES.md`, `references/PLAYBOOK.md`, `references/QUESTION_GUIDE.md`, `references/REPORT_TEMPLATE.md`, `references/BENCHMARK.md`, `references/SUBMISSION.md`를 사용합니다. Interview Mode에서는 첫 질문 전에 `references/QUESTION_GUIDE.md`를 읽고 따릅니다.
 
 **Interview Mode**에서는 아래 질문을 진행합니다. **Evidence Mode**에서는 전략자료, Architecture, 과제, Usage Data, 운영자료를 먼저 읽고 확인되지 않은 부분만 질문합니다.
 
 ### 시작
 
-> CAMP 진단은 약 **10분** 정도 걸립니다. 몇 가지 객관식/짧은 질문에 답해주시면 **CAMP Stage, CAMP Score /100, 5개 영역 분석, 가장 큰 병목, 향후 90일 Top 3 Action, 바로 시도할 과제**를 드립니다. **CAMP Bench**에 제출하면 전체 대비 위치, 점수 분포, 5개 영역의 격차와 익명 동종업계 표본이 충분할 때 업종 내 위치까지 담은 Private 비교 Report도 받을 수 있습니다.
+> CAMP 진단은 약 **8–10분** 걸립니다. 먼저 회사·진단 범위·업종·응답자 관점을 확인하고, 이어서 8개의 짧은 진단 질문을 드립니다. 완료하면 **CAMP Stage, CAMP Score /100, 5개 영역 분석, 가장 큰 병목, 향후 90일 Top 3 실행과제, 바로 시도할 과제**를 받을 수 있습니다. **CAMP Bench**에 제출하면 전체 대비 위치, 점수 분포, 5개 영역의 격차와 익명 동종업계 표본이 충분할 때 업종 내 위치까지 담은 비공개 비교 리포트도 받을 수 있습니다.
 
-가능하면 클릭형 선택지를 사용하고, 아니면 A/B/C/D/E로 답하게 합니다. 한 번에 한 질문만 하고 존댓말을 사용합니다.
+기본 인터뷰는 **조직 정보 5개 카드 + 진단 질문 8개 카드, 총 13개**입니다. 첫 카드는 반드시 회사·조직명과 국가를 묻습니다. 이어서 진단 범위와 하위 조직명, 업종과 세부 분야, 진단 대상 인원과 기능, 응답자 관점을 확인합니다. **조직을 알고 있는 것처럼 보여도 프로필을 조용히 추정하거나 건너뛰지 않습니다.**
 
-### 조직 정보
+모든 카드에 `진행 n/13`과 짧은 막대를 표시합니다. 조건부 추가 질문은 같은 번호를 유지합니다. 실행 환경이 지원하면 모든 객관식 질문에 기본 클릭형 선택지를 사용합니다. 지원하지 않으면 짧은 A/B/C/D/E/F 선택지를 보여줍니다. 객관식 답변을 긴 문장으로 입력하게 하지 않습니다. 한 번에 질문 카드 하나만 보여주며, 준비 카드에는 서로 밀접한 항목을 최대 두 개까지만 묶을 수 있습니다.
+
+참여자에게 보여줄 질문은 `references/QUESTION_GUIDE.md`의 자연스러운 문구를 사용합니다. 각 진단 카드에는 질문, 왜 묻는지 한 문장, 선택지를 포함하고, 이해에 도움이 될 때만 짧은 사례를 덧붙입니다. 장식용 또는 출처가 확인되지 않은 인용문은 사용하지 않습니다.
+
+### 필수 조직 정보 — 1~5번 카드
 
 - **P0 실제 회사/조직명** — 실제 이름을 묻되 CAMP Bench 제출에 동의할 경우 같은 회사 응답을 연결하기 위해 Private에서만 사용한다고 설명. 제출 동의 전에는 영구 저장하지 않음
 - **P1 범위** — 회사 전체 / 사업부·본부 / 팀·부서 / 신설 AI-native 조직
@@ -173,11 +186,13 @@ CAMP는 AI 투자액이나 AI 프로젝트 개수가 아니라 **현재 반복�
 - **P4 진단 대상 인원** — 1–10 / 11–50 / 51–200 / 201–1,000 / 1,001–5,000 / 5,000+
 - **P5 Function** — 전사 / 전략 / R&D / Software-IT / Data-AI-DX / Sales-Marketing / SCM-생산 / Finance-HR-Legal / CS / 기타
 - **P6 팀/사업부명** — 회사 전체가 아닌 경우만
-- **P7 응답자 역할** — Executive-Senior leader / Manager / Individual contributor / 기타-응답하지 않음
+- **P7 응답자 관점** — 신입·초기 경력(0–2년) / 주니어·실무자(3–7년) / 시니어·전문가(8년 이상) / 매니저·팀장 / 임원·경영진 / 기타·응답하지 않음
 
-개인 이름이나 이메일은 기본적으로 수집하지 않습니다.
+개인 이름이나 이메일은 기본적으로 수집하지 않습니다. 이 프로필은 Q1 전에 모두 확인해야 합니다. 앞선 대화나 자료에서 알 수 있는 값도 조용히 가정하지 말고 참여자에게 확인받습니다.
 
-### 핵심 질문
+### 진단 질문 — 6~13번 카드
+
+Q1 전에 **“이제부터는 방금 확정한 범위만 생각하고 답해주세요.”**라고 안내합니다. 아래 짧은 정의는 채점 기준이며, 화면에는 `references/QUESTION_GUIDE.md`의 자연스러운 질문과 배경설명을 사용합니다.
 
 **Q1 AI Access** — 반복적으로 업무 AI를 쓰는 비율: A <5% / B 5–20% / C 21–50% / D 51–80% / E 81%+
 
@@ -193,7 +208,7 @@ CAMP는 AI 투자액이나 AI 프로젝트 개수가 아니라 **현재 반복�
 
 **Q7 Sovereign AI** — A 외부 API / B Multi-model / C Private-Local-Open-weight / D Post-training / E Foundation Model
 
-**Q8 Evidence** — A 한 명·Demo·Pilot / B 여러 사용자·한 팀에서 반복 / C Owner·Process·Metric·운영환경 / D 진단 범위의 기본 업무방식
+**Q8 실제 근거** — A 한 명·Demo·Pilot / B 여러 사람이 쓰는 반복 운영사례 또는 핵심 팀의 대표사례 / C 담당자·운영절차·측정지표가 있는 실제 운영 / D 진단 범위 전체의 기본 업무방식
 
 결과를 실질적으로 바꿀 수 있을 때만 추가 질문합니다.
 
@@ -228,7 +243,9 @@ Agent Test:
 
 ### Evidence 원칙
 
-Power User 한 명, Demo, Pilot, 미래 계획만으로 Stage를 올리지 않습니다.
+Power User 한 명, 보여주기용 Demo, 단발성 Pilot, 미래 계획만으로 Stage를 올리지 않습니다.
+
+**역량의 존재**와 **보급 범위**를 분리합니다. 전략적으로 중요하거나 핵심 조직이 주도하는 대표 운영사례 하나라도, 반복적으로 실제 업무에 쓰이고 담당자가 있으며 여러 사람이 사용한다면 높은 역량이 존재한다는 근거가 될 수 있습니다. 그러나 이것이 전사 보급을 뜻하지는 않습니다. 해당 질문에서는 역량을 평가하고, 보급 범위는 Q1에서 따로 평가하며, Report에도 둘을 구분해 씁니다. 전사 확산이 덜 됐다는 이유만으로 실제 핵심 운영사례의 역량을 낮추지 않습니다.
 
 - Anecdotal: 한 명/한 프로젝트
 - Repeated: 여러 사용자/팀
@@ -281,11 +298,12 @@ Private CAMP Bench Store가 연결되어 있고 사용자가 동의하면 새 As
 
 1. 먼저 완전한 Standalone Report를 제공합니다.
 2. 참여자에게 CAMP Bench 참여 여부를 묻습니다. 동의를 추정하지 않습니다.
-3. Yes이면 실제 전송 항목을 요약합니다: 실제 회사명, 선택적 Scope Label, 조직 Profile, Stage/Score, 5개 Dimension, Supporting Capability, Evidence Level/Confidence, 선택적 Evidence Summary. 개인 이름/이메일과 Raw Document는 제외된다고 알립니다.
-4. 해당 Field의 Private 저장과 익명·Aggregate Benchmark 사용에 명시적으로 동의하는지 확인합니다.
-5. 확인 후에만 JSON을 `private-submissions/` 아래 만들고 Repository Tool을 쓸 수 있으면 `python3 scripts/camp_bench.py <file>`로 검증합니다.
-6. 공식 Endpoint가 설정되어 있으면 한국어 Interaction은 `--submit --yes --language ko`, 영어 Interaction은 `--submit --yes --language en`으로 제출합니다. 유효한 `receipt_id`가 반환된 경우에만 제출 성공으로 알립니다.
-7. 반환되는 Benchmark Report를 기다린 뒤 사용자용 한·영 웹 리포트 `report_url`을 제공하고, Overall Percentile·중앙값 대비 위치, 전체 점수 분포, Industry 결과 또는 표본 부족 안내, 5개 Dimension 비교, Priority Gap을 Interaction 언어로 보여줍니다. `status_url`은 JSON/API 용도로 유지합니다. 아직 처리 중이면 Receipt를 보관하고 `--status <receipt_id>`로 다시 조회하며 결과를 임의로 만들지 않습니다.
-8. Endpoint 또는 Receipt가 없으면 **NOT SUBMITTED**라고 말하고 Private Package를 제공하며 비공개로 보관해야 함을 설명합니다. 임의의 Upload Destination을 만들지 않습니다.
+3. 동의를 묻기 전에 제출 준비 검사를 수행합니다. `company_name`, `country`, `industry`, `industry_segment`, `scope`, `headcount_band`, `function`, `respondent_role`, Stage/Score, 5개 영역, AI Operations, Sovereign AI, 실제 근거 수준, Confidence가 모두 있는지 확인합니다. 빠진 값이 있으면 하나의 짧은 **제출 준비** 카드에서 누락 항목만 묻습니다. 불완전한 JSON을 만들거나 보내지 않습니다.
+4. 실제 전송 항목을 요약합니다: 실제 회사명, 선택적 하위 조직명, 조직 Profile, 응답자 역할 범주, Stage/Score, 5개 영역, Supporting Capability, 실제 근거 수준/Confidence, 선택적 Evidence Summary. 개인 이름·이메일과 원문 자료는 제외된다고 알립니다.
+5. 비공개 저장과 익명·집계 Benchmark 사용에 대해 명시적으로 다시 확인합니다.
+6. 확인 후에만 `private-submissions/` 아래 JSON을 만듭니다. Submit 명령이 전송 전에 자동 검증하므로 참여자를 기다리게 하는 별도의 중복 검증은 실행하지 않습니다.
+7. 설정된 Endpoint에 빠른 Receipt 우선 방식으로 제출합니다. 한국어 Interaction은 `--submit --yes --no-wait --language ko`, 영어 Interaction은 `--submit --yes --no-wait --language en`을 사용합니다. 유효한 `receipt_id`가 오면 제출은 성공입니다. Receipt와 사람이 읽는 `report_url`을 즉시 보여주고, Report 생성 중에 말없이 기다리지 않습니다.
+8. **제출 접수**와 **리포트 준비**를 별도 상태로 다룹니다. 잠시 뒤 `--status <receipt_id>`로 조회합니다. 준비되면 대화 언어로 전체 Percentile/Median 위치, 점수 분포, 업종 결과 또는 표본 부족 안내, 5개 영역 비교, Priority Gap을 보여줍니다. `status_url`은 JSON/API 주소로 구분합니다. 조회 중 JSON을 다시 만들거나 동의를 다시 묻거나 재제출하지 않습니다.
+9. Endpoint나 Receipt가 없으면 **NOT SUBMITTED**라고 명시하고, 정확히 어떤 필드 또는 전송 오류 때문인지 알려주며, Private Package를 보존한 채 다음 안전한 조치를 설명합니다. 임의 Upload 경로를 만들지 않습니다.
 
 개인 응답자 이름, 이메일, 전화번호, 사번, Credential, Raw Confidential Document를 Submission Package에 넣지 않습니다. 실패한 요청을 무조건 재시도하지 않으며 Idempotency Key를 유지하고 실패를 명확히 알립니다.

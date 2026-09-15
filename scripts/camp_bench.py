@@ -24,7 +24,7 @@ from urllib.request import Request, urlopen
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG_FILE = ROOT / "benchmark" / "submission.config.json"
-CLIENT_VERSION = "1.1.0"
+CLIENT_VERSION = "1.2.0"
 DIMENSIONS = ("access", "delegation", "connection", "compounding", "transformation")
 STEP_SCORES = {0, 5, 10, 15, 20}
 REQUIRED = {
@@ -247,7 +247,7 @@ def wait_for_report(
     endpoint: str,
     receipt_id: str,
     wait_seconds: float = 90.0,
-    poll_seconds: float = 15.0,
+    poll_seconds: float = 5.0,
     timeout: float = 20.0,
     fetcher=fetch_status,
     sleeper=time.sleep,
@@ -349,7 +349,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--yes", action="store_true", help="skip terminal confirmation after explicit consent was already obtained")
     parser.add_argument("--timeout", type=float, default=20.0)
     parser.add_argument("--report-timeout", type=float, default=90.0, help="seconds to wait for the benchmark report")
-    parser.add_argument("--poll-interval", type=float, default=15.0, help="seconds between report status checks")
+    parser.add_argument("--poll-interval", type=float, default=5.0, help="seconds between report status checks")
     parser.add_argument("--no-wait", action="store_true", help="return after receipt without waiting for the benchmark report")
     parser.add_argument("--language", choices=("auto", "en", "ko", "both"), default="auto")
     args = parser.parse_args(argv)

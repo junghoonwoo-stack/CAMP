@@ -8,12 +8,12 @@ CAMP Bench submission is a separate, explicit step after the standalone assessme
 
 1. Receive and review the standalone CAMP report.
 2. Choose whether to join CAMP Bench.
-3. Review the exact fields that will be transmitted.
-4. Explicitly consent to private storage and anonymized/aggregate benchmark use.
-5. Validate the submission locally.
-6. Submit only to the configured official HTTPS endpoint.
-7. Keep the returned receipt ID. A valid receipt is the only proof of submission.
-8. Receive the private benchmark report: overall position and score distribution, five-dimension gaps, the largest improvement priority, and industry position when that anonymous cohort has at least 10 organizations.
+3. Pass the submission-readiness check. Company, country, industry and segment, scope and optional scope label, size, function, respondent role category, scores, supporting capabilities, evidence level, and confidence must all be present.
+4. Review the exact fields that will be transmitted.
+5. Explicitly consent to private storage and anonymized/aggregate benchmark use.
+6. Submit only to the configured official HTTPS endpoint. The client validates before sending.
+7. Keep the returned receipt ID. A valid receipt is the only proof of submission and should be shown immediately.
+8. Open or retrieve the private benchmark report when ready: overall position and score distribution, five-dimension gaps, the largest improvement priority, and industry position when that anonymous cohort has at least 10 organizations.
 
 The real company name and optional scope label are private matching fields. They allow same-company aggregation and longitudinal analysis. Personal name, email, phone number, employee ID, raw documents, and credentials are not collected by default.
 
@@ -34,10 +34,10 @@ A successful validation ends with `NOT SUBMITTED`. Validation alone never transm
 The official receiver is configured in `benchmark/submission.config.json` and is used automatically:
 
 ```bash
-python3 scripts/camp_bench.py private-submissions/my-assessment.json --submit --language en
+python3 scripts/camp_bench.py private-submissions/my-assessment.json --submit --no-wait --language en
 ```
 
-The command displays the exact destination URL and a masked data preview, then requires the participant to type `SUBMIT`. Success requires a server receipt containing `status` and `receipt_id`. It then waits for the anonymous benchmark report and prints the overall percentile/median comparison, score distribution, industry result or sample-size notice, five-dimension comparison, and priority gap.
+The command displays the exact destination URL and a masked data preview, then requires the participant to type `SUBMIT`. Success requires a server receipt containing `status` and `receipt_id`. With `--no-wait`, the command returns as soon as the receiver accepts the record and immediately prints the receipt and web-report URL. Submission acceptance is therefore fast and is not blocked by report generation.
 
 If processing takes longer, retrieve the same report with:
 
@@ -45,7 +45,7 @@ If processing takes longer, retrieve the same report with:
 python3 scripts/camp_bench.py --status CB-YYYYMMDD-XXXXXXXXXXXX --language en
 ```
 
-A network error, missing endpoint, or invalid receipt means the assessment was **not submitted**. A valid receipt with a pending report means the submission succeeded but report processing is not finished.
+A network error, missing endpoint, incomplete required profile, or invalid receipt means the assessment was **not submitted**. A valid receipt with a pending report means the submission succeeded but report processing is not finished. Do not create a new payload or POST again while waiting; retrieve the original receipt status.
 
 Automation may use `--yes` only after the participant has explicitly consented in the current interaction and reviewed what will be sent.
 
@@ -71,7 +71,8 @@ The official receiver accepts an HTTPS `POST` containing a schema `1.0` submissi
   "received_at": "2026-09-13T08:00:00Z",
   "benchmark_status": "provisional",
   "report_status": "processing",
-  "status_url": "https://receiver.example/v1/submissions/CB-20260913-ABC123"
+  "status_url": "https://receiver.example/v1/submissions/CB-20260913-ABC123",
+  "report_url": "https://receiver.example/report/CB-20260913-ABC123"
 }
 ```
 
@@ -87,12 +88,12 @@ CAMP Bench 제출은 Standalone 진단 Report가 끝난 뒤 진행하는 **별�
 
 1. Standalone CAMP Report를 확인함
 2. CAMP Bench 참여 여부를 선택함
-3. 실제 전송될 항목을 확인함
-4. Private 저장과 익명·Aggregate Benchmark 사용에 명시적으로 동의함
-5. 로컬에서 Submission을 검증함
-6. 설정된 공식 HTTPS Endpoint로만 제출함
-7. 반환된 Receipt ID를 보관함. 유효한 Receipt만 제출 성공의 근거임
-8. 전체 대비 위치와 점수 분포, 5개 Dimension 격차, 가장 큰 개선 Priority, 익명 동종업계 표본이 10개 이상일 때 Industry 위치가 포함된 Private Benchmark Report를 받음
+3. 제출 준비 검사를 통과함. 회사명, 국가, 업종·세부 분야, 범위·선택적 하위 조직명, 규모, 기능, 응답자 역할 범주, 점수, Supporting Capability, 실제 근거 수준, Confidence가 모두 있어야 함
+4. 실제 전송될 항목을 확인함
+5. 비공개 저장과 익명·집계 Benchmark 사용에 명시적으로 동의함
+6. 설정된 공식 HTTPS Endpoint로만 제출함. Client가 보내기 전에 자동 검증함
+7. 반환된 Receipt ID를 즉시 보여주고 보관함. 유효한 Receipt만 제출 성공의 근거임
+8. 준비된 비공개 Benchmark Report에서 전체 대비 위치와 점수 분포, 5개 영역 격차, 가장 큰 개선 우선순위, 익명 동종업계 표본이 10개 이상일 때 업종 내 위치를 확인함
 
 실제 회사명과 선택적 Scope Label은 Same-company 집계와 시계열 분석을 위한 Private Matching Field임. 개인 이름, 이메일, 전화번호, 사번, 원문 문서, Credential은 기본 수집하지 않음.
 
@@ -113,10 +114,10 @@ python3 scripts/camp_bench.py private-submissions/my-assessment.json
 공식 Receiver는 `benchmark/submission.config.json`에 설정되어 있으며 다음 명령에서 자동으로 사용됨.
 
 ```bash
-python3 scripts/camp_bench.py private-submissions/my-assessment.json --submit --language ko
+python3 scripts/camp_bench.py private-submissions/my-assessment.json --submit --no-wait --language ko
 ```
 
-전송 전 정확한 목적지 URL과 Private Text를 가린 Preview를 보여주고 참여자가 `SUBMIT`을 직접 입력해야 함. Server가 `status`와 `receipt_id`를 반환해야 제출 성공임. 그다음 익명 Benchmark Report를 기다려 Overall Percentile·중앙값 비교, 전체 점수 분포, Industry 결과 또는 표본 부족 안내, 5개 Dimension 비교, Priority Gap을 출력함.
+전송 전 정확한 목적지 URL과 비공개 문구를 가린 Preview를 보여주고 참여자가 `SUBMIT`을 직접 입력해야 함. Server가 `status`와 `receipt_id`를 반환해야 제출 성공임. `--no-wait`를 사용하면 Receiver가 Record를 접수하는 즉시 Receipt와 웹 리포트 주소를 출력하고 종료함. 따라서 제출 접수는 리포트 생성을 기다리지 않음.
 
 처리가 오래 걸리면 같은 Report를 다시 조회할 수 있음.
 
@@ -124,7 +125,7 @@ python3 scripts/camp_bench.py private-submissions/my-assessment.json --submit --
 python3 scripts/camp_bench.py --status CB-YYYYMMDD-XXXXXXXXXXXX --language ko
 ```
 
-Network Error, Endpoint 미설정, 잘못된 Receipt는 모두 **미제출**임. 유효한 Receipt가 있고 Report가 Pending이면 제출은 성공했지만 Report 처리가 끝나지 않은 상태임.
+Network Error, Endpoint 미설정, 필수 Profile 누락, 잘못된 Receipt는 모두 **미제출**임. 유효한 Receipt가 있고 Report가 Pending이면 제출은 성공했지만 Report 처리가 끝나지 않은 상태임. 기다리는 동안 새 Payload를 만들거나 다시 POST하지 말고 기존 Receipt의 상태만 조회함.
 
 자동화에서 `--yes`를 쓰는 것은 현재 Interaction에서 참여자가 전송 항목을 확인하고 명시적으로 동의한 경우에만 허용함.
 
@@ -150,7 +151,8 @@ Invite Token으로 보호되는 제한적 Beta에서는 환경변수 `CAMP_BENCH
   "received_at": "2026-09-13T08:00:00Z",
   "benchmark_status": "provisional",
   "report_status": "processing",
-  "status_url": "https://receiver.example/v1/submissions/CB-20260913-ABC123"
+  "status_url": "https://receiver.example/v1/submissions/CB-20260913-ABC123",
+  "report_url": "https://receiver.example/report/CB-20260913-ABC123"
 }
 ```
 
