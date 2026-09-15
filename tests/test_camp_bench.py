@@ -4,7 +4,9 @@ import os
 import tempfile
 import threading
 import unittest
-from contextlib import redirect_stdout
+from contextlib import redirect_stdout, redirect_stderr
+from unittest.mock import patch
+from urllib.error import URLError
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from io import StringIO
 from pathlib import Path
@@ -28,11 +30,12 @@ class ReceiptHandler(BaseHTTPRequestHandler):
         length = int(self.headers["Content-Length"])
         type(self).seen_headers = dict(self.headers)
         type(self).seen_payload = json.loads(self.rfile.read(length))
+        receipt_id = "CB-" + self.seen_payload["assessment_date"].replace("-", "") + "-" + camp_bench.idempotency_key(self.seen_payload)[5:17].upper()
         body = json.dumps({
             "status": "accepted",
-            "receipt_id": "CB-TEST-001",
+            "receipt_id": receipt_id,
             "benchmark_status": "provisional",
-            "report_url": f"http://{self.headers['Host']}/report/CB-TEST-001",
+            "report_url": f"http://{self.headers['Host']}/report/{receipt_id}",
         }).encode()
         self.send_response(202)
         self.send_header("Content-Type", "application/json")
@@ -142,8 +145,9 @@ class CampBenchTests(unittest.TestCase):
             server.shutdown()
             thread.join()
             server.server_close()
-        self.assertEqual(receipt["receipt_id"], "CB-TEST-001")
-        self.assertTrue(receipt["report_url"].endswith("/report/CB-TEST-001"))
+        expected = "CB-" + self.payload["assessment_date"].replace("-", "") + "-" + camp_bench.idempotency_key(self.payload)[5:17].upper()
+        self.assertEqual(receipt["receipt_id"], expected)
+        self.assertTrue(receipt["report_url"].endswith("/report/" + expected))
         self.assertEqual(ReceiptHandler.seen_payload, self.payload)
         self.assertEqual(ReceiptHandler.seen_headers["Idempotency-Key"], camp_bench.idempotency_key(self.payload))
 
@@ -246,7 +250,7 @@ class CampBenchTests(unittest.TestCase):
             clock=lambda: 0,
         )
         self.assertEqual(status["report_status"], "ready")
-        self.assertEqual(sleeps, [5.0])
+        self.assertEqual(sleeps, [15.0])
 
     def test_auto_language_supports_korean(self):
         previous = os.environ.get("LANG")
@@ -265,6 +269,27 @@ class CampBenchTests(unittest.TestCase):
             path = Path(temp_dir) / "submission.json"
             path.write_text(json.dumps(self.payload), encoding="utf-8")
             self.assertEqual(camp_bench.main([str(path)]), 0)
+
+    def test_dns_and_timeout_offer_browser_recovery_without_mutating_file(self):
+        for error in (URLError("Temporary failure in name resolution"), TimeoutError("timed out")):
+            with tempfile.TemporaryDirectory() as directory:
+                path = Path(directory) / "submission.json"
+                original = json.dumps(self.payload)
+                path.write_text(original, encoding="utf-8")
+                output = StringIO()
+                with patch.object(camp_bench, "urlopen", side_effect=error) as send, patch.dict(os.environ, {}, clear=True), redirect_stdout(StringIO()), redirect_stderr(output):
+                    result = camp_bench.main([str(path), "--submit", "--yes", "--no-wait", "--language", "ko"])
+                self.assertEqual(result, 1)
+                self.assertEqual(send.call_count, 1)
+                self.assertIn("/submit?lang=ko", output.getvalue())
+                self.assertIn(str(path), output.getvalue())
+                self.assertEqual(path.read_text(encoding="utf-8"), original)
+
+    def test_custom_receiver_is_not_redirected_to_official_store(self):
+        output = StringIO()
+        with redirect_stderr(output):
+            camp_bench.browser_recovery("https://custom.example/v1/submissions", Path("private.json"), "en")
+        self.assertEqual(output.getvalue(), "")
 
 
 if __name__ == "__main__":

@@ -24,7 +24,7 @@ from urllib.request import Request, urlopen
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG_FILE = ROOT / "benchmark" / "submission.config.json"
-CLIENT_VERSION = "1.2.0"
+CLIENT_VERSION = "1.3.0"
 DIMENSIONS = ("access", "delegation", "connection", "compounding", "transformation")
 STEP_SCORES = {0, 5, 10, 15, 20}
 REQUIRED = {
@@ -68,6 +68,24 @@ FORBIDDEN_PERSONAL_KEYS = {
 
 class SubmissionError(ValueError):
     """A submission is invalid or cannot be sent safely."""
+
+
+class TransportError(SubmissionError):
+    """A send was attempted, but acceptance could not be confirmed."""
+
+
+def browser_recovery(endpoint: str, path: Path, language: str) -> None:
+    if not CONFIG_FILE.exists():
+        return
+    config = json.loads(CONFIG_FILE.read_text(encoding="utf-8"))
+    if endpoint != config.get("endpoint") or not config.get("browser_submission_url"):
+        return
+    url = config["browser_submission_url"] + ("?lang=ko" if language == "ko" else "?lang=en")
+    print("SUBMISSION UNCONFIRMED: no verified receipt. Keep this exact file and idempotency key.", file=sys.stderr)
+    if language in {"ko", "both"}:
+        print(f"브라우저에서 제출하기: {url}\n이 파일을 내려받아 위 페이지에서 선택하고 제출하세요: {path}\n같은 파일을 다시 보내도 중복 저장되지 않습니다.", file=sys.stderr)
+    if language in {"en", "both"}:
+        print(f"Submit in your browser: {url}\nDownload this file, choose it on that page, and submit: {path}\nIdentical submissions are not added twice.", file=sys.stderr)
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -203,13 +221,14 @@ def submit(payload: dict[str, Any], endpoint: str, timeout: float = 20.0) -> dic
     except HTTPError as exc:
         detail = exc.read().decode("utf-8", errors="replace")[:500]
         raise SubmissionError(f"Server rejected the submission (HTTP {exc.code}): {detail}") from exc
-    except URLError as exc:
-        raise SubmissionError(f"Could not reach CAMP Bench: {exc.reason}") from exc
+    except (URLError, OSError) as exc:
+        raise TransportError(f"Could not confirm CAMP Bench receipt: {getattr(exc, 'reason', exc)}") from exc
     except (UnicodeDecodeError, json.JSONDecodeError) as exc:
-        raise SubmissionError("CAMP Bench returned an invalid receipt.") from exc
+        raise TransportError("CAMP Bench returned an invalid receipt.") from exc
 
-    if not isinstance(result, dict) or result.get("status") not in {"accepted", "duplicate"} or not result.get("receipt_id"):
-        raise SubmissionError("CAMP Bench did not return a valid accepted/duplicate receipt.")
+    expected_receipt = "CB-" + payload["assessment_date"].replace("-", "") + "-" + idempotency_key(payload)[5:17].upper()
+    if not isinstance(result, dict) or result.get("status") not in {"accepted", "duplicate"} or result.get("receipt_id") != expected_receipt:
+        raise TransportError("CAMP Bench did not return a matching accepted/duplicate receipt.")
     return result
 
 
@@ -247,7 +266,7 @@ def wait_for_report(
     endpoint: str,
     receipt_id: str,
     wait_seconds: float = 90.0,
-    poll_seconds: float = 5.0,
+    poll_seconds: float = 15.0,
     timeout: float = 20.0,
     fetcher=fetch_status,
     sleeper=time.sleep,
@@ -362,7 +381,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--yes", action="store_true", help="skip terminal confirmation after explicit consent was already obtained")
     parser.add_argument("--timeout", type=float, default=20.0)
     parser.add_argument("--report-timeout", type=float, default=90.0, help="seconds to wait for the benchmark report")
-    parser.add_argument("--poll-interval", type=float, default=5.0, help="seconds between report status checks")
+    parser.add_argument("--poll-interval", type=float, default=15.0, help="seconds between report status checks")
     parser.add_argument("--no-wait", action="store_true", help="return after receipt without waiting for the benchmark report")
     parser.add_argument("--language", choices=("auto", "en", "ko", "both"), default="auto")
     args = parser.parse_args(argv)
@@ -410,7 +429,11 @@ def main(argv: list[str] | None = None) -> int:
                 print("CANCELLED: nothing was sent.")
                 return 2
 
-        receipt = submit(payload, endpoint, timeout=args.timeout)
+        try:
+            receipt = submit(payload, endpoint, timeout=args.timeout)
+        except TransportError:
+            browser_recovery(endpoint, args.submission, language)
+            raise
         print("SUBMITTED: CAMP Bench accepted the assessment.")
         print(json.dumps(receipt, ensure_ascii=False, indent=2))
         receipt_id = str(receipt["receipt_id"])

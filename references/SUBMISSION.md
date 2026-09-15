@@ -45,7 +45,7 @@ If processing takes longer, retrieve the same report with:
 python3 scripts/camp_bench.py --status CB-YYYYMMDD-XXXXXXXXXXXX --language en
 ```
 
-A network error, missing endpoint, incomplete required profile, or invalid receipt means the assessment was **not submitted**. A valid receipt with a pending report means the submission succeeded but report processing is not finished. Do not create a new payload or POST again while waiting; retrieve the original receipt status.
+A DNS failure before sending, missing endpoint, or incomplete required profile means the assessment was **not submitted**. A timeout or invalid response means **acceptance is unconfirmed**: the server may already have saved it. A valid receipt with a pending report means the submission succeeded but report processing is not finished. Do not create a new payload or POST again while waiting; retrieve the original receipt status.
 
 Automation may use `--yes` only after the participant has explicitly consented in the current interaction and reviewed what will be sent.
 
@@ -157,3 +157,11 @@ Invite Token으로 보호되는 제한적 Beta에서는 환경변수 `CAMP_BENCH
 ```
 
 Private Ingestion이 끝나면 Receipt Status Endpoint가 `report_status: "ready"`와 한국어·영어 `benchmark_report`를 반환함. Report에는 Aggregate 통계만 포함하며 다른 조직의 이름이나 내부 ID를 반환하지 않음. 같은 Idempotency Key의 재요청에는 기존 `receipt_id`와 `status: "duplicate"`를 반환함.
+
+## Browser recovery / 브라우저 제출
+
+Official page: https://camp-bench-receiver.camp-bench-jhw.workers.dev/submit (add ?lang=en or ?lang=ko).
+
+When the chat cannot POST because its network is restricted, immediately give the participant the original submission JSON as a downloadable file and this page link. Download the file → choose it on the page, review and submit. Pasting the exact JSON is also supported. No GitHub account or local software is needed. The browser sends directly to the same official receiver; it does not depend on the chat's network. It computes the same idempotency key without modifying the assessment. The file is not sent until the participant presses Submit. Never put company data, JSON, or tokens in a URL or public GitHub issue.
+
+대화 환경의 네트워크 제한으로 제출이 막히면, 같은 답변에서 원본 제출 JSON 다운로드와 위 페이지 링크를 함께 제공합니다. “파일 내려받기 → 페이지에서 선택하고 제출”로 안내하세요. JSON 붙여넣기도 가능합니다. 설치나 GitHub 계정은 필요 없습니다. 브라우저가 공식 서버로 직접 보내므로 대화 환경의 네트워크 제한과 분리됩니다. 입력값과 중복 방지 키는 그대로 유지합니다. 접수번호가 나오면 바로 보여주고, 리포트 준비는 별도 상태로 안내합니다. 회사 정보나 JSON, 토큰을 URL 또는 공개 이슈에 넣지 않습니다.

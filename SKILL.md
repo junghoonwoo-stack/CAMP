@@ -19,6 +19,8 @@ The normal interview has **13 cards: five setup cards and eight assessment cards
 
 Show `Progress n/13` and a compact visual bar on every card. A conditional follow-up stays on the same number. Use the host application's native clickable choice control for every closed question when it is available. Otherwise show compact A/B/C/D/E/F choices. Never require a long typed response to answer a closed question. Ask one question card at a time; a setup card may contain at most two tightly related fields.
 
+Use everyday language in questions, choices, follow-ups, and reports, even for executives. Say “used regularly in real work” instead of “production level”; “someone checks the results” instead of “eval”; “fewer transfers between teams” instead of “handoff redesign”. Keep technical codes inside the submission JSON only. Never require technical background to select an answer.
+
 Use the participant-facing wording in `references/QUESTION_GUIDE.md`. Each assessment card must contain: a natural-language question, one short sentence explaining why it matters, the choices, and only when useful a brief example. Do not add decorative or unverified quotations.
 
 ### Required profile — cards 1–5
@@ -154,7 +156,7 @@ Use this submission sequence exactly:
 6. Only after confirmation, create the JSON under `private-submissions/`. The submit command validates it before sending; do not add a redundant validation-only run to the participant's wait.
 7. Submit through the configured endpoint with the fast receipt-first mode: `--submit --yes --no-wait --language en` for an English interaction or `--submit --yes --no-wait --language ko` for a Korean interaction. A valid `receipt_id` means the submission succeeded. Immediately show the receipt and returned human-readable `report_url`; do not wait silently for report generation.
 8. Treat submission acceptance and report readiness as separate states. Retrieve the report with `--status <receipt_id>` after a short interval. When ready, present the overall percentile/median position, overall score distribution, industry result or sample-size notice, five-dimension comparison, and priority gap in the interaction language. Keep `status_url` as the JSON/API endpoint. Do not rebuild the JSON, re-ask consent, or resubmit while polling.
-9. If no endpoint or receipt is available, say **NOT SUBMITTED**, preserve the private package, name the exact missing field or transport error, and explain the next safe step. Do not invent an upload destination.
+9. If DNS/network restrictions block sending, do not stop at “NOT SUBMITTED”. In the same response provide the downloadable original JSON and [Submit in your browser](https://camp-bench-receiver.camp-bench-jhw.workers.dev/submit?lang=en): “Download this file → open the page, choose the file and submit.” If file attachment is unavailable, provide the exact JSON privately for the page's paste option. No GitHub account, terminal, token, or installation is required for the public service. Do not retry DNS failures repeatedly or change environments to evade network restrictions. A known DNS failure before sending means NOT SUBMITTED; a timeout or invalid response means SUBMISSION UNCONFIRMED because the server may have saved it. Reuse the exact file and idempotency key. Only a matching receipt confirms acceptance. If an endpoint override is in use, do not redirect its data to the official service automatically.
 
 Never include personal respondent name, email, phone, employee ID, credentials, or raw confidential documents in the submission package. Never retry a failed request blindly; preserve the idempotency key and surface the failure.
 
@@ -173,6 +175,8 @@ CAMP는 AI 투자액이나 AI 프로젝트 개수가 아니라 **현재 반복�
 기본 인터뷰는 **조직 정보 5개 카드 + 진단 질문 8개 카드, 총 13개**입니다. 첫 카드는 반드시 회사·조직명과 국가를 묻습니다. 이어서 진단 범위와 하위 조직명, 업종과 세부 분야, 진단 대상 인원과 기능, 응답자 관점을 확인합니다. **조직을 알고 있는 것처럼 보여도 프로필을 조용히 추정하거나 건너뛰지 않습니다.**
 
 모든 카드에 `진행 n/13`과 짧은 막대를 표시합니다. 조건부 추가 질문은 같은 번호를 유지합니다. 실행 환경이 지원하면 모든 객관식 질문에 기본 클릭형 선택지를 사용합니다. 지원하지 않으면 짧은 A/B/C/D/E/F 선택지를 보여줍니다. 객관식 답변을 긴 문장으로 입력하게 하지 않습니다. 한 번에 질문 카드 하나만 보여주며, 준비 카드에는 서로 밀접한 항목을 최대 두 개까지만 묶을 수 있습니다.
+
+질문·선택지·추가 설명·리포트는 기술 배경이 없는 사람도 바로 이해할 일상 언어로 씁니다. “Production 수준”은 “실제 업무에서 계속 사용”, “Eval”은 “결과 확인”, “Handoff 재설계”는 “팀 사이에 일을 넘기는 단계 줄이기”로 풀어 씁니다. 임원에게도 같은 원칙을 적용하며, 제출 JSON의 내부 코드는 대화에 그대로 보여주지 않습니다.
 
 참여자에게 보여줄 질문은 `references/QUESTION_GUIDE.md`의 자연스러운 문구를 사용합니다. 각 진단 카드에는 질문, 왜 묻는지 한 문장, 선택지를 포함하고, 이해에 도움이 될 때만 짧은 사례를 덧붙입니다. 장식용 또는 출처가 확인되지 않은 인용문은 사용하지 않습니다.
 
@@ -304,6 +308,6 @@ Private CAMP Bench Store가 연결되어 있고 사용자가 동의하면 새 As
 6. 확인 후에만 `private-submissions/` 아래 JSON을 만듭니다. Submit 명령이 전송 전에 자동 검증하므로 참여자를 기다리게 하는 별도의 중복 검증은 실행하지 않습니다.
 7. 설정된 Endpoint에 빠른 Receipt 우선 방식으로 제출합니다. 한국어 Interaction은 `--submit --yes --no-wait --language ko`, 영어 Interaction은 `--submit --yes --no-wait --language en`을 사용합니다. 유효한 `receipt_id`가 오면 제출은 성공입니다. Receipt와 사람이 읽는 `report_url`을 즉시 보여주고, Report 생성 중에 말없이 기다리지 않습니다.
 8. **제출 접수**와 **리포트 준비**를 별도 상태로 다룹니다. 잠시 뒤 `--status <receipt_id>`로 조회합니다. 준비되면 대화 언어로 전체 Percentile/Median 위치, 점수 분포, 업종 결과 또는 표본 부족 안내, 5개 영역 비교, Priority Gap을 보여줍니다. `status_url`은 JSON/API 주소로 구분합니다. 조회 중 JSON을 다시 만들거나 동의를 다시 묻거나 재제출하지 않습니다.
-9. Endpoint나 Receipt가 없으면 **NOT SUBMITTED**라고 명시하고, 정확히 어떤 필드 또는 전송 오류 때문인지 알려주며, Private Package를 보존한 채 다음 안전한 조치를 설명합니다. 임의 Upload 경로를 만들지 않습니다.
+9. DNS나 네트워크 제한으로 전송이 막히면 “미제출” 안내로 끝내지 않습니다. 같은 답변에 원본 JSON 다운로드와 [브라우저에서 제출하기](https://camp-bench-receiver.camp-bench-jhw.workers.dev/submit?lang=ko) 링크를 함께 제공합니다. “파일 내려받기 → 위 페이지에서 파일을 선택하고 제출” 두 단계로 안내합니다. 파일 첨부가 불가능하면 해당 페이지에 붙여넣을 정확한 JSON을 비공개 대화에서 제공합니다. 공개 제출 서비스는 GitHub 계정·터미널·토큰·설치가 필요 없습니다. DNS 실패를 반복 재시도하거나 환경 제한을 우회하지 않습니다. 전송 전 DNS 실패가 확인되면 미제출, 시간 초과나 응답 오류라면 저장됐을 수도 있으므로 접수 확인 불가라고 구분합니다. 파일과 중복 방지 키는 그대로 유지하며, 일치하는 접수번호가 있어야 접수 성공입니다. 별도 제출 주소를 사용 중이면 공식 서비스로 임의 전환하지 않습니다.
 
 개인 응답자 이름, 이메일, 전화번호, 사번, Credential, Raw Confidential Document를 Submission Package에 넣지 않습니다. 실패한 요청을 무조건 재시도하지 않으며 Idempotency Key를 유지하고 실패를 명확히 알립니다.

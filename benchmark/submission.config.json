@@ -1,5 +1,6 @@
 {
   "endpoint": "https://camp-bench-receiver.camp-bench-jhw.workers.dev/v1/submissions",
+  "browser_submission_url": "https://camp-bench-receiver.camp-bench-jhw.workers.dev/submit",
   "status": "active",
   "note": "Official Cloudflare Worker receiver. Success requires an accepted or duplicate response with a valid receipt_id."
 }

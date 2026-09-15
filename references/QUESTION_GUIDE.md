@@ -1,361 +1,254 @@
-# CAMP Interview Guide
+# CAMP Interview Guide / 참여자 질문 가이드
 
-This guide defines the participant-facing wording for Interview Mode. Keep each card short: one question, one sentence explaining why it matters, and one concrete example only when it helps.
+Use everyday work language. Technical knowledge is not required. Do not show the scoring shorthand from SKILL.md in questions, choices, or reports. Avoid production, harness, runtime, trace, eval, routing, agent-first, RAG, MCP, and API unless the participant asks about them. Explain through a work example first.
 
-Examples are context, not scoring evidence. Do not add a famous quote for decoration, and never invent or loosely attribute a quote. Use a named-company example only when a reliable public source supports it.
+Ask one card at a time, with the question, a one-sentence reason, and choices together. The interview has **13 cards**: five setup cards and eight questions. Show a native progress bar where available plus “Step n of 13 / n번째 단계 · 전체 13단계”. Otherwise show the count and percentage. It indicates the current step; conditional clarifications stay on that step.
 
-## Interview structure
+Accept “not sure / 잘 모르겠어요”. Ask one concrete follow-up, then mark the answer unknown if it remains unclear. Unknown is not zero. Resolve required scoring answers before giving a final total or submitting. Do not silently change an answer. Estimates are fine for Q1.
 
-The normal interview has **13 cards**: 5 setup cards followed by 8 assessment cards. Show progress on every card.
+## Setup / 준비 (steps 1–5)
 
-```text
-Progress 4/13  ██████░░░░░░░ 31%
-```
+1. **Which company or organization, and which country? / 어느 회사나 조직을 진단할까요? 국가는 어디인가요?** These details link same-company assessments if you later submit. / 나중에 제출을 선택하면 같은 회사의 다른 진단과 연결하는 데 사용합니다. No personal name/email. Do not send to the benchmark store before consent.
+2. **Which part should we assess? / 회사 전체를 볼까요, 특정 본부나 팀을 볼까요?** A Whole company / 회사 전체; B Business unit or division / 사업부·본부; C Team or department / 팀·부서; D New organization built around AI / AI를 중심으로 새로 만든 조직. For B–D ask its name. Clarify a mismatch between the choice and label. Confirm the exact scope; never assume a team answer describes the whole company.
+3. **What industry? / 어떤 업종인가요?** This helps us compare similar companies. / 비슷한 회사들과 비교하기 위해 묻습니다. Manufacturing / 제조; Finance / 금융; IT and software / IT·소프트웨어; Retail / 유통; Professional services / 전문서비스; Healthcare / 의료·바이오; Public sector and education / 공공·교육; Media / 미디어; Construction and energy / 건설·에너지; Other / 기타. Ask for a short area, e.g. home appliances / 생활가전. If unknown, confirm using the broad industry as the segment.
+4. **How many people and what work? / 진단할 조직은 약 몇 명이며, 주로 어떤 일을 하나요?** Use the size of the assessed scope. People: 1–10 / 11–50 / 51–200 / 201–1,000 / 1,001–5,000 / More than 5,000. Work: Multiple functions / 여러 기능 포함; Strategy / 전략; Research and development / 연구개발; Software and IT / 소프트웨어·IT; Data and AI / 데이터·AI; Sales and marketing / 영업·마케팅; Supply chain and manufacturing / 공급망·생산; Finance, HR and legal / 재무·인사·법무; Customer service / 고객서비스; Other / 기타.
+5. **Which role are you answering from? / 어떤 역할의 입장에서 답하시나요?** A New or early-career employee / 신입·초기 경력; B Junior employee / 주니어 실무자; C Senior employee or specialist / 시니어 실무자·전문가; D Manager or team leader / 매니저·팀장; E Executive or business leader / 임원·경영진; F Other or prefer not / 기타·응답하지 않음. People doing and leading the work may see different things. / 직접 일하는 사람과 조직을 이끄는 사람은 같은 상황을 다르게 볼 수 있습니다. Choose the closest current role; no years-of-experience requirement. Store the broad respondent_role category, not personal identity.
 
-A conditional follow-up, such as the name of a business unit, stays on the same card number. In Evidence Mode, show `Confirmed n/13` as evidence resolves cards.
+Before Q1:
+> Answer for the part of the organization we confirmed. For questions about what AI can do, you may use one important example led by a core team if several people actually rely on it for recurring work. It need not be used everywhere yet. A one-off demonstration or experiment does not count. We ask how widely AI is used separately.
+>
+> 지금부터는 방금 정한 조직을 기준으로 답해주세요. AI가 어디까지 일을 하는지 묻는 질문은 핵심 조직이 주도하는 중요한 사례 하나를 기준으로 답하셔도 됩니다. 여러 사람이 실제 업무에 반복해서 쓰고 있다면 아직 전체에 퍼지지 않았어도 괜찮습니다. 한 번 보여준 시연이나 시험만 해본 경우는 제외합니다. 얼마나 많은 사람이 쓰는지는 따로 묻겠습니다.
 
-### Setup 1/5 — Organization
+## English questions
 
-**Question:** What organization are we assessing, and in which country is it based?
+### Q1 — Everyday AI use (step 6/13)
 
-**Why this matters:** The real name is used only if the participant later consents to CAMP Bench. It privately links repeat assessments from the same organization; it is not stored by CAMP before consent.
+**Roughly how many people here use AI regularly for work?**
 
-Ask for the company or organization name and country. Do not silently infer or pre-fill either field; the participant must confirm them.
+Why we ask: Count actual users, not just people with an account or a paid license.
 
-### Setup 2/5 — Assessment scope
+- A. Fewer than 5%
+- B. 5–20% (about 1–2 in 10)
+- C. 21–50% (more than one fifth, up to half)
+- D. 51–80% (more than half, up to four fifths)
+- E. 81% or more (more than 8 in 10)
 
-**Question:** Which part of the organization should these answers describe?
 
-- A. Entire company
-- B. Business unit or division
-- C. Team or department
-- D. New AI-native organization
 
-If B–D is selected, ask for the exact business-unit, division, team, or organization label on the same card.
+### Q2 — Work AI takes on (step 7/13)
 
-**Why this matters:** A score for one team and a score for the entire company mean different things. Every later question refers only to this confirmed scope.
+**In a recurring work example here, how much of the job does AI do?**
 
-### Setup 3/5 — Industry
+Why we ask: Answering a question and completing a piece of work are different.
 
-**Question:** Which industry and narrower segment best describe this scope?
+- A. Finds information, answers questions, or summarizes
+- B. Writes a first draft or helps with part of a task
+- C. Completes an analysis, document, or other result for a person to check
+- D. Carries out connected steps, such as checking data, preparing a report, and saving it
+- E. Giving work to AI first, with people reviewing and handling exceptions, is the usual approach
 
-- Manufacturing
-- Finance
-- IT / SaaS
-- Retail / Commerce
-- Professional services
-- Healthcare / Bio
-- Public sector / Education
-- Media / Content
-- Construction / Energy
-- Other
+People approving important steps does not disqualify D.
 
-Ask for a short segment such as `Home appliances`, `Commercial banking`, or `B2B SaaS`. The industry is used for anonymous peer comparison when the cohort is large enough.
+### Q3 — Company information and tools (step 8/13)
 
-### Setup 4/5 — Size and function
+**In an important recurring example, what can AI use inside your company?**
 
-**Question:** About how many people are inside the assessed scope, and what function best describes it?
+Why we ask: AI can do more when it can use the information and tools needed for the job.
 
-Headcount: `1–10 / 11–50 / 51–200 / 201–1,000 / 1,001–5,000 / 5,000+`
+- A. Only general information from outside the company
+- B. Company files and documents that people provide or make searchable
+- C. Work email, shared drives, chats, or other everyday work tools
+- D. Business records in systems used for sales, product development, manufacturing, or finance
+- E. It can also update records or start the next approved step
 
-Function: `Company-wide / Strategy / R&D / Software-IT / Data-AI-DX / Sales-Marketing / SCM-Manufacturing / Finance-HR-Legal / Customer Service / Other`
+Example: reading a product document is B; looking up a current order in the order system is D; updating that order after approval is E.
 
-### Setup 5/5 — Respondent perspective
+### Q4 — Reusing what worked (step 9/13)
 
-**Question:** From which role perspective are you answering?
+**When someone finds a good way to work with AI, can other people use it again?**
 
-- A. New joiner or early career (0–2 years)
-- B. Junior or practitioner (3–7 years)
-- C. Senior or expert (8+ years)
-- D. Manager or team leader
-- E. Executive or C-level
-- F. Other or prefer not to say
+Why we ask: The next person should not have to start from scratch.
 
-**Why this matters:** Leaders and practitioners often see adoption differently. CAMP Bench may show role-level perception gaps only as anonymous aggregates when enough people respond. It never shows an individual's identity.
+- A. It usually gets lost when the conversation ends
+- B. People keep their own notes or saved instructions
+- C. Useful instructions and work methods are shared in a place others use
+- D. Someone maintains the shared methods, checks that they work, and keeps them up to date
+- E. Lessons from past work are routinely used in the next AI task to improve results
 
-## Assessment cards
+Example: saving an instruction privately is B; colleagues finding and using it is C; someone checking and updating it is D.
 
-Before Q1, say: **“From here on, answer only for the scope you just confirmed.”**
+### Q5 — People's work and responsibilities (step 10/13)
 
-### Q1 — Access to AI
+**Has AI changed who can do the work or how people hand work to one another?**
 
-**Question:** In this scope, roughly what share of people repeatedly use an approved AI tool for real work?
+Why we ask: We look at changes to the work itself as well as time saved.
 
-**Why this matters:** Buying licenses is different from people actually using AI as part of their work.
+- A. Very little has changed
+- B. People do their existing jobs faster
+- C. People can do related work that used to need another specialist
+- D. Some tasks no longer need to pass between as many people or teams
+- E. Responsibilities, team structure, or staffing have been redesigned around work AI handles
 
-- A. Less than 5%
-- B. 5–20%
-- C. 21–50%
-- D. 51–80%
-- E. More than 80%
+Use an established example; describe how widely the change has spread in the report.
 
-### Q2 — Work given to AI
+### Q6 — Keeping track of AI (step 11/13)
 
-**Question:** What is the most advanced kind of work people in this scope regularly give to AI?
+**If AI gives a wrong answer or takes a wrong step, how easily can your organization find out what happened?**
 
-**Why this matters:** CAMP distinguishes asking for help from trusting AI with a complete piece of work.
+Why we ask: Someone needs to be able to spot problems and improve the service.
 
-- A. Find information, answer questions, or summarize
-- B. Draft or complete part of a task
-- C. Produce a complete analysis, document, design, or code output for human review
-- D. Run a recurring multi-step workflow from start to finish
-- E. Starting with an AI agent is the normal way to begin work
+- A. It is difficult to tell
+- B. We can see some use or spending figures
+- C. We can see who used which AI and how much it cost
+- D. We can follow what AI did and check the quality of its result
+- E. We can also stop actions that break access rules or company policy while AI is working
 
-### Q3 — Connection to company data and systems
+This supporting question is not part of the score out of 100.
 
-**Question:** In the strongest real production case inside this scope, what company information or systems can AI actually use?
+### Q7 — Choosing and adapting AI (step 12/13)
 
-**Why this matters:** AI becomes more useful when it can work with the organization's context and tools, not only public knowledge.
+**How does your organization choose or adapt the AI it uses?**
 
-- A. Public or external knowledge only
-- B. Internal files, documents, search, or RAG
-- C. Everyday collaboration tools such as Microsoft 365, Google Workspace, Slack, or Drive
-- D. Core databases or business systems through APIs, MCP, ERP, PLM, or CRM
-- E. It can also write back, trigger steps, or take approved actions
+Why we ask: Different jobs may need different tools. A later option is not automatically better.
 
-**Scope note:** One representative production case in a core organization may establish that this capability exists, even if it has not spread across the whole company. It must be recurring, owned, and used in real work—not a showcase demo. Q1 measures how widely it has spread; Q8 measures the strength of the evidence.
+- A. Mainly uses a ready-made AI service as supplied
+- B. Chooses among several AI services depending on the job
+- C. Also runs an AI model in a computing environment the company controls
+- D. Further trains an existing model with examples to improve it for particular work
+- E. Builds and trains its own general-purpose AI model from the beginning
 
-**Public reference:** BP publicly described making Microsoft 365 Copilot available to support productivity and skills, while Aker BP describes employees creating agents with Copilot Studio as a foundation for scalable automation. These illustrate different levels of access and connected execution; they do not determine the participant's score. Sources: [BP](https://www.bp.com/press-releases/bp-looks-to-leverage-power-of-generative-ai-with-copilot-for-microsoft-365) and [Microsoft customer story: Aker BP](https://www.microsoft.com/en/customers/story/24604-aker-bp-microsoft-365-copilot).
+Using private documents for answers is covered by Q3; that alone does not mean C or D here. This question is not part of the score.
 
-### Q4 — Reusing what works
+### Q8 — How established the examples are (step 13/13)
 
-**Question:** When someone finds a good way to work with AI, how well does it survive and help the next person or the next task?
+**How firmly are the examples you described part of everyday work?**
 
-**Why this matters:** Individual gains become organizational capability only when useful methods, decisions, and results can be found, owned, improved, and reused.
+Why we ask: This separates an experiment from something people already rely on.
 
-- A. It mostly disappears when the chat or session ends
-- B. It remains in personal prompts or notes
-- C. Useful prompts or reusable instructions are shared
-- D. Shared assets have an owner, versions, quality checks, and a release process
-- E. Past decisions and outcomes systematically improve future AI work
+- A. Mostly one person's experiments, demonstrations, or trials
+- B. Several people or a core team use them repeatedly for real work
+- C. Someone is responsible for keeping them running, with agreed steps and results that are checked
+- D. They are the usual way of working throughout the part of the organization being assessed
 
-### Q5 — Changes to roles and handoffs
+One important core-team example can support B or C. It does not imply everybody uses it.
 
-**Question:** How much has AI changed who does the work and how work moves between people?
+## 한국어 질문
 
-**Why this matters:** Faster work inside the same job is useful, but deeper change appears when people can cover adjacent work and handoffs shrink.
+기술 용어 대신 평소 업무 표현을 사용합니다. 모르는 항목에는 “잘 모르겠어요”라고 답할 수 있음을 알려주세요.
 
-- A. Roles and handoffs are essentially unchanged
-- B. People do the same job faster
-- C. People can take on adjacent work that previously needed another specialist
-- D. Repeated handoffs or role boundaries have materially shrunk
-- E. Roles, responsibilities, team design, or workforce allocation are designed around AI-first work
+### Q1 — 평소 AI 사용 (6/13)
 
-### Q6 — Operational visibility
+**이 조직에서 업무에 AI를 꾸준히 쓰는 사람은 대략 어느 정도인가요?**
 
-**Question:** How clearly can the organization see which AI did what, used which tool, cost how much, and produced what result?
+왜 묻나요: 계정이나 이용권이 있는 사람이 아니라 실제로 쓰는 사람을 생각해주세요.
 
-**Why this matters:** Once AI can act in business systems, quality, cost, permissions, and failures must be operable—not guessed.
+- A. 5% 미만 (20명 중 1명도 안 됨)
+- B. 5–20% (10명 중 1–2명 정도)
+- C. 21–50% (5명 중 1명보다 많고, 절반 이하)
+- D. 51–80% (절반보다 많고, 10명 중 8명 이하)
+- E. 81% 이상 (10명 중 8명보다 많음)
 
-- A. Little or no visibility
-- B. Some usage or cost reporting
-- C. Usage and cost by user, agent, and model
-- D. End-to-end traces plus quality evaluation
-- E. Traces, cost, quality, and runtime security or policy controls
 
-### Q7 — Model control
 
-**Question:** How much choice and control does the organization have over the models it uses?
+### Q2 — AI에게 맡기는 일 (7/13)
 
-**Why this matters:** This is about cost, security, latency, quality, and strategic control. A higher option is not automatically better.
+**반복해서 하는 업무 사례를 떠올리면, AI가 일을 어디까지 해주나요?**
 
-- A. Mostly one external product or API
-- B. Several models are selected or routed by use case
-- C. Private or local open-weight models and owned compute are used
-- D. Models are adapted through fine-tuning, distillation, or other post-training
-- E. The organization develops and operates a foundation model
+왜 묻나요: 질문에 답하는 것과 하나의 일을 끝내주는 것은 다르기 때문에 묻습니다.
 
-### Q8 — Evidence behind the answers
+- A. 정보를 찾거나 질문에 답하고 요약해줌
+- B. 초안을 쓰거나 일의 일부를 도와줌
+- C. 분석·문서 같은 하나의 결과물을 완성하고 사람이 검토함
+- D. 자료 확인 → 보고서 작성 → 결과 저장처럼 이어지는 여러 단계를 처리함
+- E. 먼저 AI에게 일을 맡기고 사람은 검토하거나 예외를 처리하는 것이 일반적임
 
-**Question:** Which statement best describes the evidence behind your strongest answers?
+D에서 중요한 단계마다 사람의 승인을 받는 것은 괜찮습니다.
 
-**Why this matters:** CAMP scores what is working now, not what is planned.
+### Q3 — 회사 정보와 도구 (8/13)
 
-- A. One person, a demo, or a pilot
-- B. A recurring production case used by several people or a core team
-- C. Production use with a named owner, process, and measures
-- D. The default way of working across the assessed scope
+**중요한 실제 업무 사례에서, AI는 회사 안의 무엇을 사용할 수 있나요?**
 
-A strategic flagship case can count as B or C even before company-wide rollout. It does not prove broad adoption; Q1 still captures coverage.
+왜 묻나요: 일에 필요한 회사 정보와 도구를 쓸 수 있어야 더 많은 일을 맡길 수 있습니다.
 
----
+- A. 주로 회사 밖의 일반적인 정보만 사용함
+- B. 사내 파일과 문서를 읽거나 검색함
+- C. 업무 메일·공유 폴더·대화방 같은 일상적인 업무도구를 사용함
+- D. 영업·개발·생산·재무 등의 업무시스템에서 실제 기록을 조회함
+- E. 조회뿐 아니라 기록을 수정하거나 승인된 다음 작업을 시작함
 
-# CAMP 인터뷰 가이드
+예: 제품 설명서를 읽으면 B, 주문시스템에서 현재 주문을 조회하면 D, 승인받아 그 주문을 수정하면 E입니다.
 
-Interview Mode에서 참여자에게 보여줄 문구를 정의합니다. 각 질문 카드는 짧게 유지합니다. 질문 하나, 필요한 이유 한 문장, 이해에 도움이 될 때만 짧은 사례 하나를 사용합니다.
+### Q4 — 잘된 방법의 재사용 (9/13)
 
-사례는 설명용이지 점수 근거가 아닙니다. 장식용 유명인 인용문을 넣지 말고, 출처가 확인되지 않은 문장을 인용하지 않습니다. 회사 사례는 신뢰할 수 있는 공개 출처가 있을 때만 사용합니다.
+**누군가 AI로 일을 잘하는 방법을 찾으면, 다른 사람도 그 방법을 다시 쓸 수 있나요?**
 
-## 인터뷰 구성
+왜 묻나요: 다음 사람이 처음부터 다시 고민하지 않아도 되는지를 보려는 질문입니다.
 
-기본 인터뷰는 **총 13개 카드**입니다. 조직 정보 5개 카드 뒤에 진단 질문 8개가 이어집니다. 모든 카드에 진행률을 표시합니다.
+- A. 대화가 끝나면 대부분 사라짐
+- B. 각자 메모나 AI에게 시킬 내용을 저장해둠
+- C. 좋은 지시문과 업무 방법을 다른 사람도 찾아 쓰는 곳에 공유함
+- D. 담당자가 공유한 방법이 잘 작동하는지 확인하고 최신으로 관리함
+- E. 지난 업무에서 배운 점이 다음 AI 업무에 꾸준히 반영되어 결과가 좋아짐
 
-```text
-진행 4/13  ██████░░░░░░░ 31%
-```
+예: 좋은 지시문을 혼자 저장하면 B, 동료가 찾아서 쓰면 C, 담당자가 확인하고 개선하면 D입니다.
 
-사업부명 확인 같은 조건부 추가 질문은 같은 카드 번호를 유지합니다. Evidence Mode에서는 자료로 확인된 항목을 `확인 4/13`처럼 표시합니다.
+### Q5 — 사람의 일과 역할 (10/13)
 
-### 준비 1/5 — 회사·조직
+**AI 때문에 사람이 맡는 일이나 다른 사람에게 넘기는 과정이 달라졌나요?**
 
-**질문:** 어느 회사 또는 조직을 진단할까요? 국가는 어디인가요?
+왜 묻나요: 시간을 줄이는 데서 나아가 일을 나누는 방식도 바뀌었는지 묻습니다.
 
-**왜 묻나요:** 실제 이름은 참여자가 나중에 CAMP Bench 제출에 동의한 경우에만 같은 조직의 과거 진단을 연결하는 데 비공개로 사용합니다. 동의 전에는 CAMP가 영구 저장하지 않습니다.
+- A. 거의 달라지지 않음
+- B. 원래 하던 일을 더 빨리 함
+- C. 전에는 다른 전문가에게 맡기던 관련 업무도 직접 할 수 있음
+- D. 여러 사람이나 팀을 거쳐야 했던 일을 더 적은 인계로 처리함
+- E. AI가 맡는 일을 기준으로 책임·팀 구성·인력 배치를 바꿈
 
-회사·조직명과 국가를 묻습니다. 알고 있는 정보라도 조용히 추정하거나 미리 확정하지 말고 참여자가 확인하게 합니다.
+정착된 실제 사례를 기준으로 답할 수 있습니다. 결과에는 변화가 어디까지 퍼졌는지도 씁니다.
 
-### 준비 2/5 — 진단 범위
+### Q6 — 문제가 생겼을 때 확인 (11/13)
 
-**질문:** 이번 답변은 조직의 어느 범위를 기준으로 할까요?
+**AI가 잘못된 답을 내거나 일을 잘못 처리했을 때, 어디서 문제가 생겼는지 확인할 수 있나요?**
 
-- A. 회사 전체
-- B. 사업부 또는 본부
-- C. 팀 또는 부서
-- D. 새로 만든 AI 중심 조직
+왜 묻나요: 문제를 찾아 고치고 믿고 쓸 수 있게 관리하는지를 봅니다.
 
-B–D라면 같은 카드에서 사업부·본부·팀·조직의 정확한 이름을 확인합니다.
+- A. 확인하기 어려움
+- B. 일부 사용량이나 비용 정도는 확인함
+- C. 누가 어떤 AI를 썼고 비용이 얼마인지 확인함
+- D. AI가 어떤 순서로 일했는지와 결과가 적절했는지 확인함
+- E. AI가 일하는 도중 권한이나 회사 규칙에 어긋나는 행동을 막을 수도 있음
 
-**왜 묻나요:** 한 팀의 점수와 회사 전체의 점수는 의미가 다릅니다. 이후 모든 질문은 여기서 확정한 범위만을 대상으로 합니다.
+이 질문은 100점 총점에 포함하지 않습니다.
 
-### 준비 3/5 — 업종
+### Q7 — AI 선택과 맞춤 사용 (12/13)
 
-**질문:** 이 조직의 업종과 세부 분야는 무엇인가요?
+**이 조직은 필요한 AI를 어떻게 고르거나 맞춰 쓰나요?**
 
-- 제조
-- 금융
-- IT / SaaS
-- 유통 / 커머스
-- 전문서비스
-- 헬스케어 / 바이오
-- 공공 / 교육
-- 미디어 / 콘텐츠
-- 건설 / 에너지
-- 기타
+왜 묻나요: 업무마다 필요한 도구가 다를 수 있습니다. 뒤쪽 선택지가 무조건 좋은 것은 아닙니다.
 
-세부 분야는 `생활가전`, `상업은행`, `B2B SaaS`처럼 짧게 확인합니다. 업종은 익명 동종업계 표본이 충분할 때 비교에 사용합니다.
+- A. 주로 시중의 AI 서비스를 제공된 그대로 사용함
+- B. 업무에 따라 여러 AI 서비스 중 적합한 것을 골라 씀
+- C. 회사가 관리하는 컴퓨터나 서버에서도 AI 모델을 직접 실행함
+- D. 기존 AI 모델에 업무 사례를 추가로 학습시켜 특정 일을 더 잘하게 함
+- E. 범용 AI 모델을 처음부터 직접 만들고 학습시킴
 
-### 준비 4/5 — 인원과 기능
+사내 문서를 참고해 답하는 것만으로 C나 D가 되지는 않습니다. 문서 연결은 Q3에서 봅니다. 이 질문도 총점에 포함하지 않습니다.
 
-**질문:** 진단 범위 안에는 약 몇 명이 있으며, 어떤 기능에 가장 가깝나요?
+### Q8 — 실제로 자리 잡은 정도 (13/13)
 
-인원: `1–10 / 11–50 / 51–200 / 201–1,000 / 1,001–5,000 / 5,000+`
+**지금까지 말씀하신 사례들은 실제 업무에 어느 정도 자리 잡았나요?**
 
-기능: `전사 / 전략 / R&D / 소프트웨어-IT / 데이터-AI-DX / 영업-마케팅 / SCM-생산 / 재무-HR-법무 / 고객서비스 / 기타`
+왜 묻나요: 시험해본 것인지, 사람들이 이미 믿고 반복해서 쓰는 것인지 확인합니다.
 
-### 준비 5/5 — 응답자 관점
+- A. 주로 개인의 실험·시연·시험 사용 단계임
+- B. 여러 사람이나 핵심 팀이 실제 업무에서 반복 사용함
+- C. 유지·관리 담당자가 있고 정해진 절차에 따라 결과를 확인하며 사용함
+- D. 진단할 조직 전체에서 보통 이렇게 일함
 
-**질문:** 어떤 역할의 관점에서 답하시나요?
+중요한 핵심 팀 사례 하나라도 B나 C의 근거가 될 수 있습니다. 그렇다고 조직 전체가 쓴다는 뜻은 아닙니다.
 
-- A. 신입·초기 경력(0–2년)
-- B. 주니어·실무자(3–7년)
-- C. 시니어·전문가(8년 이상)
-- D. 매니저·팀장
-- E. 임원·경영진
-- F. 기타·응답하지 않음
+## Optional references / 더 알고 싶을 때
 
-**왜 묻나요:** 경영진과 실무자는 같은 조직의 AI 활용을 다르게 볼 수 있습니다. 표본이 충분하면 CAMP Bench에서 역할별 인식 차이를 익명 집계로 보여줄 수 있습니다. 개인의 신원은 표시하지 않습니다.
+Prefer the everyday examples above. Show a company case only when useful, and verify a source before attributing a case or quotation. Do not research during every question. Examples never establish the participant's score. Do not force a famous quote into the survey.
 
-## 진단 질문
-
-Q1 전에 **“이제부터는 방금 확정한 범위만 생각하고 답해주세요.”**라고 안내합니다.
-
-### Q1 — AI를 실제로 쓰는 사람
-
-**질문:** 이 범위에서 승인된 AI를 실제 업무에 반복해서 쓰는 사람은 대략 어느 정도인가요?
-
-**왜 묻나요:** 라이선스를 보유한 것과 실제 업무 습관으로 사용하는 것은 다르기 때문입니다.
-
-- A. 5% 미만
-- B. 5–20%
-- C. 21–50%
-- D. 51–80%
-- E. 80% 초과
-
-### Q2 — AI에게 맡기는 일
-
-**질문:** 이 범위에서 사람들이 AI에게 반복적으로 맡기는 가장 높은 수준의 일은 무엇인가요?
-
-**왜 묻나요:** 도움을 받는 것과, 하나의 완결된 업무를 맡기는 것은 다른 단계이기 때문입니다.
-
-- A. 정보 찾기, 질의응답, 요약
-- B. 초안이나 업무 일부 작성
-- C. 사람이 검토할 완결된 분석·문서·설계·코드 산출물 작성
-- D. 여러 단계로 된 반복 업무를 처음부터 끝까지 실행
-- E. 업무를 시작할 때 AI Agent에게 먼저 맡기는 것이 일반적
-
-### Q3 — 회사 자료와 시스템 연결
-
-**질문:** 이 범위 안의 가장 앞선 실제 운영 사례에서, AI는 어떤 회사 자료나 시스템까지 사용할 수 있나요?
-
-**왜 묻나요:** AI가 공개 지식만 쓰는 것을 넘어 조직의 맥락과 도구를 사용할 때 실제 업무 수행력이 커지기 때문입니다.
-
-- A. 공개·외부 지식만 사용
-- B. 사내 파일·문서·검색·RAG 사용
-- C. Microsoft 365, Google Workspace, Slack, Drive 같은 협업도구 사용
-- D. API·MCP를 통해 DB·ERP·PLM·CRM 같은 핵심 시스템 사용
-- E. 조회뿐 아니라 승인된 쓰기·단계 실행·후속 조치까지 수행
-
-**범위 기준:** 핵심 조직이 주도하는 대표적인 운영 사례 하나만 있어도 해당 역량이 존재한다고 볼 수 있습니다. 다만 반복 사용되고, 담당 조직이 있으며, 실제 업무에서 돌아가야 합니다. 보여주기용 Demo는 해당하지 않습니다. 얼마나 널리 퍼졌는지는 Q1, 근거의 강도는 Q8에서 별도로 봅니다.
-
-**공개 사례:** BP는 Microsoft 365 Copilot을 생산성과 역량 향상에 활용한다고 공개했고, Aker BP는 구성원이 Copilot Studio로 Agent를 만들어 확장 가능한 자동화 기반을 마련한 사례를 소개했습니다. 서로 다른 수준의 접근성과 연결 실행을 설명하는 예일 뿐, 참여자의 점수를 결정하는 기준은 아닙니다. 출처: [BP](https://www.bp.com/press-releases/bp-looks-to-leverage-power-of-generative-ai-with-copilot-for-microsoft-365), [Microsoft 고객 사례: Aker BP](https://www.microsoft.com/en/customers/story/24604-aker-bp-microsoft-365-copilot).
-
-### Q4 — 잘된 방법의 재사용
-
-**질문:** 누군가 AI로 좋은 업무 방법을 만들었을 때, 그것이 다음 사람이나 다음 업무에도 얼마나 잘 남아 활용되나요?
-
-**왜 묻나요:** 개인의 성과가 조직 역량이 되려면 좋은 방법·판단·결과를 찾고, 관리하고, 개선하고, 다시 쓸 수 있어야 하기 때문입니다.
-
-- A. 대화나 작업이 끝나면 대부분 사라짐
-- B. 개인 Prompt나 메모에 남음
-- C. 유용한 Prompt나 재사용 지침을 함께 공유함
-- D. 공용 자산에 담당자·버전·품질검사·배포 절차가 있음
-- E. 과거 판단과 결과가 다음 AI 업무 품질을 체계적으로 높임
-
-### Q5 — 역할과 업무 인계의 변화
-
-**질문:** AI가 사람의 역할과 사람 사이의 업무 인계를 얼마나 바꾸었나요?
-
-**왜 묻나요:** 같은 일을 빨리 하는 것도 가치가 있지만, 더 깊은 변화는 한 사람이 인접 업무까지 맡고 불필요한 인계가 줄어들 때 나타나기 때문입니다.
-
-- A. 역할과 업무 인계가 거의 그대로임
-- B. 같은 역할 안에서 일이 빨라짐
-- C. 과거에는 다른 전문가가 하던 인접 업무까지 맡을 수 있음
-- D. 반복적인 업무 인계나 역할 경계가 실질적으로 줄어듦
-- E. 역할·책임·팀 구조·인력 배치를 AI 중심 업무에 맞춰 재설계함
-
-### Q6 — 운영 가시성
-
-**질문:** 어떤 AI가 어떤 도구를 써서 무슨 결과를 냈고 비용이 얼마나 들었는지 조직이 어디까지 확인할 수 있나요?
-
-**왜 묻나요:** AI가 업무시스템에서 행동하기 시작하면 품질·비용·권한·실패를 추측이 아니라 운영할 수 있어야 하기 때문입니다.
-
-- A. 거의 확인할 수 없음
-- B. 일부 사용량 또는 비용을 확인함
-- C. 사용자·Agent·Model별 사용량과 비용을 확인함
-- D. 처음부터 결과까지의 실행 기록과 품질평가를 함께 봄
-- E. 실행 기록·비용·품질과 실시간 보안·정책 통제를 함께 운영함
-
-### Q7 — 모델 선택과 통제
-
-**질문:** 회사가 사용하는 AI 모델을 얼마나 선택하고 통제할 수 있나요?
-
-**왜 묻나요:** 비용·보안·속도·품질·전략적 통제를 보기 위한 질문입니다. 높은 선택지가 항상 더 좋은 것은 아닙니다.
-
-- A. 주로 하나의 외부 제품이나 API 사용
-- B. 업무에 따라 여러 모델을 선택하거나 연결함
-- C. 사설·로컬 Open-weight 모델과 자체 연산자원을 사용함
-- D. Fine-tuning·Distillation 같은 방식으로 모델을 업무에 맞춤
-- E. Foundation Model을 직접 개발하고 운영함
-
-### Q8 — 답변의 실제 근거
-
-**질문:** 앞의 높은 답변을 뒷받침하는 실제 운영 근거는 어디에 가장 가깝나요?
-
-**왜 묻나요:** CAMP는 계획이 아니라 지금 반복해서 작동하는 상태를 평가하기 때문입니다.
-
-- A. 한 사람, Demo 또는 Pilot
-- B. 여러 사람이 쓰는 반복적인 운영 사례 또는 핵심 팀의 대표 사례
-- C. 담당자·운영절차·측정지표가 있는 실제 운영
-- D. 진단 범위 전체의 기본 업무방식
-
-전략적으로 중요한 대표 사례는 전사 확산 전이라도 B나 C가 될 수 있습니다. 다만 그 사례가 넓은 보급을 의미하지는 않으며, 보급 범위는 Q1에서 별도로 판단합니다.
+[Microsoft's Aker BP customer story](https://www.microsoft.com/en/customers/story/24604-aker-bp-microsoft-365-copilot) is an optional reference about staff using AI tools and building assistants for work. Do not confuse Aker BP with BP. Explain in everyday language when requested.

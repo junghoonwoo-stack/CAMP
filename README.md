@@ -301,3 +301,12 @@ CAMP Score: 40 / 100
 ## License
 
 CAMP Framework와 문서는 **CC BY 4.0**입니다. Framework 또는 수정본을 외부에 재배포·공개할 때 canonical project 링크를 유지합니다.
+
+### Chat cannot submit? / 대화에서 제출이 안 되나요?
+
+Open [CAMP Bench submission](https://camp-bench-receiver.camp-bench-jhw.workers.dev/submit?lang=en), choose the submission JSON from your CAMP conversation, review it, and press Submit. No installation or GitHub account is needed. Keep the receipt and report link. This path uses your browser connection when the chat environment cannot reach the server.
+
+[CAMP Bench 제출 페이지](https://camp-bench-receiver.camp-bench-jhw.workers.dev/submit?lang=ko)에서 대화 중 만든 제출용 JSON 파일을 선택하고, 내용을 확인한 뒤 제출하세요. 설치나 GitHub 계정은 필요 없습니다. 접수번호와 리포트 링크를 보관하세요. 대화 환경에서 전송이 막혀도 사용자 브라우저로 제출할 수 있습니다.
+
+Survey questions are available in plain English and Korean. You can answer through everyday work examples without knowing AI technology terms.
+설문은 한국어·영어 모두 실제 업무 사례를 기준으로 쉽게 답하도록 구성했습니다. AI 기술 용어를 알 필요는 없습니다.
