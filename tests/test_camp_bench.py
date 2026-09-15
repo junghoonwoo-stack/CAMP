@@ -174,7 +174,34 @@ class CampBenchTests(unittest.TestCase):
         self.assertIn("전체 중앙값보다 앞서 있습니다.", text)
         self.assertIn("You are ahead of the overall median.", text)
         self.assertIn("전체 점수 분포 / Overall score distribution", text)
+        self.assertIn("기준일 / Benchmark date", text)
+        self.assertIn("중앙값 / median", text)
+        self.assertIn("역할 전환 / Role Transformation", text)
         self.assertNotIn("Private Company", text)
+
+    def test_korean_report_fully_localizes_dimension_terms(self):
+        status = ReceiptHandler
+        server = HTTPServer(("127.0.0.1", 0), status)
+        thread = threading.Thread(target=server.serve_forever, daemon=True)
+        thread.start()
+        try:
+            report_status = camp_bench.fetch_status(
+                f"http://127.0.0.1:{server.server_port}/v1/submissions",
+                "CB-20260914-ABCDEF123456",
+            )
+        finally:
+            server.shutdown()
+            thread.join()
+            server.server_close()
+
+        output = StringIO()
+        with redirect_stdout(output):
+            camp_bench.print_report(report_status, "테스트 회사", "ko")
+        text = output.getvalue()
+        self.assertIn("기준일:", text)
+        self.assertIn("Benchmark 유형: 초기 참고용", text)
+        self.assertIn("중앙값 10 | 차이 -5", text)
+        self.assertNotIn("| median", text)
 
     def test_waits_until_report_is_ready(self):
         responses = iter([
