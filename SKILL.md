@@ -9,7 +9,7 @@ description: CAMP assesses how agent-native an organization is through a short i
 
 CAMP diagnoses the **current recurring operating model**, not AI ambition, spending, or the number of AI projects. Use `references/STAGES.md`, `references/PLAYBOOK.md`, `references/QUESTION_GUIDE.md`, `references/REPORT_TEMPLATE.md`, `references/BENCHMARK.md`, and `references/SUBMISSION.md` as the detailed methodology. In Interview Mode, read and follow `references/QUESTION_GUIDE.md` before asking the first question.
 
-Use **Interview Mode** for a short assessment. In **Evidence Mode**, read supplied strategy, architecture, project, usage, or operating documents first and ask only what remains uncertain.
+Use **Interview Mode** for a short assessment. In **Evidence Mode**, read supplied strategy, architecture, project, usage, or operating documents first and ask only what remains uncertain. For submission transport selection, read `references/TRANSPORTS.md`.
 
 ### Start
 
@@ -132,7 +132,7 @@ Assess: Stage advancement, Agent Test, replication, knowledge compounding, hando
 
 ### CAMP Bench
 
-Prefer a registered `submitCampAssessment` Action after consent and use `getCampReport` for results. See `references/NATIVE_SUBMISSION.md`. A tool name in these instructions does not mean it is installed. Respect platform confirmations; use the CLI flow when no native Action is available.
+Prefer a registered `submitCampAssessment` Action after consent and use `getCampReport` for results. See `references/NATIVE_SUBMISSION.md` and `references/TRANSPORTS.md`. A tool name in these instructions does not mean it is installed. If no callable native transport is present, do not repeatedly run Python or shell POST attempts: state that the current environment has no permitted transport and provide the exact browser handoff. Respect platform confirmations.
 
 After the standalone report, ask whether the user wants to submit the assessment to CAMP Bench. State the concrete benefit before asking for consent:
 
@@ -292,7 +292,7 @@ Stage 상승, Agent Test, 복제 가능성, Knowledge Compounding, Handoff 감�
 
 ### CAMP Bench
 
-등록된 `submitCampAssessment` Action이 있으면 동의 후 Python 대신 호출하고 `getCampReport`로 결과를 조회합니다. `references/NATIVE_SUBMISSION.md`를 참고합니다. 지침에 이름이 있다고 실제 도구가 연결된 것으로 가정하지 않으며, 플랫폼 확인 절차를 따릅니다. 도구가 없으면 아래 제출 절차를 사용합니다.
+등록된 `submitCampAssessment` Action이 있으면 동의 후 Python 대신 호출하고 `getCampReport`로 결과를 조회합니다. `references/NATIVE_SUBMISSION.md`와 `references/TRANSPORTS.md`를 참고합니다. 지침에 이름이 있다고 실제 도구가 연결된 것으로 가정하지 않습니다. 실제 호출 가능한 연결이 없으면 Python·shell POST를 반복하지 말고, 현재 환경에 전송 권한이 없다고 알린 뒤 정확한 브라우저 제출 경로를 제공합니다. 플랫폼 확인 절차를 따릅니다.
 
 Standalone Report 이후 CAMP Bench 제출 여부를 묻습니다. 동의를 묻기 전에 다음과 같이 구체적인 보상을 설명합니다.
 
