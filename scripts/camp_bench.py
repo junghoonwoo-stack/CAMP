@@ -365,6 +365,8 @@ def main(argv: list[str] | None = None) -> int:
                 company_name = str(load_json(args.submission).get("company_name") or "") or None
             status = fetch_status(endpoint, args.status, timeout=args.timeout)
             print(json.dumps({k: v for k, v in status.items() if k != "benchmark_report"}, ensure_ascii=False, indent=2))
+            if isinstance(status.get("report_url"), str):
+                print(f"WEB REPORT: {status['report_url']}")
             if not print_report(status, company_name, language):
                 print("REPORT NOT READY: try the same --status command again shortly.")
             return 0
@@ -399,6 +401,8 @@ def main(argv: list[str] | None = None) -> int:
         print("SUBMITTED: CAMP Bench accepted the assessment.")
         print(json.dumps(receipt, ensure_ascii=False, indent=2))
         receipt_id = str(receipt["receipt_id"])
+        if isinstance(receipt.get("report_url"), str):
+            print(f"WEB REPORT: {receipt['report_url']}")
         if args.no_wait:
             print(f"REPORT PENDING: check later with --status {receipt_id}.")
             return 0
