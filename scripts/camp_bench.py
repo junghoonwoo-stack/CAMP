@@ -284,8 +284,17 @@ def print_report(status: dict[str, Any], company_name: str | None, language: str
     languages = ("ko", "en") if language == "both" else (language,)
     display_name = company_name or ("귀사" if language == "ko" else "Your organization")
     print(f"\nCAMP BENCH REPORT — {display_name}")
-    print(f"Benchmark date: {report.get('benchmark_date', 'unknown')}")
-    print(f"Benchmark type: {report.get('benchmark_type', 'unknown')}")
+    benchmark_type = report.get("benchmark_type", "unknown")
+    type_ko = {"preliminary": "초기 참고용", "official": "공식"}.get(benchmark_type, "알 수 없음")
+    if language == "ko":
+        print(f"기준일: {report.get('benchmark_date', '알 수 없음')}")
+        print(f"Benchmark 유형: {type_ko}")
+    elif language == "both":
+        print(f"기준일 / Benchmark date: {report.get('benchmark_date', 'unknown')}")
+        print(f"유형 / Benchmark type: {type_ko} / {benchmark_type}")
+    else:
+        print(f"Benchmark date: {report.get('benchmark_date', 'unknown')}")
+        print(f"Benchmark type: {benchmark_type}")
 
     for code in languages:
         localized = messages.get(code, {})
@@ -311,11 +320,21 @@ def print_report(status: dict[str, Any], company_name: str | None, language: str
             title = "5개 영역 비교 / Five-dimension comparison"
         print(f"\n{title}:")
         for row in dimensions:
-            label = row.get("label", {}).get("ko" if language == "ko" else "en", row.get("key"))
+            labels = row.get("label", {})
+            if language == "ko":
+                label = labels.get("ko", row.get("key"))
+            elif language == "both":
+                label = f"{labels.get('ko', row.get('key'))} / {labels.get('en', row.get('key'))}"
+            else:
+                label = labels.get("en", row.get("key"))
             benchmark = row.get("overall_median")
             gap = row.get("gap")
             if benchmark is None:
                 print(f"  {label}: {row.get('score')}/20")
+            elif language == "ko":
+                print(f"  {label}: {row.get('score')}/20 | 중앙값 {benchmark} | 차이 {gap:+g}")
+            elif language == "both":
+                print(f"  {label}: {row.get('score')}/20 | 중앙값 / median {benchmark} | 차이 / gap {gap:+g}")
             else:
                 print(f"  {label}: {row.get('score')}/20 | median {benchmark} | gap {gap:+g}")
     return True
