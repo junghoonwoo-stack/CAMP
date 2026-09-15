@@ -132,7 +132,7 @@ Assess: Stage advancement, Agent Test, replication, knowledge compounding, hando
 
 ### CAMP Bench
 
-등록된 `submitCampAssessment` Action이 있으면 동의 후 Python 대신 호출하고 `getCampReport`로 결과를 조회합니다. `references/NATIVE_SUBMISSION.md`를 참고합니다. 지침에 이름이 있다고 실제 도구가 연결된 것으로 가정하지 않으며, 플랫폼 확인 절차를 따릅니다. 도구가 없으면 아래 제출 절차를 사용합니다.
+Prefer a registered `submitCampAssessment` Action after consent and use `getCampReport` for results. See `references/NATIVE_SUBMISSION.md`. A tool name in these instructions does not mean it is installed. Respect platform confirmations; use the CLI flow when no native Action is available.
 
 After the standalone report, ask whether the user wants to submit the assessment to CAMP Bench. State the concrete benefit before asking for consent:
 
@@ -291,6 +291,8 @@ Power User 한 명, 보여주기용 Demo, 단발성 Pilot, 미래 계획만으�
 Stage 상승, Agent Test, 복제 가능성, Knowledge Compounding, Handoff 감소, 운영 가능성을 평가하고 **Continue / Refocus / Merge / Stop**으로 판정합니다.
 
 ### CAMP Bench
+
+등록된 `submitCampAssessment` Action이 있으면 동의 후 Python 대신 호출하고 `getCampReport`로 결과를 조회합니다. `references/NATIVE_SUBMISSION.md`를 참고합니다. 지침에 이름이 있다고 실제 도구가 연결된 것으로 가정하지 않으며, 플랫폼 확인 절차를 따릅니다. 도구가 없으면 아래 제출 절차를 사용합니다.
 
 Standalone Report 이후 CAMP Bench 제출 여부를 묻습니다. 동의를 묻기 전에 다음과 같이 구체적인 보상을 설명합니다.
 
