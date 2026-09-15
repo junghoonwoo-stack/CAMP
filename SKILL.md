@@ -11,6 +11,15 @@ CAMP diagnoses the **current recurring operating model**, not AI ambition, spend
 
 Use **Interview Mode** for a short assessment. In **Evidence Mode**, read supplied strategy, architecture, project, usage, or operating documents first and ask only what remains uncertain. For submission transport selection, read `references/TRANSPORTS.md`.
 
+### Execution and submission path
+
+There are two supported paths:
+
+1. **Local path:** when a real terminal/VM and the CAMP repository are available, run the local CLI. Validate first, then submit from that same environment after explicit consent. A returned `receipt_id` is the only proof of acceptance.
+2. **Cloud-chat path:** when the conversation is running in a hosted chat or sandbox, run the interview in the chat and prepare the exact private JSON package. If a native CAMP connector is actually available, use it. Otherwise stop repeated Python or shell POSTs, offer the unchanged JSON as a download, and send the participant to the official browser submission page. No GitHub account is required.
+
+A repository URL is instructions, not a network permission. Never claim success without a valid `receipt_id`. A DNS or outbound-network error means the browser handoff should be used with the unchanged JSON and idempotency key.
+
 ### Start
 
 > CAMP takes about **8–10 minutes**. We will first confirm the organization, assessment scope, industry, and your role perspective, then ask eight short assessment questions. You’ll receive your **CAMP Stage, CAMP Score /100, five-dimension analysis, biggest bottleneck, top 3 actions for the next 90 days, and practical projects to start now**. If you submit to **CAMP Bench**, you will also receive a private comparison showing your overall position, score distribution, five-dimension gaps, and industry position when the anonymous industry cohort is large enough.
