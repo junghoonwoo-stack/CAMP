@@ -90,6 +90,8 @@ python3 scripts/camp_bench.py private-submissions/my-assessment.json --submit --
 python3 scripts/camp_bench.py --status CB-YYYYMMDD-XXXXXXXXXXXX --language en
 ```
 
+The receipt includes both `status_url` for JSON/API use and `report_url` for a bilingual, human-readable web report.
+
 The official receiver is configured in `benchmark/submission.config.json`, so the submit command uses it automatically. A missing endpoint, network error, or response without a valid receipt still means **NOT SUBMITTED**. Never put a real submission in a public issue, discussion, pull request, or commit. See [CAMP Bench Submission](references/SUBMISSION.md).
 
 ### Privacy
@@ -232,6 +234,8 @@ python3 scripts/camp_bench.py private-submissions/my-assessment.json --submit --
 # 나중에 Report 다시 조회
 python3 scripts/camp_bench.py --status CB-YYYYMMDD-XXXXXXXXXXXX --language ko
 ```
+
+Receipt에는 개발·연동용 JSON `status_url`과 한·영 사용자용 웹 리포트 `report_url`이 함께 제공됩니다.
 
 공식 Receiver는 `benchmark/submission.config.json`에 설정되어 있어 제출 명령이 자동으로 사용합니다. Endpoint 누락, Network Error, 유효한 Receipt가 없는 응답은 모두 **NOT SUBMITTED**입니다. 실제 제출 파일을 Public Issue, Discussion, Pull Request, Commit에 올리면 안 됩니다. 자세한 절차는 [CAMP Bench Submission](references/SUBMISSION.md)을 참고합니다.
 
