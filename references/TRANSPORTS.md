@@ -11,7 +11,7 @@ CAMP Bench has one receiver and several ways to reach it. A repository URL or a 
 | Installed GitHub connector with private-repository write permission | Queue exact JSON in `submissions/inbox/<receipt_id>.json` | Confirm fields and consent; approve GitHub write | Commit and processed status |
 | No native connector and no network access | Browser page | Choose exact JSON, review, press Submit | Matching `receipt_id` |
 
-The native transports are adapters around `POST /v1/chat/submissions`. They are not automatically available in every product or account. A GitHub queue must use a private repository; never use a public issue or gist.
+The native transports are adapters around `PUT /v1/chat/submissions/{request_key}`. `POST /v1/chat/submissions` remains compatible, but PUT is easier for connectors: generate one opaque request key once and reuse that URL/body on retries; no idempotency header or client-side hash is required. They are not automatically available in every product or account. A GitHub queue must use a private repository; never use a public issue or gist.
 
 ## Decision rule
 
