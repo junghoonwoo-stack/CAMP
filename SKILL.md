@@ -144,7 +144,7 @@ Use this submission sequence exactly:
 4. Ask for explicit confirmation to privately store those fields and use anonymized/aggregate results for benchmarking.
 5. Only after confirmation, create the JSON under `private-submissions/` and validate it with `python3 scripts/camp_bench.py <file>` when repository tools are available.
 6. If an official endpoint is configured, submit with `--submit --yes --language en` for an English interaction or `--submit --yes --language ko` for a Korean interaction. Report submission success only when a valid `receipt_id` is returned.
-7. Wait for the returned benchmark report. Present the overall percentile/median position, overall score distribution, industry result or sample-size notice, five-dimension comparison, and priority gap in the interaction language. If processing is still pending, preserve the receipt and retrieve it with `--status <receipt_id>`; do not invent results.
+7. Wait for the returned benchmark report. Give the participant the returned `report_url` for the human-readable bilingual web report, then present the overall percentile/median position, overall score distribution, industry result or sample-size notice, five-dimension comparison, and priority gap in the interaction language. Keep `status_url` as the JSON/API endpoint. If processing is still pending, preserve the receipt and retrieve it with `--status <receipt_id>`; do not invent results.
 8. If no endpoint or receipt is available, say **NOT SUBMITTED**, provide the private package, and explain that it must be kept private. Do not invent an upload destination.
 
 Never include personal respondent name, email, phone, employee ID, credentials, or raw confidential documents in the submission package. Never retry a failed request blindly; preserve the idempotency key and surface the failure.
@@ -285,7 +285,7 @@ Private CAMP Bench Store가 연결되어 있고 사용자가 동의하면 새 As
 4. 해당 Field의 Private 저장과 익명·Aggregate Benchmark 사용에 명시적으로 동의하는지 확인합니다.
 5. 확인 후에만 JSON을 `private-submissions/` 아래 만들고 Repository Tool을 쓸 수 있으면 `python3 scripts/camp_bench.py <file>`로 검증합니다.
 6. 공식 Endpoint가 설정되어 있으면 한국어 Interaction은 `--submit --yes --language ko`, 영어 Interaction은 `--submit --yes --language en`으로 제출합니다. 유효한 `receipt_id`가 반환된 경우에만 제출 성공으로 알립니다.
-7. 반환되는 Benchmark Report를 기다린 뒤 Overall Percentile·중앙값 대비 위치, 전체 점수 분포, Industry 결과 또는 표본 부족 안내, 5개 Dimension 비교, Priority Gap을 Interaction 언어로 보여줍니다. 아직 처리 중이면 Receipt를 보관하고 `--status <receipt_id>`로 다시 조회하며 결과를 임의로 만들지 않습니다.
+7. 반환되는 Benchmark Report를 기다린 뒤 사용자용 한·영 웹 리포트 `report_url`을 제공하고, Overall Percentile·중앙값 대비 위치, 전체 점수 분포, Industry 결과 또는 표본 부족 안내, 5개 Dimension 비교, Priority Gap을 Interaction 언어로 보여줍니다. `status_url`은 JSON/API 용도로 유지합니다. 아직 처리 중이면 Receipt를 보관하고 `--status <receipt_id>`로 다시 조회하며 결과를 임의로 만들지 않습니다.
 8. Endpoint 또는 Receipt가 없으면 **NOT SUBMITTED**라고 말하고 Private Package를 제공하며 비공개로 보관해야 함을 설명합니다. 임의의 Upload Destination을 만들지 않습니다.
 
 개인 응답자 이름, 이메일, 전화번호, 사번, Credential, Raw Confidential Document를 Submission Package에 넣지 않습니다. 실패한 요청을 무조건 재시도하지 않으며 Idempotency Key를 유지하고 실패를 명확히 알립니다.
