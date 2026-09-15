@@ -32,6 +32,54 @@ Connect this repository, or upload `SKILL.md` and `references/`, then enter:
 Read SKILL.md and run the CAMP assessment.
 ```
 
+## Choose one of two ways to run CAMP
+
+The assessment is the same in both paths. Choose based on where the conversation is running:
+
+| Path | Best for | CAMP Bench submission |
+|---|---|---|
+| **Local** | Claude Code, Codex, or a terminal on your computer/VM | Validate and send from that machine. A `receipt_id` confirms acceptance. |
+| **Cloud chat** | ChatGPT, Claude, Gemini, M365 Copilot, or another hosted chat | Download the exact JSON and submit it in the official browser page. No GitHub account or installation is required. |
+
+### Path A — Local installation
+
+Use this when you can run commands on your own computer or VM. DNS, proxy, and firewall settings from that machine apply to the submission.
+
+```bash
+git clone https://github.com/junghoonwoo-stack/CAMP.git
+cd CAMP
+claude "Read SKILL.md and run the CAMP assessment."
+# or: codex "Read SKILL.md and run the CAMP assessment."
+```
+
+After the report, explicitly agree to CAMP Bench and review the fields. Validate and submit from the same machine:
+
+```bash
+python3 scripts/camp_bench.py private-submissions/my-assessment.json
+python3 scripts/camp_bench.py private-submissions/my-assessment.json --submit --no-wait --language en
+```
+
+Only a returned `receipt_id` means the submission was accepted. Creating a JSON file is not submission, and a real file must never be committed to this public repository.
+
+### Path B — Cloud chat (no installation)
+
+Paste this into ChatGPT, Claude, Gemini, or another hosted chat:
+
+```text
+https://github.com/junghoonwoo-stack/CAMP
+
+Read SKILL.md from this repository and run the CAMP assessment.
+Ask the profile questions first, show progress, and ask one simple question at a time.
+Use Korean unless I ask for English. Show the report when complete.
+If I agree to CAMP Bench, prepare the exact private submission JSON for download.
+```
+
+For a safe dry run, add: `Run a test with synthetic Example Corp data; do not submit to CAMP Bench.`
+
+If the cloud chat cannot make an outbound HTTPS request, it must not keep retrying. Download the unchanged `camp-bench-submission.json`, open the [official CAMP Bench submission page](https://camp-bench-receiver.camp-bench-jhw.workers.dev/submit?lang=en), choose the file, review it, and press **Submit** in the browser. Keep the returned `CB-...` receipt. Without it, the status is **NOT SUBMITTED**.
+
+The browser sends directly to CAMP Bench, so the cloud chat does not need DNS access to the receiver. A configured native CAMP connector may submit directly; otherwise use this browser handoff. Never paste real company JSON into a public GitHub issue, discussion, pull request, or URL.
+
 ## What CAMP Measures
 
 | Dimension | Core question |
@@ -184,6 +232,54 @@ codex "Read SKILL.md and run the CAMP assessment."
 ```text
 Read SKILL.md and run the CAMP assessment.
 ```
+
+## CAMP를 사용하는 두 가지 표준 경로
+
+진단 내용은 어느 환경에서든 같습니다. 대화가 어디에서 실행되는지에 따라 한 가지를 선택합니다.
+
+| 경로 | 적합한 경우 | CAMP Bench 제출 |
+|---|---|---|
+| **로컬** | 내 PC·VM에서 Claude Code, Codex, 터미널을 실행할 때 | 같은 환경에서 JSON을 검증하고 전송합니다. `receipt_id`가 있어야 접수 성공입니다. |
+| **클라우드 대화** | ChatGPT·Claude·Gemini·M365 Copilot 등 호스팅된 대화에서 실행할 때 | JSON 파일을 내려받아 공식 웹페이지에서 제출합니다. 설치와 GitHub 계정이 필요 없습니다. |
+
+### 경로 A — 로컬 설치
+
+내 PC나 VM에서 실행할 때 사용합니다. 제출 요청도 그 컴퓨터에서 나가므로 DNS·Proxy·방화벽 설정을 그대로 사용합니다.
+
+```bash
+git clone https://github.com/junghoonwoo-stack/CAMP.git
+cd CAMP
+claude "Read SKILL.md and run the CAMP assessment."
+# 또는: codex "Read SKILL.md and run the CAMP assessment."
+```
+
+Report를 확인하고 CAMP Bench 제출에 동의한 뒤 같은 환경에서 검증·제출합니다.
+
+```bash
+python3 scripts/camp_bench.py private-submissions/my-assessment.json
+python3 scripts/camp_bench.py private-submissions/my-assessment.json --submit --no-wait --language ko
+```
+
+`receipt_id`가 반환되어야 접수 성공입니다. JSON 파일을 만든 것만으로 제출된 것이 아니며, 실제 파일을 Public Repository에 Commit하면 안 됩니다.
+
+### 경로 B — 클라우드 대화 (설치 없음)
+
+ChatGPT·Claude·Gemini 등 호스팅된 대화창에 아래 내용을 붙여 넣습니다.
+
+```text
+https://github.com/junghoonwoo-stack/CAMP
+
+이 Repository의 SKILL.md를 읽고 CAMP 진단을 실행해줘.
+먼저 조직 정보를 묻고, 진행률을 표시하며, 쉬운 질문을 한 번에 하나씩 해줘.
+영어로 요청하기 전까지는 한국어로 진행해줘. 진단이 끝나면 Report를 보여줘.
+CAMP Bench 제출에 동의하면 제출용 원본 JSON 파일을 다운로드할 수 있게 만들어줘.
+```
+
+안전한 테스트만 하려면 마지막에 `Synthetic Example Corp 데이터로 테스트하고 CAMP Bench에는 제출하지 마.`를 덧붙입니다.
+
+클라우드 대화가 외부 HTTPS 요청을 보내지 못하면 반복 시도하지 않습니다. 원본 `camp-bench-submission.json`을 내려받아 [공식 CAMP Bench 제출 페이지](https://camp-bench-receiver.camp-bench-jhw.workers.dev/submit?lang=ko)를 열고, 파일을 선택·검토한 뒤 브라우저에서 **Submit**을 누릅니다. `CB-...` 접수번호가 없으면 **NOT SUBMITTED**입니다.
+
+브라우저가 CAMP Bench로 직접 전송하므로 클라우드 대화의 DNS 권한이 없어도 됩니다. 실제 CAMP Connector가 연결된 경우에만 대화에서 직접 제출할 수 있습니다. 실제 회사 JSON을 Public GitHub Issue·Discussion·Pull Request·URL에 넣지 않습니다.
 
 ## 무엇을 측정하나
 
