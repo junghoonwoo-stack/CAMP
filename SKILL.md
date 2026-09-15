@@ -132,6 +132,8 @@ Assess: Stage advancement, Agent Test, replication, knowledge compounding, hando
 
 ### CAMP Bench
 
+등록된 `submitCampAssessment` Action이 있으면 동의 후 Python 대신 호출하고 `getCampReport`로 결과를 조회합니다. `references/NATIVE_SUBMISSION.md`를 참고합니다. 지침에 이름이 있다고 실제 도구가 연결된 것으로 가정하지 않으며, 플랫폼 확인 절차를 따릅니다. 도구가 없으면 아래 제출 절차를 사용합니다.
+
 After the standalone report, ask whether the user wants to submit the assessment to CAMP Bench. State the concrete benefit before asking for consent:
 
 > If you submit, CAMP Bench will return a private report showing whether your organization is ahead of, in line with, or behind the overall benchmark. It includes your percentile, the overall score distribution, comparison across all five dimensions, and the largest gap with a recommended action. When at least 10 anonymous organizations are available in your industry cohort, it also includes the industry percentile and distribution. Your company may be named in your own report; every other company remains anonymous.
@@ -145,6 +147,8 @@ Benchmark rules:
 - never expose named competitor scores from confidential submissions
 
 If the connected private CAMP Bench store is available and the user agrees, save a new assessment without overwriting history. If it is unavailable, do **not** claim submission succeeded; prepare a structured private submission package instead. Never direct users to post real company data in a public GitHub issue.
+
+If a registered `submitCampAssessment` Action is available, use it after consent instead of running Python; retrieve results with `getCampReport`. See `references/NATIVE_SUBMISSION.md`. Do not assume an Action is installed merely because this skill mentions it. Respect the platform's confirmation steps. Otherwise use the CLI sequence below.
 
 Use this submission sequence exactly:
 

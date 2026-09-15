@@ -1,0 +1,365 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "CAMP Bench",
+    "version": "1.0.0",
+    "description": "Submit a confirmed CAMP assessment and retrieve its anonymous comparison report. Company identity is stored privately. No GitHub account is required."
+  },
+  "servers": [
+    {
+      "url": "https://camp-bench-receiver.camp-bench-jhw.workers.dev"
+    }
+  ],
+  "paths": {
+    "/v1/chat/submissions": {
+      "post": {
+        "operationId": "submitCampAssessment",
+        "summary": "Submit the assessment after explicit consent",
+        "x-openai-isConsequential": true,
+        "description": "Send only the exact assessment fields confirmed by the user. The server calculates the stable idempotency key; never invent hashes, values or receipts. On retries keep all fields unchanged. Receipt acceptance and report readiness are separate.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "title": "CAMP Bench Submission",
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "schema_version",
+                  "assessment_date",
+                  "company_name",
+                  "country",
+                  "industry",
+                  "industry_segment",
+                  "scope",
+                  "headcount_band",
+                  "function",
+                  "respondent_role",
+                  "assessment_method",
+                  "stage",
+                  "total_score",
+                  "dimensions",
+                  "operations",
+                  "sovereignty",
+                  "evidence_level",
+                  "confidence",
+                  "consent_to_benchmark"
+                ],
+                "properties": {
+                  "schema_version": {
+                    "type": "string",
+                    "const": "1.0"
+                  },
+                  "assessment_date": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "company_name": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Private identity matching only; never included in public benchmark output."
+                  },
+                  "scope_label": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Private business-unit or team label when relevant."
+                  },
+                  "country": {
+                    "type": "string"
+                  },
+                  "industry": {
+                    "type": "string"
+                  },
+                  "industry_segment": {
+                    "type": "string"
+                  },
+                  "scope": {
+                    "type": "string"
+                  },
+                  "headcount_band": {
+                    "type": "string"
+                  },
+                  "function": {
+                    "type": "string"
+                  },
+                  "respondent_role": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Broad role perspective only; do not include a personal name or title."
+                  },
+                  "assessment_method": {
+                    "type": "string",
+                    "enum": [
+                      "self_report",
+                      "interview",
+                      "evidence_assessment",
+                      "expert_evidence"
+                    ]
+                  },
+                  "evidence_level": {
+                    "type": "string",
+                    "enum": [
+                      "Anecdotal",
+                      "Repeated",
+                      "Operationalized",
+                      "Institutionalized"
+                    ]
+                  },
+                  "confidence": {
+                    "type": "string",
+                    "enum": [
+                      "Low",
+                      "Medium",
+                      "High"
+                    ]
+                  },
+                  "stage": {
+                    "type": "string"
+                  },
+                  "total_score": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 100
+                  },
+                  "dimensions": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "access",
+                      "delegation",
+                      "connection",
+                      "compounding",
+                      "transformation"
+                    ],
+                    "properties": {
+                      "access": {
+                        "type": "integer",
+                        "enum": [
+                          0,
+                          5,
+                          10,
+                          15,
+                          20
+                        ]
+                      },
+                      "delegation": {
+                        "type": "integer",
+                        "enum": [
+                          0,
+                          5,
+                          10,
+                          15,
+                          20
+                        ]
+                      },
+                      "connection": {
+                        "type": "integer",
+                        "enum": [
+                          0,
+                          5,
+                          10,
+                          15,
+                          20
+                        ]
+                      },
+                      "compounding": {
+                        "type": "integer",
+                        "enum": [
+                          0,
+                          5,
+                          10,
+                          15,
+                          20
+                        ]
+                      },
+                      "transformation": {
+                        "type": "integer",
+                        "enum": [
+                          0,
+                          5,
+                          10,
+                          15,
+                          20
+                        ]
+                      }
+                    }
+                  },
+                  "operations": {
+                    "type": "string",
+                    "enum": [
+                      "Weak",
+                      "Developing",
+                      "Strong"
+                    ]
+                  },
+                  "sovereignty": {
+                    "type": "string",
+                    "enum": [
+                      "API",
+                      "Portfolio",
+                      "Private",
+                      "Post-trained",
+                      "Foundation",
+                      "Unknown"
+                    ]
+                  },
+                  "evidence_summary": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "maxLength": 1000
+                  },
+                  "consent_to_benchmark": {
+                    "type": "boolean",
+                    "const": true
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Already received; use the same receipt",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "receipt_id": {
+                      "type": "string",
+                      "pattern": "^CB-\\d{8}-[A-F0-9]{12}$"
+                    },
+                    "report_status": {
+                      "type": "string"
+                    },
+                    "processing_status": {
+                      "type": "string"
+                    },
+                    "status_url": {
+                      "type": "string"
+                    },
+                    "report_url": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "Durably accepted; show receipt and report URL immediately",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "receipt_id": {
+                      "type": "string",
+                      "pattern": "^CB-\\d{8}-[A-F0-9]{12}$"
+                    },
+                    "report_status": {
+                      "type": "string"
+                    },
+                    "processing_status": {
+                      "type": "string"
+                    },
+                    "status_url": {
+                      "type": "string"
+                    },
+                    "report_url": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input; correct with the user"
+          },
+          "429": {
+            "description": "Rate limit; wait per Retry-After"
+          },
+          "503": {
+            "description": "Temporarily unavailable; bounded retry with identical fields"
+          }
+        }
+      }
+    },
+    "/v1/submissions/{receipt_id}": {
+      "get": {
+        "operationId": "getCampReport",
+        "summary": "Read submission status and comparison report",
+        "x-openai-isConsequential": false,
+        "parameters": [
+          {
+            "name": "receipt_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^CB-\\d{8}-[A-F0-9]{12}$"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Status and report if ready",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "receipt_id": {
+                      "type": "string",
+                      "pattern": "^CB-\\d{8}-[A-F0-9]{12}$"
+                    },
+                    "report_status": {
+                      "type": "string"
+                    },
+                    "processing_status": {
+                      "type": "string"
+                    },
+                    "status_url": {
+                      "type": "string"
+                    },
+                    "report_url": {
+                      "type": "string"
+                    },
+                    "benchmark_report": {
+                      "type": "object",
+                      "additionalProperties": true
+                    },
+                    "reason": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Receipt not found"
+          },
+          "429": {
+            "description": "Too many checks; wait per Retry-After"
+          }
+        }
+      }
+    }
+  }
+}
