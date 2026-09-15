@@ -340,6 +340,19 @@ def print_report(status: dict[str, Any], company_name: str | None, language: str
     return True
 
 
+def print_report_state(status: dict[str, Any], receipt_id: str, language: str) -> None:
+    if status.get("status") == "rejected":
+        reason = str(status.get("reason") or "validation_or_duplicate_failure")
+        if language == "ko":
+            print(f"제출 처리 실패: {reason}. 같은 Receipt를 다시 제출하지 말고 입력값을 확인하세요.")
+        elif language == "both":
+            print(f"제출 처리 실패 / SUBMISSION REJECTED: {reason}. 입력값을 확인한 뒤 새 진단으로 제출하세요 / review the input before creating a new submission.")
+        else:
+            print(f"SUBMISSION REJECTED: {reason}. Do not retry the same receipt; review the input first.")
+        return
+    print(f"REPORT PENDING: check later with --status {receipt_id}.")
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Validate or submit a private CAMP Bench assessment.")
     parser.add_argument("submission", type=Path, nargs="?", help="path to CAMP Bench submission JSON")
@@ -368,7 +381,7 @@ def main(argv: list[str] | None = None) -> int:
             if isinstance(status.get("report_url"), str):
                 print(f"WEB REPORT: {status['report_url']}")
             if not print_report(status, company_name, language):
-                print("REPORT NOT READY: try the same --status command again shortly.")
+                print_report_state(status, args.status, language)
             return 0
 
         if not args.submission:
@@ -416,7 +429,7 @@ def main(argv: list[str] | None = None) -> int:
             timeout=args.timeout,
         )
         if not print_report(status, str(payload.get("company_name") or ""), language):
-            print(f"REPORT PENDING: check later with --status {receipt_id}.")
+            print_report_state(status, receipt_id, language)
         return 0
     except SubmissionError as exc:
         print(f"ERROR: {exc}", file=sys.stderr)

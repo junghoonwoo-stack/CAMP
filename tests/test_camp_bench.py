@@ -218,6 +218,19 @@ class CampBenchTests(unittest.TestCase):
         self.assertIn("중앙값 10 | 차이 -5", text)
         self.assertNotIn("| median", text)
 
+    def test_rejected_submission_is_not_described_as_pending(self):
+        output = StringIO()
+        with redirect_stdout(output):
+            camp_bench.print_report_state(
+                {"status": "rejected", "reason": "duplicate_assessment"},
+                "CB-20260915-ABCDEF123456",
+                "ko",
+            )
+        text = output.getvalue()
+        self.assertIn("제출 처리 실패", text)
+        self.assertIn("duplicate_assessment", text)
+        self.assertNotIn("PENDING", text)
+
     def test_waits_until_report_is_ready(self):
         responses = iter([
             {"receipt_id": "CB-20260914-ABCDEF123456", "status": "queued", "report_status": "processing"},
