@@ -28,7 +28,12 @@ class ReceiptHandler(BaseHTTPRequestHandler):
         length = int(self.headers["Content-Length"])
         type(self).seen_headers = dict(self.headers)
         type(self).seen_payload = json.loads(self.rfile.read(length))
-        body = json.dumps({"status": "accepted", "receipt_id": "CB-TEST-001", "benchmark_status": "provisional"}).encode()
+        body = json.dumps({
+            "status": "accepted",
+            "receipt_id": "CB-TEST-001",
+            "benchmark_status": "provisional",
+            "report_url": f"http://{self.headers['Host']}/report/CB-TEST-001",
+        }).encode()
         self.send_response(202)
         self.send_header("Content-Type", "application/json")
         self.send_header("Content-Length", str(len(body)))
@@ -129,6 +134,7 @@ class CampBenchTests(unittest.TestCase):
             thread.join()
             server.server_close()
         self.assertEqual(receipt["receipt_id"], "CB-TEST-001")
+        self.assertTrue(receipt["report_url"].endswith("/report/CB-TEST-001"))
         self.assertEqual(ReceiptHandler.seen_payload, self.payload)
         self.assertEqual(ReceiptHandler.seen_headers["Idempotency-Key"], camp_bench.idempotency_key(self.payload))
 
