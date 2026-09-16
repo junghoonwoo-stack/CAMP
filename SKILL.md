@@ -143,7 +143,7 @@ Assess: Stage advancement, Agent Test, replication, knowledge compounding, hando
 
 After consent, let the current agent handle submission. A local agent should use the repository's configured receiver on the participant's behalf. A hosted chat should use a real CAMP connection only when it is actually callable; otherwise provide the unchanged JSON file and the official browser submission page immediately. Do not ask the participant to run validation or submission commands. See `references/NATIVE_SUBMISSION.md` and `references/TRANSPORTS.md`. Respect platform confirmations.
 
-Immediately after the complete standalone report, automatically explain the CAMP Bench benefit and ask once whether the participant wants to submit. Do not wait for the participant to request submission, do not auto-submit, and do not treat this first Yes/No choice as final transmission consent. State the concrete benefit before asking:
+After the complete standalone report, explain the CAMP Bench benefit and ask whether the participant wants to participate. If yes, continue with the field review and consent sequence below. Never submit without consent:
 
 > If you submit, CAMP Bench will return a private report showing whether your organization is ahead of, in line with, or behind the overall benchmark. It includes your percentile, the overall score distribution, comparison across all five dimensions, and the largest gap with a recommended action. When at least 10 anonymous organizations are available in your industry cohort, it also includes the industry percentile and distribution. Your company may be named in your own report; every other company remains anonymous.
 
@@ -160,7 +160,7 @@ If the connected private CAMP Bench store is available and the user agrees, save
 Use this submission sequence exactly:
 
 1. Deliver the complete standalone report first.
-2. Automatically ask once whether the participant wants to join CAMP Bench. Do not wait for a submission request and do not assume consent.
+2. Ask whether the participant wants to join CAMP Bench. Do not assume consent.
 3. Run a completeness gate before asking for consent. Confirm that `company_name`, `country`, `industry`, `industry_segment`, `scope`, `headcount_band`, `function`, `respondent_role`, Stage/Score, all five dimensions, AI Operations, Sovereign AI, evidence level, and confidence are present. If anything is missing, ask only for the missing fields in one compact **Submission readiness** card. Never construct or send a partial submission.
 4. Summarize the fields to be sent: real company name, optional scope label, organization profile, respondent role category, Stage/Score, five dimensions, supporting capabilities, evidence level/confidence, and optional evidence summary. State that personal name/email and raw documents are excluded.
 5. Ask for explicit confirmation to privately store those fields and use anonymized/aggregate results for benchmarking.
@@ -310,7 +310,7 @@ Stage 상승, Agent Test, 복제 가능성, Knowledge Compounding, Handoff 감�
 
 동의를 받은 뒤 현재 Agent가 제출을 처리합니다. 로컬 Agent는 참여자를 대신해 Repository에 설정된 공식 Receiver를 사용합니다. 대화형 AI는 실제 CAMP 연결이 호출 가능한 경우에만 직접 제출하고, 연결이 없으면 즉시 원본 JSON 파일과 공식 브라우저 제출 페이지를 제공합니다. 참여자에게 별도의 검증·제출 명령을 실행하게 하지 않습니다. `references/NATIVE_SUBMISSION.md`와 `references/TRANSPORTS.md`를 참고하고 플랫폼 확인 절차를 따릅니다.
 
-완전한 Standalone Report를 보여준 직후 CAMP Bench의 혜택을 설명하고 제출 의향을 한 번 자동으로 묻습니다. 참여자가 먼저 제출을 요청할 때까지 기다리지 않으며, 자동 제출하지 않습니다. 이 첫 예/아니오 응답은 실제 전송에 대한 최종 동의가 아닙니다. 다음과 같이 구체적인 보상을 먼저 설명합니다.
+완전한 Standalone Report 뒤에 CAMP Bench의 혜택을 설명하고 참여 여부를 묻습니다. 참여를 선택하면 아래 전송 항목 확인과 동의 절차를 진행합니다. 동의 없이 제출하지 않습니다.
 
 > 제출하면 귀사가 전체 Benchmark보다 앞서는지, 비슷한지, 뒤처지는지를 보여주는 Private Report를 받습니다. Percentile, 전체 점수 분포, 5개 Dimension 비교, 가장 부족한 영역과 권장 Action을 제공합니다. 같은 업종의 익명 조직이 10개 이상이면 Industry Percentile과 분포도 함께 제공합니다. 본인의 Report에는 자기 회사명을 표시할 수 있지만 다른 회사는 모두 익명입니다.
 
@@ -323,7 +323,7 @@ Private CAMP Bench Store가 연결되어 있고 사용자가 동의하면 새 As
 다음 Submission Sequence를 반드시 따릅니다.
 
 1. 먼저 완전한 Standalone Report를 제공합니다.
-2. 참여자에게 CAMP Bench 참여 여부를 한 번 자동으로 묻습니다. 제출 요청을 기다리지 않으며 동의를 추정하지 않습니다.
+2. 참여자에게 CAMP Bench 참여 여부를 묻습니다. 동의를 추정하지 않습니다.
 3. 동의를 묻기 전에 제출 준비 검사를 수행합니다. `company_name`, `country`, `industry`, `industry_segment`, `scope`, `headcount_band`, `function`, `respondent_role`, Stage/Score, 5개 영역, AI Operations, Sovereign AI, 실제 근거 수준, Confidence가 모두 있는지 확인합니다. 빠진 값이 있으면 하나의 짧은 **제출 준비** 카드에서 누락 항목만 묻습니다. 불완전한 JSON을 만들거나 보내지 않습니다.
 4. 실제 전송 항목을 요약합니다: 실제 회사명, 선택적 하위 조직명, 조직 Profile, 응답자 역할 범주, Stage/Score, 5개 영역, Supporting Capability, 실제 근거 수준/Confidence, 선택적 Evidence Summary. 개인 이름·이메일과 원문 자료는 제외된다고 알립니다.
 5. 비공개 저장과 익명·집계 Benchmark 사용에 대해 명시적으로 다시 확인합니다.

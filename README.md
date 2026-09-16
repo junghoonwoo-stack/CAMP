@@ -4,8 +4,6 @@
 
 CAMP is a practical, 8–10 minute assessment of how effectively a company or team is using AI—and what it should do next.
 
-[한국어 안내](#한국어)
-
 ## Try CAMP in about 10 minutes
 
 ### ChatGPT, Claude, Gemini, or another chat
@@ -89,7 +87,7 @@ Every card shows the current step and progress bar. Questions use everyday langu
 
 ## CAMP Bench — optional comparison
 
-After showing the standalone report, CAMP automatically explains the benefit and asks whether you want to submit privately to CAMP Bench. You do not need to request submission first.
+At the end of the assessment, CAMP asks whether you want to join CAMP Bench.
 
 ![CAMP Bench — illustrative example](assets/camp-bench.svg)
 
@@ -100,18 +98,16 @@ CAMP Bench can show:
 - Your five-area strengths and gaps
 - Industry comparison when at least 10 anonymous organizations are available
 
-CAMP Bench is still at an early stage, so comparison data is currently limited. The immediate value is checking your direction and next actions. The benchmark will become more useful as participation grows.
+CAMP Bench is still early, so comparison data is limited today and will become more useful as participation grows.
 
-### If you choose Yes
+### Submission
 
-CAMP checks that the submission is complete, shows exactly what will be sent, and asks for final consent.
+If you choose to participate, CAMP shows what will be sent and asks for consent.
 
-- **Codex, Claude Code, or another local agent:** the agent submits directly from your computer after consent.
-- **ChatGPT, Claude, Gemini, or another hosted chat:** if direct submission is unavailable, the chat gives you one JSON file. Upload it to the [official CAMP Bench submission page](https://camp-bench-receiver.camp-bench-jhw.workers.dev/submit?lang=en), review it, and press **Submit**.
+- **Local agent:** submits directly from your computer.
+- **Hosted chat:** if direct submission is unavailable, upload the JSON file to the [CAMP Bench submission page](https://camp-bench-receiver.camp-bench-jhw.workers.dev/submit?lang=en).
 
-No GitHub account is needed for browser submission. A receipt beginning with **CB-** confirms success. The report link then shows your private comparison in English or Korean.
-
-Your company may be named in your own private report. Every other organization remains anonymous. Personal names, email addresses, and raw internal documents are not submitted.
+No GitHub account is needed. A **CB-** receipt confirms success. Other organizations remain anonymous, and personal names, email addresses, and raw internal documents are excluded.
 
 <details>
 <summary>Methodology and documentation</summary>
@@ -131,7 +127,7 @@ CAMP framework and documentation use **CC BY 4.0**. If you redistribute or publi
 
 ---
 
-# 한국어
+# CAMP
 
 CAMP는 우리 회사나 팀이 **AI를 실제 업무에 얼마나 잘 활용하고 있는지, 다음에는 무엇을 해야 하는지** 약 8–10분 안에 점검하는 진단입니다.
 
@@ -218,7 +214,7 @@ CAMP Bench — 선택 사항
 
 ## CAMP Bench — 선택 사항
 
-Standalone Report를 보여준 뒤 CAMP가 비교 혜택을 설명하고 CAMP Bench 제출 여부를 자동으로 묻습니다. 사용자가 먼저 “제출해줘”라고 말할 필요는 없습니다.
+진단 마지막에 CAMP Bench 참여 여부를 묻습니다.
 
 ![CAMP Bench — 예시](assets/camp-bench.svg)
 
@@ -229,18 +225,16 @@ Standalone Report를 보여준 뒤 CAMP가 비교 혜택을 설명하고 CAMP Be
 - 다섯 영역별 강점과 격차
 - 같은 업종의 익명 조직이 10개 이상일 때 업종 비교
 
-CAMP Bench는 아직 시작 단계라 초기 비교 표본은 제한적입니다. 지금은 방향성과 다음 실행과제를 점검하는 데 우선 의미가 있으며, 참여가 쌓일수록 비교 결과도 더 유용해집니다.
+CAMP Bench는 아직 시작 단계라 비교 표본이 제한적이며, 참여가 쌓일수록 더 유용해집니다.
 
-### 제출에 동의하면
+### 제출
 
-CAMP가 제출 정보가 빠짐없이 준비됐는지 확인하고, 실제 전송 항목을 보여준 뒤 최종 동의를 받습니다.
+참여를 선택하면 CAMP가 전송할 내용을 보여주고 동의를 받습니다.
 
-- **Codex·Claude Code 등 로컬 Agent:** 동의 후 사용 중인 컴퓨터에서 Agent가 바로 제출합니다.
-- **ChatGPT·Claude·Gemini 등 대화형 AI:** 직접 제출할 수 없는 환경이면 JSON 파일 하나를 만들어 줍니다. [공식 CAMP Bench 제출 페이지](https://camp-bench-receiver.camp-bench-jhw.workers.dev/submit?lang=ko)에서 파일을 선택하고 내용을 확인한 뒤 **제출**을 누르면 됩니다.
+- **로컬 Agent:** 사용 중인 컴퓨터에서 바로 제출합니다.
+- **대화형 AI:** 직접 제출할 수 없으면 JSON 파일을 [CAMP Bench 제출 페이지](https://camp-bench-receiver.camp-bench-jhw.workers.dev/submit?lang=ko)에 올립니다.
 
-브라우저 제출에는 GitHub 계정이 필요 없습니다. **CB-**로 시작하는 접수번호가 나오면 제출 성공입니다. 이어서 한국어 또는 영어로 비공개 비교 리포트를 볼 수 있습니다.
-
-본인의 비공개 리포트에는 자기 회사명이 표시될 수 있지만 다른 조직은 모두 익명입니다. 개인 이름·이메일·원문 사내자료는 제출하지 않습니다.
+GitHub 계정은 필요 없습니다. **CB-** 접수번호가 나오면 성공입니다. 다른 조직은 익명으로 표시되며 개인 이름·이메일·원문 사내자료는 제출하지 않습니다.
 
 <details>
 <summary>방법론과 상세 문서</summary>

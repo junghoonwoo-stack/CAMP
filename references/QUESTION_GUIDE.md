@@ -249,9 +249,9 @@ D에서 중요한 단계마다 사람의 승인을 받는 것은 괜찮습니다
 
 ## Finish and offer CAMP Bench / 종료 및 CAMP Bench 안내
 
-After Q8, show the complete standalone report first. Then automatically explain what the private CAMP Bench comparison provides and ask once whether the participant wants to submit. Do not wait for the participant to request submission, and never submit without the later field review and explicit final consent.
+After Q8, show the complete report, explain what the private CAMP Bench comparison provides, and ask whether the participant wants to participate. If yes, review the fields and obtain consent before sending.
 
-Q8 이후 먼저 완전한 Standalone Report를 보여줍니다. 이어서 비공개 CAMP Bench 비교에서 무엇을 받을 수 있는지 설명하고 제출 의향을 한 번 자동으로 묻습니다. 참여자가 먼저 제출을 요청할 때까지 기다리지 않으며, 실제 전송 항목 확인과 명시적인 최종 동의 없이 제출하지 않습니다.
+Q8 이후 완전한 Report를 보여주고 CAMP Bench 비교 혜택과 참여 여부를 묻습니다. 참여를 선택하면 전송 항목을 확인하고 동의를 받은 뒤 제출합니다.
 
 ## Optional references / 더 알고 싶을 때
 

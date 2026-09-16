@@ -25,8 +25,8 @@ class InterviewContractTests(unittest.TestCase):
 
         self.assertIn("Submission readiness", skill)
         self.assertIn("제출 준비", skill)
-        self.assertIn("automatically explain the CAMP Bench benefit", skill)
-        self.assertIn("제출 의향을 한 번 자동으로", skill)
+        self.assertIn("explain the CAMP Bench benefit", skill)
+        self.assertIn("CAMP Bench의 혜택을 설명하고 참여 여부를 묻습니다", skill)
         self.assertIn("local agent", skill.lower())
         self.assertIn("로컬 Agent", skill)
         self.assertIn("official browser submission page", skill)

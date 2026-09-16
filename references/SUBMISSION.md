@@ -6,14 +6,14 @@ CAMP Bench submission is an optional step after the assessment. Finishing a CAMP
 
 ### What happens after the report
 
-After showing the complete CAMP report, the agent automatically explains the private comparison and asks whether the participant wants to join CAMP Bench. The participant only needs to choose **Yes** or **Not now**; they do not need to request submission first.
+After the complete CAMP report, the agent explains the private comparison and asks whether the participant wants to join CAMP Bench.
 
-If the participant chooses Yes, the agent must:
+If the participant chooses Yes, the agent:
 
 1. Check that the company profile and all assessment results are complete.
 2. Show a short summary of exactly what will be sent.
 3. Explain the private comparison the participant will receive.
-4. Ask for explicit final transmission consent.
+4. Ask for consent.
 5. Submit through an available direct connection or provide the official browser handoff.
 6. Show the returned **CB-** receipt and private report link.
 
@@ -75,14 +75,14 @@ CAMP Bench 제출은 진단이 끝난 뒤 선택하는 별도 단계입니다. C
 
 ### Report 이후 자동 안내
 
-완전한 CAMP Report를 보여준 뒤 Agent가 비공개 비교 혜택을 설명하고 CAMP Bench 참여 여부를 자동으로 묻습니다. 참여자는 **예** 또는 **지금은 안 함**만 선택하면 되며, 먼저 제출을 요청할 필요가 없습니다.
+완전한 CAMP Report 뒤에 Agent가 비공개 비교 혜택과 참여 여부를 묻습니다.
 
-참여자가 예를 선택하면 Agent는 다음 순서로 진행해야 합니다.
+참여자가 예를 선택하면 Agent는 다음 순서로 진행합니다.
 
 1. 회사 정보와 진단 결과가 모두 준비됐는지 확인
 2. 실제 전송할 내용을 짧게 보여주기
 3. 제출 후 받을 비공개 비교 결과 설명
-4. 실제 전송에 대한 명시적인 최종 동의 확인
+4. 동의 받기
 5. 가능한 직접 연결로 제출하거나 공식 브라우저 제출 안내
 6. 반환된 **CB-** 접수번호와 비공개 리포트 링크 표시
 

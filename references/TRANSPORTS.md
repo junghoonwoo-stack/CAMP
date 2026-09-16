@@ -1,6 +1,6 @@
 # CAMP Bench submission paths
 
-The participant does not need to choose a technical path before the assessment. After the standalone report is complete, automatically explain the CAMP Bench benefit and ask once whether the participant wants to join.
+Choose the submission path only after the assessment. CAMP explains the Bench benefit and asks whether the participant wants to join.
 
 ## Simple decision
 
@@ -29,7 +29,7 @@ For configured agent integrations, see [Native submission](NATIVE_SUBMISSION.md)
 
 ## 한국어
 
-참여자는 진단을 시작하기 전에 기술적인 제출 방식을 선택할 필요가 없습니다. Standalone Report가 완성되면 CAMP Bench의 혜택을 설명하고 참여 여부를 한 번 자동으로 묻습니다.
+제출 방식은 진단이 끝난 뒤에만 선택합니다. CAMP가 Bench 혜택과 참여 여부를 묻습니다.
 
 | CAMP 실행 환경 | 동의 후 진행 방식 | 참여자가 할 일 |
 |---|---|---|
