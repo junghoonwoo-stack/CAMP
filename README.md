@@ -70,7 +70,7 @@ https://github.com/junghoonwoo-stack/CAMP
 
 Read SKILL.md from this repository and run the CAMP assessment.
 Ask the profile questions first, show progress, and ask one simple question at a time.
-Use Korean unless I ask for English. Show the report when complete.
+Use English unless I ask for Korean. Show the report when complete.
 If I agree to CAMP Bench, prepare the exact private submission JSON for download.
 ```
 
@@ -82,13 +82,13 @@ The browser sends directly to CAMP Bench, so the cloud chat does not need DNS ac
 
 ## What CAMP Measures
 
-| Dimension | Core question |
+| Area | Simple question |
 |---|---|
-| **AI Access** | How broadly can people use AI for work? |
-| **AI Delegation** | How much real work is delegated to AI? |
-| **Enterprise Connection** | Can AI use company context, data, tools, and systems? |
-| **Knowledge Compounding** | Do skills, decisions, and session knowledge become reusable organizational assets? |
-| **Role Transformation** | Are handoffs, role boundaries, and organization design changing around AI? |
+| **AI use** *(AI Access)* | How many people use AI regularly in their work? |
+| **Work given to AI** *(AI Delegation)* | How much of a real task can AI complete? |
+| **Company information and systems** *(Enterprise Connection)* | Can AI use the documents, data, and work systems people need? |
+| **Reusing knowledge and methods** *(Knowledge Compounding)* | Are useful prompts, decisions, and work methods saved and reused by others? |
+| **Roles and ways of working** *(Role Transformation)* | Is AI changing who does what and how work moves between people and teams? |
 
 Each dimension is scored 0–20 for a total **CAMP Score /100**. CAMP also reports a qualitative **Stage 0–5**. Stage and Score are intentionally separate: Stage describes the recurring operating model; Score shows how balanced the five capabilities are.
 
@@ -192,6 +192,7 @@ Next target: build reusable skills and complete high-value end-to-end connection
 - [Report format](references/REPORT_TEMPLATE.md)
 - [CAMP Bench methodology](references/BENCHMARK.md)
 - [CAMP Bench submission](references/SUBMISSION.md)
+- [CAMP Bench submission paths](references/TRANSPORTS.md)
 
 ## License
 
@@ -283,13 +284,13 @@ CAMP Bench 제출에 동의하면 제출용 원본 JSON 파일을 다운로드�
 
 ## 무엇을 측정하나
 
-| Dimension | 핵심 질문 |
+| 영역 | 쉽게 말하면 |
 |---|---|
-| **AI Access** | 얼마나 많은 사람이 업무에서 AI를 사용할 수 있는가? |
-| **AI Delegation** | 실제 업무를 어느 수준까지 AI에 위임하는가? |
-| **Enterprise Connection** | AI가 회사 Context, Data, Tool, System을 사용할 수 있는가? |
-| **Knowledge Compounding** | Skill, 판단, Session Knowledge가 조직 자산으로 축적·재사용되는가? |
-| **Role Transformation** | Handoff와 직무 경계, 조직 구조가 AI를 중심으로 바뀌고 있는가? |
+| **AI 사용 범위** *(AI Access)* | 얼마나 많은 사람이 업무에서 AI를 꾸준히 사용하는가? |
+| **AI에 맡기는 일** *(AI Delegation)* | AI가 실제 업무를 어디까지 해낼 수 있는가? |
+| **회사 자료·시스템 연결** *(Enterprise Connection)* | AI가 업무에 필요한 문서, 데이터, 사내 시스템을 활용할 수 있는가? |
+| **지식과 업무 방법 재사용** *(Knowledge Compounding)* | 유용한 프롬프트, 판단, 업무 방법을 저장해 다른 사람도 다시 사용하는가? |
+| **역할과 일하는 방식의 변화** *(Role Transformation)* | AI 도입으로 누가 어떤 일을 하는지, 팀 사이에 일이 오가는 방식이 바뀌는가? |
 
 각 영역은 0–20점, 총 **CAMP Score /100**입니다. 별도로 **Stage 0–5**를 제공합니다. Stage는 현재 반복되는 Operating Model을, Score는 5개 역량의 균형을 보여주므로 둘은 반드시 같이 움직이지 않습니다.
 
@@ -393,16 +394,8 @@ CAMP Score: 40 / 100
 - [Report 형식](references/REPORT_TEMPLATE.md)
 - [CAMP Bench 기준](references/BENCHMARK.md)
 - [CAMP Bench 제출 절차](references/SUBMISSION.md)
+- [CAMP Bench 제출 경로](references/TRANSPORTS.md)
 
 ## License
 
 CAMP Framework와 문서는 **CC BY 4.0**입니다. Framework 또는 수정본을 외부에 재배포·공개할 때 canonical project 링크를 유지합니다.
-
-### Chat cannot submit? / 대화에서 제출이 안 되나요?
-
-Open [CAMP Bench submission](https://camp-bench-receiver.camp-bench-jhw.workers.dev/submit?lang=en), choose the submission JSON from your CAMP conversation, review it, and press Submit. No installation or GitHub account is needed. Keep the receipt and report link. This path uses your browser connection when the chat environment cannot reach the server.
-
-[CAMP Bench 제출 페이지](https://camp-bench-receiver.camp-bench-jhw.workers.dev/submit?lang=ko)에서 대화 중 만든 제출용 JSON 파일을 선택하고, 내용을 확인한 뒤 제출하세요. 설치나 GitHub 계정은 필요 없습니다. 접수번호와 리포트 링크를 보관하세요. 대화 환경에서 전송이 막혀도 사용자 브라우저로 제출할 수 있습니다.
-
-Survey questions are available in plain English and Korean. You can answer through everyday work examples without knowing AI technology terms.
-설문은 한국어·영어 모두 실제 업무 사례를 기준으로 쉽게 답하도록 구성했습니다. AI 기술 용어를 알 필요는 없습니다.
