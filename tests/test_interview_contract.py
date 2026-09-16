@@ -17,13 +17,20 @@ class InterviewContractTests(unittest.TestCase):
         self.assertIn("capability existence", skill)
         self.assertIn("역량의 존재", skill)
 
-    def test_fast_submission_and_missing_profile_gate_are_required(self):
+    def test_agent_first_submission_and_missing_profile_gate_are_required(self):
         skill = (ROOT / "SKILL.md").read_text(encoding="utf-8")
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        submission = (ROOT / "references" / "SUBMISSION.md").read_text(encoding="utf-8")
 
         self.assertIn("Submission readiness", skill)
         self.assertIn("제출 준비", skill)
-        self.assertIn("--submit --yes --no-wait --language en", skill)
-        self.assertIn("--submit --yes --no-wait --language ko", skill)
+        self.assertIn("local agent", skill.lower())
+        self.assertIn("로컬 Agent", skill)
+        self.assertIn("official browser submission page", skill)
+        self.assertIn("공식 CAMP Bench 제출 페이지", readme)
+        self.assertNotIn("python3", readme.lower())
+        self.assertNotIn("python3", skill.lower())
+        self.assertNotIn("python3", submission.lower())
 
 
 if __name__ == "__main__":

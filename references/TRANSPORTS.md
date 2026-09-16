@@ -1,39 +1,53 @@
-# CAMP Bench transports / 제출 방식
+# CAMP Bench submission paths
 
-CAMP Bench has one receiver and several ways to reach it. A repository URL or a skill file is not a network permission. Choose the first transport that the current assistant actually has; do not infer that a named tool is installed.
+The participant does not need to choose a technical path before the assessment. Ask about CAMP Bench only after the standalone report is complete.
 
-| Environment | Preferred transport | User action | Success |
-|---|---|---|---|
-| Local computer or VM | Local CLI (`camp_bench.py`) | Review fields and consent; submit from the same machine | Matching `receipt_id` |
-| ChatGPT with a configured CAMP Action | `submitCampAssessment` | Confirm fields and consent; approve platform confirmation | Matching `receipt_id` |
-| Claude with a configured CAMP MCP connector | `camp_bench_submit` | Confirm fields and consent; approve connector call | Matching `receipt_id` |
-| Gemini with a configured function/extension | CAMP submission function | Confirm fields and consent; approve function call | Matching `receipt_id` |
-| M365 Copilot with a configured Power Automate/connector flow | CAMP submission flow | Confirm fields and consent; approve flow | Matching `receipt_id` |
-| Installed GitHub connector with private-repository write permission | Queue exact JSON in `submissions/inbox/<receipt_id>.json` | Confirm fields and consent; approve GitHub write | Commit and processed status |
-| No native connector and no network access | Browser page | Choose exact JSON, review, press Submit | Matching `receipt_id` |
+## Simple decision
 
-The native transports are adapters around `PUT /v1/chat/submissions/{request_key}`. `POST /v1/chat/submissions` remains compatible, but PUT is easier for connectors: generate one opaque request key once and reuse that URL/body on retries; no idempotency header or client-side hash is required. They are not automatically available in every product or account. A GitHub queue must use a private repository; never use a public issue or gist.
+| Where CAMP is running | What happens after consent | Participant action |
+|---|---|---|
+| **Codex, Claude Code, or another local agent** | The agent validates and submits through the configured official receiver | Review the fields and approve |
+| **Hosted chat with a real CAMP connection** | The chat submits through that connection | Review the fields and approve the platform confirmation |
+| **ChatGPT, Claude, Gemini, or another hosted chat without a direct connection** | The chat creates the unchanged submission JSON | Download it and upload it on the official browser page |
 
-## Decision rule
+Official browser page:
 
-1. Confirm the complete profile, score, dimensions, evidence, and explicit benchmark consent.
-2. Inspect available tools. If a native CAMP tool is actually callable, use it. Do not use Python or shell merely because the receiver URL appears in instructions.
-3. If no native tool is callable, stop repeated DNS attempts. State that the current environment has no permitted transport and provide the exact browser handoff.
-4. A timeout or malformed response is **acceptance unconfirmed**. Only a verified matching receipt is accepted.
-5. Never send to another endpoint, public issue, gist, paste site, email address, or model provider as an improvised relay.
+- [English](https://camp-bench-receiver.camp-bench-jhw.workers.dev/submit?lang=en)
+- [한국어](https://camp-bench-receiver.camp-bench-jhw.workers.dev/submit?lang=ko)
 
-OpenAPI: https://camp-bench-receiver.camp-bench-jhw.workers.dev/openapi.json
+No GitHub account is required. The page keeps the file local until the participant reviews it, consents, and presses Submit.
 
-## Private GitHub queue
+A repository URL provides instructions; it does not give a hosted chat permission to access the internet. Do not repeatedly try unavailable network methods. If direct submission is unavailable, move immediately to the browser handoff.
 
-For assistants with genuine private-repository write access, write the exact validated JSON once to `submissions/inbox/<receipt_id>.json` in `junghoonwoo-stack/CAMP-Benchmark`. The private workflow validates and ingests it. A commit alone is not the final report; poll the receipt status until `report_status=ready`.
+Only a matching **CB-** receipt confirms acceptance. A timeout after sending means acceptance is unconfirmed, because the receiver may already have stored the record. Preserve the exact file and duplicate-prevention key while checking the original receipt.
 
-## Browser fallback
+Never use a public issue, gist, paste site, email, URL parameter, or another model provider as an improvised relay.
 
-https://camp-bench-receiver.camp-bench-jhw.workers.dev/submit?lang=ko
+For configured agent integrations, see [Native submission](NATIVE_SUBMISSION.md).
 
-The page keeps the file local until consent and Submit. It calculates the same idempotency key, sends directly to the receiver, and displays the receipt/report link.
+---
 
 ## 한국어
 
-CAMP 저장소 주소나 지침에 제출 URL이 적혀 있다고 해당 대화에 인터넷 전송 권한이 생기는 것은 아닙니다. ChatGPT Action, Claude MCP, Gemini 함수/확장, M365 Power Automate 연결은 각각 별도 설정이며 모든 사용자에게 자동으로 존재하지 않습니다. 연결된 도구가 없으면 DNS 재시도를 반복하지 말고, 정확한 JSON과 중복 방지 키를 보존한 뒤 브라우저 제출을 안내합니다. 시간 초과나 이상한 응답은 “접수 확인 불가”로 표시하고, 일치하는 Receipt가 있을 때만 접수 성공으로 말합니다.
+참여자는 진단을 시작하기 전에 기술적인 제출 방식을 선택할 필요가 없습니다. Standalone Report가 완성된 뒤 CAMP Bench 참여 여부를 확인합니다.
+
+| CAMP 실행 환경 | 동의 후 진행 방식 | 참여자가 할 일 |
+|---|---|---|
+| **Codex·Claude Code 등 로컬 Agent** | Agent가 공식 Receiver로 검증하고 바로 제출 | 전송 항목 확인 후 승인 |
+| **CAMP 직접 연결이 실제로 있는 대화형 AI** | 연결된 도구로 바로 제출 | 전송 항목과 플랫폼 확인 절차 승인 |
+| **직접 연결이 없는 ChatGPT·Claude·Gemini 등** | 대화가 원본 제출 JSON 생성 | 파일을 내려받아 공식 웹페이지에서 제출 |
+
+공식 제출 페이지:
+
+- [한국어](https://camp-bench-receiver.camp-bench-jhw.workers.dev/submit?lang=ko)
+- [English](https://camp-bench-receiver.camp-bench-jhw.workers.dev/submit?lang=en)
+
+GitHub 계정은 필요 없습니다. 참여자가 내용을 확인하고 동의한 뒤 제출 버튼을 누르기 전까지 파일은 전송되지 않습니다.
+
+Repository 주소는 실행 지침일 뿐 대화 환경에 인터넷 권한을 주지는 않습니다. 직접 제출이 불가능하면 다른 Network 방법을 반복하지 말고 바로 브라우저 제출로 전환합니다.
+
+일치하는 **CB-** 접수번호가 있어야 접수 성공입니다. 전송 후 시간 초과가 발생하면 이미 저장됐을 수 있으므로 접수 확인 불가로 표시합니다. 같은 파일과 중복 방지 키를 유지하면서 원래 접수 상태만 확인합니다.
+
+Public Issue·Gist·Paste Site·Email·URL Parameter·다른 Model Provider를 임시 전송 통로로 사용하지 않습니다.
+
+설정된 Agent 연동의 상세 규칙은 [Native submission](NATIVE_SUBMISSION.md)을 참고합니다.

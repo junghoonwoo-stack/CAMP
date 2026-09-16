@@ -11,14 +11,14 @@ CAMP diagnoses the **current recurring operating model**, not AI ambition, spend
 
 Use **Interview Mode** for a short assessment. In **Evidence Mode**, read supplied strategy, architecture, project, usage, or operating documents first and ask only what remains uncertain. For submission transport selection, read `references/TRANSPORTS.md`.
 
-### Execution and submission path
+### How participants run CAMP
 
-There are two supported paths:
+Run the assessment in the agent or chat the participant is already using. Do not ask them to choose a technical path before the interview.
 
-1. **Local path:** when a real terminal/VM and the CAMP repository are available, run the local CLI. Validate first, then submit from that same environment after explicit consent. A returned `receipt_id` is the only proof of acceptance.
-2. **Cloud-chat path:** when the conversation is running in a hosted chat or sandbox, run the interview in the chat and prepare the exact private JSON package. If a native CAMP connector is actually available, use it. Otherwise stop repeated Python or shell POSTs, offer the unchanged JSON as a download, and send the participant to the official browser submission page. No GitHub account is required.
+- In ChatGPT, Claude, Gemini, or another hosted chat, read this repository and start the interview.
+- In Codex, Claude Code, or another local agent, use the checked-out repository and start the same interview.
 
-A repository URL is instructions, not a network permission. Never claim success without a valid `receipt_id`. A DNS or outbound-network error means the browser handoff should be used with the unchanged JSON and idempotency key.
+Discuss transport only after the standalone report, if the participant chooses CAMP Bench. A repository URL provides instructions, not network permission. Never claim submission success without a valid receipt.
 
 ### Start
 
@@ -141,7 +141,7 @@ Assess: Stage advancement, Agent Test, replication, knowledge compounding, hando
 
 ### CAMP Bench
 
-Prefer a registered `submitCampAssessment` Action after consent and use `getCampReport` for results. See `references/NATIVE_SUBMISSION.md` and `references/TRANSPORTS.md`. A tool name in these instructions does not mean it is installed. If no callable native transport is present, do not repeatedly run Python or shell POST attempts: state that the current environment has no permitted transport and provide the exact browser handoff. Respect platform confirmations.
+After consent, let the current agent handle submission. A local agent should use the repository's configured receiver on the participant's behalf. A hosted chat should use a real CAMP connection only when it is actually callable; otherwise provide the unchanged JSON file and the official browser submission page immediately. Do not ask the participant to run validation or submission commands. See `references/NATIVE_SUBMISSION.md` and `references/TRANSPORTS.md`. Respect platform confirmations.
 
 After the standalone report, ask whether the user wants to submit the assessment to CAMP Bench. State the concrete benefit before asking for consent:
 
@@ -157,8 +157,6 @@ Benchmark rules:
 
 If the connected private CAMP Bench store is available and the user agrees, save a new assessment without overwriting history. If it is unavailable, do **not** claim submission succeeded; prepare a structured private submission package instead. Never direct users to post real company data in a public GitHub issue.
 
-If a registered `submitCampAssessment` Action is available, use it after consent instead of running Python; retrieve results with `getCampReport`. See `references/NATIVE_SUBMISSION.md`. Do not assume an Action is installed merely because this skill mentions it. Respect the platform's confirmation steps. Otherwise use the CLI sequence below.
-
 Use this submission sequence exactly:
 
 1. Deliver the complete standalone report first.
@@ -166,10 +164,10 @@ Use this submission sequence exactly:
 3. Run a completeness gate before asking for consent. Confirm that `company_name`, `country`, `industry`, `industry_segment`, `scope`, `headcount_band`, `function`, `respondent_role`, Stage/Score, all five dimensions, AI Operations, Sovereign AI, evidence level, and confidence are present. If anything is missing, ask only for the missing fields in one compact **Submission readiness** card. Never construct or send a partial submission.
 4. Summarize the fields to be sent: real company name, optional scope label, organization profile, respondent role category, Stage/Score, five dimensions, supporting capabilities, evidence level/confidence, and optional evidence summary. State that personal name/email and raw documents are excluded.
 5. Ask for explicit confirmation to privately store those fields and use anonymized/aggregate results for benchmarking.
-6. Only after confirmation, create the JSON under `private-submissions/`. The submit command validates it before sending; do not add a redundant validation-only run to the participant's wait.
-7. Submit through the configured endpoint with the fast receipt-first mode: `--submit --yes --no-wait --language en` for an English interaction or `--submit --yes --no-wait --language ko` for a Korean interaction. A valid `receipt_id` means the submission succeeded. Immediately show the receipt and returned human-readable `report_url`; do not wait silently for report generation.
-8. Treat submission acceptance and report readiness as separate states. Retrieve the report with `--status <receipt_id>` after a short interval. When ready, present the overall percentile/median position, overall score distribution, industry result or sample-size notice, five-dimension comparison, and priority gap in the interaction language. Keep `status_url` as the JSON/API endpoint. Do not rebuild the JSON, re-ask consent, or resubmit while polling.
-9. If DNS/network restrictions block sending, do not stop at “NOT SUBMITTED”. In the same response provide the downloadable original JSON and [Submit in your browser](https://camp-bench-receiver.camp-bench-jhw.workers.dev/submit?lang=en): “Download this file → open the page, choose the file and submit.” If file attachment is unavailable, provide the exact JSON privately for the page's paste option. No GitHub account, terminal, token, or installation is required for the public service. Use the client's bounded retry: at most three total attempts for temporary DNS/connection errors and HTTP 408/502/503/504, with 2 then 4 seconds between attempts. Keep the exact payload, destination, and idempotency key; do not ask for consent again for these approved attempts. Stop immediately after a verified receipt. Do not retry validation errors, permission denials, certificate failures, or malformed receipts. Do not restart the retry loop manually or change environments to evade network restrictions. A known DNS failure before sending means NOT SUBMITTED; a timeout or invalid response means SUBMISSION UNCONFIRMED because the server may have saved it. Reuse the exact file and idempotency key. Only a matching receipt confirms acceptance. If an endpoint override is in use, do not redirect its data to the official service automatically.
+6. Only after confirmation, create the exact private submission JSON. Keep it out of the public repository.
+7. If running as a local agent, validate and submit through the configured official receiver on the participant's behalf. If a real CAMP connection is callable in a hosted chat, use it. A valid `receipt_id` means the submission succeeded. Immediately show the receipt and human-readable `report_url`.
+8. Treat submission acceptance and report readiness as separate states. Use the returned status or report link to check the same receipt. When ready, present the overall percentile/median position, score distribution, industry result or sample-size notice, five-area comparison, and priority gap. Do not rebuild the JSON, re-ask consent, or resubmit while checking.
+9. If direct submission is unavailable or blocked, immediately provide the unchanged JSON as a download and [Submit in your browser](https://camp-bench-receiver.camp-bench-jhw.workers.dev/submit?lang=en): “Download the file → open the page → choose the file → review and submit.” No GitHub account, terminal, token, or installation is required. Temporary connection errors may use at most three total attempts with the exact same data and duplicate-prevention key. Stop on a verified receipt. Do not retry validation, permission, certificate, or malformed-receipt errors. A failure before sending means NOT SUBMITTED; a timeout after sending means SUBMISSION UNCONFIRMED. Only a matching receipt confirms acceptance.
 
 Never include personal respondent name, email, phone, employee ID, credentials, or raw confidential documents in the submission package. Never retry a failed request blindly; preserve the idempotency key and surface the failure.
 
@@ -181,14 +179,14 @@ CAMP는 AI 투자액이나 AI 프로젝트 개수가 아니라 **현재 반복�
 
 **Interview Mode**에서는 아래 질문을 진행합니다. **Evidence Mode**에서는 전략자료, Architecture, 과제, Usage Data, 운영자료를 먼저 읽고 확인되지 않은 부분만 질문합니다.
 
-### 실행과 제출 경로
+### 참여자가 CAMP를 실행하는 방법
 
-지원하는 방법은 두 가지입니다.
+참여자가 이미 사용 중인 Agent 또는 대화 환경에서 바로 진단을 시작합니다. 인터뷰 전에 기술적인 실행·제출 경로를 선택하게 하지 않습니다.
 
-1. **로컬 경로:** 사용자의 PC나 VM에서 CAMP Repository를 실행할 수 있으면 로컬 CLI로 진단 결과를 확인하고, 제출 동의를 받은 뒤 같은 환경에서 전송합니다. `receipt_id`가 반환되어야 접수 성공입니다.
-2. **클라우드 대화 경로:** ChatGPT, Claude, Gemini, M365 Copilot 같은 호스팅 대화나 Sandbox에서는 대화를 진행하고 정확한 Private JSON 파일을 만듭니다. CAMP 전용 Connector가 실제로 연결되어 있으면 그것을 사용합니다. 연결되어 있지 않거나 외부 전송이 막히면 Python이나 Shell 명령을 반복하지 않습니다. 원본 JSON을 다운로드하게 한 뒤 공식 브라우저 제출 페이지에서 파일을 선택하고, 내용을 확인한 뒤 제출하도록 안내합니다. GitHub 계정은 필요 없습니다.
+- ChatGPT, Claude, Gemini 등 대화형 AI에서는 이 Repository를 읽고 인터뷰를 시작합니다.
+- Codex, Claude Code 등 로컬 Agent에서는 내려받은 Repository로 같은 인터뷰를 시작합니다.
 
-Repository 주소는 실행 지침을 제공할 뿐 인터넷 전송 권한을 만들지 않습니다. 유효한 `receipt_id`가 없으면 제출 성공이라고 말하지 않습니다. DNS 또는 외부 Network 오류가 발생하면 원본 JSON과 중복 방지 키를 그대로 유지한 채 브라우저 제출로 전환합니다.
+Standalone Report가 끝난 뒤 참여자가 CAMP Bench를 선택한 경우에만 제출 방식을 설명합니다. Repository 주소는 실행 지침일 뿐 Network 권한을 만들지 않습니다. 유효한 접수번호 없이 제출 성공이라고 말하지 않습니다.
 
 ### 시작
 
@@ -310,7 +308,7 @@ Stage 상승, Agent Test, 복제 가능성, Knowledge Compounding, Handoff 감�
 
 ### CAMP Bench
 
-등록된 `submitCampAssessment` Action이 있으면 동의 후 Python 대신 호출하고 `getCampReport`로 결과를 조회합니다. `references/NATIVE_SUBMISSION.md`와 `references/TRANSPORTS.md`를 참고합니다. 지침에 이름이 있다고 실제 도구가 연결된 것으로 가정하지 않습니다. 실제 호출 가능한 연결이 없으면 Python·shell POST를 반복하지 말고, 현재 환경에 전송 권한이 없다고 알린 뒤 정확한 브라우저 제출 경로를 제공합니다. 플랫폼 확인 절차를 따릅니다.
+동의를 받은 뒤 현재 Agent가 제출을 처리합니다. 로컬 Agent는 참여자를 대신해 Repository에 설정된 공식 Receiver를 사용합니다. 대화형 AI는 실제 CAMP 연결이 호출 가능한 경우에만 직접 제출하고, 연결이 없으면 즉시 원본 JSON 파일과 공식 브라우저 제출 페이지를 제공합니다. 참여자에게 별도의 검증·제출 명령을 실행하게 하지 않습니다. `references/NATIVE_SUBMISSION.md`와 `references/TRANSPORTS.md`를 참고하고 플랫폼 확인 절차를 따릅니다.
 
 Standalone Report 이후 CAMP Bench 제출 여부를 묻습니다. 동의를 묻기 전에 다음과 같이 구체적인 보상을 설명합니다.
 
@@ -329,9 +327,9 @@ Private CAMP Bench Store가 연결되어 있고 사용자가 동의하면 새 As
 3. 동의를 묻기 전에 제출 준비 검사를 수행합니다. `company_name`, `country`, `industry`, `industry_segment`, `scope`, `headcount_band`, `function`, `respondent_role`, Stage/Score, 5개 영역, AI Operations, Sovereign AI, 실제 근거 수준, Confidence가 모두 있는지 확인합니다. 빠진 값이 있으면 하나의 짧은 **제출 준비** 카드에서 누락 항목만 묻습니다. 불완전한 JSON을 만들거나 보내지 않습니다.
 4. 실제 전송 항목을 요약합니다: 실제 회사명, 선택적 하위 조직명, 조직 Profile, 응답자 역할 범주, Stage/Score, 5개 영역, Supporting Capability, 실제 근거 수준/Confidence, 선택적 Evidence Summary. 개인 이름·이메일과 원문 자료는 제외된다고 알립니다.
 5. 비공개 저장과 익명·집계 Benchmark 사용에 대해 명시적으로 다시 확인합니다.
-6. 확인 후에만 `private-submissions/` 아래 JSON을 만듭니다. Submit 명령이 전송 전에 자동 검증하므로 참여자를 기다리게 하는 별도의 중복 검증은 실행하지 않습니다.
-7. 설정된 Endpoint에 빠른 Receipt 우선 방식으로 제출합니다. 한국어 Interaction은 `--submit --yes --no-wait --language ko`, 영어 Interaction은 `--submit --yes --no-wait --language en`을 사용합니다. 유효한 `receipt_id`가 오면 제출은 성공입니다. Receipt와 사람이 읽는 `report_url`을 즉시 보여주고, Report 생성 중에 말없이 기다리지 않습니다.
-8. **제출 접수**와 **리포트 준비**를 별도 상태로 다룹니다. 잠시 뒤 `--status <receipt_id>`로 조회합니다. 준비되면 대화 언어로 전체 Percentile/Median 위치, 점수 분포, 업종 결과 또는 표본 부족 안내, 5개 영역 비교, Priority Gap을 보여줍니다. `status_url`은 JSON/API 주소로 구분합니다. 조회 중 JSON을 다시 만들거나 동의를 다시 묻거나 재제출하지 않습니다.
-9. DNS나 네트워크 제한으로 전송이 막히면 “미제출” 안내로 끝내지 않습니다. 같은 답변에 원본 JSON 다운로드와 [브라우저에서 제출하기](https://camp-bench-receiver.camp-bench-jhw.workers.dev/submit?lang=ko) 링크를 함께 제공합니다. “파일 내려받기 → 위 페이지에서 파일을 선택하고 제출” 두 단계로 안내합니다. 파일 첨부가 불가능하면 해당 페이지에 붙여넣을 정확한 JSON을 비공개 대화에서 제공합니다. 공개 제출 서비스는 GitHub 계정·터미널·토큰·설치가 필요 없습니다. 일시적 DNS·연결 오류와 HTTP 408/502/503/504에는 클라이언트가 총 3번까지 시도하며, 재시도 전에 2초·4초 기다립니다. 승인받은 동일 파일·목적지·중복 방지 키를 유지하고 동의를 다시 묻지 않습니다. 정상 접수번호가 오면 즉시 멈춥니다. 입력값 오류·권한 거부·인증서 문제·잘못된 접수번호에는 자동 재시도하지 않습니다. 3번 실패 후에는 자동 반복을 다시 시작하지 말고 웹 제출을 안내합니다. 환경 제한을 우회하지 않습니다. 전송 전 DNS 실패가 확인되면 미제출, 시간 초과나 응답 오류라면 저장됐을 수도 있으므로 접수 확인 불가라고 구분합니다. 파일과 중복 방지 키는 그대로 유지하며, 일치하는 접수번호가 있어야 접수 성공입니다. 별도 제출 주소를 사용 중이면 공식 서비스로 임의 전환하지 않습니다.
+6. 확인 후에만 정확한 비공개 제출 JSON을 만들고 Public Repository에는 저장하지 않습니다.
+7. 로컬 Agent라면 참여자를 대신해 설정된 공식 Receiver로 검증·제출합니다. 대화형 AI에 실제 CAMP 연결이 있으면 그것을 사용합니다. 유효한 `receipt_id`가 오면 제출 성공이며, 접수번호와 사람이 읽는 `report_url`을 즉시 보여줍니다.
+8. **제출 접수**와 **리포트 준비**를 별도 상태로 다룹니다. 반환된 상태 또는 리포트 링크로 같은 접수번호를 확인합니다. 준비되면 전체 Percentile·Median 위치, 점수 분포, 업종 결과 또는 표본 부족 안내, 5개 영역 비교, Priority Gap을 보여줍니다. 확인 중 JSON을 다시 만들거나 동의를 다시 묻거나 재제출하지 않습니다.
+9. 직접 제출할 수 없거나 Network가 막히면 즉시 원본 JSON 다운로드와 [브라우저에서 제출하기](https://camp-bench-receiver.camp-bench-jhw.workers.dev/submit?lang=ko)를 제공합니다. “파일 내려받기 → 페이지 열기 → 파일 선택 → 확인 후 제출”로 안내합니다. GitHub 계정·Terminal·Token·설치는 필요 없습니다. 일시적인 연결 오류는 같은 데이터와 중복 방지 키로 총 3번까지만 시도합니다. 접수번호가 확인되면 멈추고, 입력값·권한·인증서·잘못된 접수번호 오류는 자동 재시도하지 않습니다. 전송 전 실패는 미제출, 전송 후 시간 초과는 접수 확인 불가로 구분합니다. 일치하는 접수번호가 있어야 접수 성공입니다.
 
 개인 응답자 이름, 이메일, 전화번호, 사번, Credential, Raw Confidential Document를 Submission Package에 넣지 않습니다. 실패한 요청을 무조건 재시도하지 않으며 Idempotency Key를 유지하고 실패를 명확히 알립니다.
