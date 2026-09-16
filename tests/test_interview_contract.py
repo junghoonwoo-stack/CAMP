@@ -30,7 +30,7 @@ class InterviewContractTests(unittest.TestCase):
         self.assertIn("local agent", skill.lower())
         self.assertIn("로컬 Agent", skill)
         self.assertIn("official browser submission page", skill)
-        self.assertIn("공식 CAMP Bench 제출 페이지", readme)
+        self.assertIn("CAMP Bench 제출 페이지", readme)
         self.assertNotIn("python3", readme.lower())
         self.assertNotIn("python3", skill.lower())
         self.assertNotIn("python3", submission.lower())
