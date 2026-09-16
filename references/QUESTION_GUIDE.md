@@ -2,7 +2,7 @@
 
 Use everyday work language. Technical knowledge is not required. Do not show the scoring shorthand from SKILL.md in questions, choices, or reports. Avoid production, harness, runtime, trace, eval, routing, agent-first, RAG, MCP, and API unless the participant asks about them. Explain through a work example first.
 
-Ask one card at a time, with the question, a one-sentence reason, and choices together. The interview has **13 cards**: five setup cards and eight questions. Show a native progress bar where available plus “Step n of 13 / n번째 단계 · 전체 13단계”. Otherwise show the count and percentage. It indicates the current step; conditional clarifications stay on that step.
+Ask one card at a time, with the question, a one-sentence reason, and choices together. The interview has **13 cards**: five setup cards and eight questions. Begin every card with “CAMP · Progress n/13 / CAMP · 진행 n/13”, a compact text bar such as “███░░░░░░░░░░”, and the percentage. Use a native progress bar as well when available. Conditional clarifications stay on the same step.
 
 Accept “not sure / 잘 모르겠어요”. Ask one concrete follow-up, then mark the answer unknown if it remains unclear. Unknown is not zero. Resolve required scoring answers before giving a final total or submitting. Do not silently change an answer. Estimates are fine for Q1.
 
@@ -246,6 +246,12 @@ D에서 중요한 단계마다 사람의 승인을 받는 것은 괜찮습니다
 - D. 진단할 조직 전체에서 보통 이렇게 일함
 
 중요한 핵심 팀 사례 하나라도 B나 C의 근거가 될 수 있습니다. 그렇다고 조직 전체가 쓴다는 뜻은 아닙니다.
+
+## Finish and offer CAMP Bench / 종료 및 CAMP Bench 안내
+
+After Q8, show the complete standalone report first. Then automatically explain what the private CAMP Bench comparison provides and ask once whether the participant wants to submit. Do not wait for the participant to request submission, and never submit without the later field review and explicit final consent.
+
+Q8 이후 먼저 완전한 Standalone Report를 보여줍니다. 이어서 비공개 CAMP Bench 비교에서 무엇을 받을 수 있는지 설명하고 제출 의향을 한 번 자동으로 묻습니다. 참여자가 먼저 제출을 요청할 때까지 기다리지 않으며, 실제 전송 항목 확인과 명시적인 최종 동의 없이 제출하지 않습니다.
 
 ## Optional references / 더 알고 싶을 때
 

@@ -12,8 +12,9 @@ class InterviewContractTests(unittest.TestCase):
 
         self.assertIn("13 cards", skill)
         self.assertIn("Never silently infer or skip the profile", skill)
-        self.assertIn("Progress n/13", skill)
-        self.assertIn("진행 n/13", skill)
+        self.assertIn("CAMP · Progress n/13", skill)
+        self.assertIn("CAMP · 진행 n/13", skill)
+        self.assertIn("███░░░░░░░░░░", skill)
         self.assertIn("capability existence", skill)
         self.assertIn("역량의 존재", skill)
 
@@ -24,6 +25,8 @@ class InterviewContractTests(unittest.TestCase):
 
         self.assertIn("Submission readiness", skill)
         self.assertIn("제출 준비", skill)
+        self.assertIn("automatically explain the CAMP Bench benefit", skill)
+        self.assertIn("제출 의향을 한 번 자동으로", skill)
         self.assertIn("local agent", skill.lower())
         self.assertIn("로컬 Agent", skill)
         self.assertIn("official browser submission page", skill)

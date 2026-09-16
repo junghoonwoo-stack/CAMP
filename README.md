@@ -60,26 +60,36 @@ CAMP separates **Stage** from **Score**. Stage describes how work is currently d
 ## What the conversation looks like
 
 ~~~text
-CAMP · Progress 1/13
+CAMP · Progress 1/13  █░░░░░░░░░░░░ 8%
 Which company or team are we assessing, and in which country?
 
-CAMP · Progress 2/13
+CAMP · Progress 2/13  ██░░░░░░░░░░░ 15%
 Should your answers describe the whole company, a business unit, or a team?
+[A] Whole company  [B] Business unit  [C] Team  [D] New AI-native organization
 
 ...
+
+CAMP · Progress 13/13  █████████████ 100%
+How consistently is this way of working used?
+[A] One-off test  [B] Repeated by several people or teams
+[C] Managed with an owner and results  [D] Standard way of working
 
 Your result
 Stage 3 — Connected AI
 CAMP Score: 60 / 100
 Biggest bottleneck: knowledge is not yet being reused across the organization
 Next 90 days: three practical priorities
+
+CAMP Bench — optional
+Would you like to submit this result privately and receive a comparison report?
+[A] Yes  [B] Not now
 ~~~
 
-Questions use everyday language. When the chat supports it, answers appear as clickable choices.
+Every card shows the current step and progress bar. Questions use everyday language. When the chat supports it, answers appear as clickable choices.
 
 ## CAMP Bench — optional comparison
 
-After the assessment, you can choose to submit the result privately to CAMP Bench.
+After showing the standalone report, CAMP automatically explains the benefit and asks whether you want to submit privately to CAMP Bench. You do not need to request submission first.
 
 ![CAMP Bench — illustrative example](assets/camp-bench.svg)
 
@@ -92,17 +102,11 @@ CAMP Bench can show:
 
 CAMP Bench is still at an early stage, so comparison data is currently limited. The immediate value is checking your direction and next actions. The benchmark will become more useful as participation grows.
 
-### How to submit
+### If you choose Yes
 
-Simply tell the agent:
+CAMP checks that the submission is complete, shows exactly what will be sent, and asks for final consent.
 
-~~~text
-Submit this result to CAMP Bench.
-~~~
-
-The agent will show what will be sent and ask for your consent.
-
-- **Codex, Claude Code, or another local agent:** the agent submits directly from your computer.
+- **Codex, Claude Code, or another local agent:** the agent submits directly from your computer after consent.
 - **ChatGPT, Claude, Gemini, or another hosted chat:** if direct submission is unavailable, the chat gives you one JSON file. Upload it to the [official CAMP Bench submission page](https://camp-bench-receiver.camp-bench-jhw.workers.dev/submit?lang=en), review it, and press **Submit**.
 
 No GitHub account is needed for browser submission. A receipt beginning with **CB-** confirms success. The report link then shows your private comparison in English or Korean.
@@ -185,26 +189,36 @@ CAMP는 **Stage**와 **Score**를 구분합니다. Stage는 현재 AI와 일하�
 ## 실제 대화 예시
 
 ~~~text
-CAMP · 진행 1/13
+CAMP · 진행 1/13  █░░░░░░░░░░░░ 8%
 어느 회사나 팀을 진단할까요? 국가는 어디인가요?
 
-CAMP · 진행 2/13
+CAMP · 진행 2/13  ██░░░░░░░░░░░ 15%
 회사 전체, 사업부·본부, 팀·부서 중 어느 범위를 기준으로 답할까요?
+[A] 회사 전체  [B] 사업부·본부  [C] 팀·부서  [D] AI 중심 신설 조직
 
 ...
+
+CAMP · 진행 13/13  █████████████ 100%
+이런 AI 활용 방식이 실제 업무에서 얼마나 꾸준히 사용되고 있나요?
+[A] 일회성 시험  [B] 여러 사람이나 팀이 반복 사용
+[C] 담당자와 결과 확인 체계를 두고 운영  [D] 표준 업무방식
 
 진단 결과
 Stage 3 — 회사 업무에 연결된 AI
 CAMP Score: 60 / 100
 가장 큰 병목: 업무 지식과 방법이 아직 조직 전체에서 재사용되지 않음
 향후 90일: 우선 실행과제 세 가지
+
+CAMP Bench — 선택 사항
+이 결과를 비공개로 제출하고 다른 조직과의 비교 리포트를 받아볼까요?
+[A] 예  [B] 지금은 안 함
 ~~~
 
-질문은 일상적인 표현을 사용합니다. 대화 환경이 지원하면 선택지가 클릭 버튼으로 나타납니다.
+모든 카드에 현재 단계와 진행 막대가 표시됩니다. 질문은 일상적인 표현을 사용하며, 대화 환경이 지원하면 선택지가 클릭 버튼으로 나타납니다.
 
 ## CAMP Bench — 선택 사항
 
-진단이 끝난 뒤 원할 때만 CAMP Bench에 비공개로 제출할 수 있습니다.
+Standalone Report를 보여준 뒤 CAMP가 비교 혜택을 설명하고 CAMP Bench 제출 여부를 자동으로 묻습니다. 사용자가 먼저 “제출해줘”라고 말할 필요는 없습니다.
 
 ![CAMP Bench — 예시](assets/camp-bench.svg)
 
@@ -217,17 +231,11 @@ CAMP Score: 60 / 100
 
 CAMP Bench는 아직 시작 단계라 초기 비교 표본은 제한적입니다. 지금은 방향성과 다음 실행과제를 점검하는 데 우선 의미가 있으며, 참여가 쌓일수록 비교 결과도 더 유용해집니다.
 
-### 제출하는 방법
+### 제출에 동의하면
 
-Agent에게 다음과 같이 말하면 됩니다.
+CAMP가 제출 정보가 빠짐없이 준비됐는지 확인하고, 실제 전송 항목을 보여준 뒤 최종 동의를 받습니다.
 
-~~~text
-이 결과를 CAMP Bench에 제출해줘.
-~~~
-
-Agent가 전송 항목을 보여주고 동의를 확인합니다.
-
-- **Codex·Claude Code 등 로컬 Agent:** 사용 중인 컴퓨터에서 Agent가 바로 제출합니다.
+- **Codex·Claude Code 등 로컬 Agent:** 동의 후 사용 중인 컴퓨터에서 Agent가 바로 제출합니다.
 - **ChatGPT·Claude·Gemini 등 대화형 AI:** 직접 제출할 수 없는 환경이면 JSON 파일 하나를 만들어 줍니다. [공식 CAMP Bench 제출 페이지](https://camp-bench-receiver.camp-bench-jhw.workers.dev/submit?lang=ko)에서 파일을 선택하고 내용을 확인한 뒤 **제출**을 누르면 됩니다.
 
 브라우저 제출에는 GitHub 계정이 필요 없습니다. **CB-**로 시작하는 접수번호가 나오면 제출 성공입니다. 이어서 한국어 또는 영어로 비공개 비교 리포트를 볼 수 있습니다.
