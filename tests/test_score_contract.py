@@ -72,7 +72,7 @@ class ScoreContractTests(unittest.TestCase):
         self.assertIn("Data/metadata operations", skill)
         self.assertIn("Connector operations", skill)
         self.assertIn("augmentation and replication of capable people", skill)
-        self.assertIn("workspace/filesystem", skill)
+        self.assertIn("workspaces/filesystems", skill)
         self.assertIn("Operating ownership", skill)
         self.assertIn("never create extra points", skill)
 
