@@ -80,6 +80,14 @@ class ScoreContractTests(unittest.TestCase):
         self.assertNotIn("## 한국어", skill)
         self.assertLess(len(skill), 16000)
 
+    def test_score_contract_is_one_compact_canonical_definition(self):
+        contract = (ROOT / "references" / "SCORE_CONTRACT.md").read_text(encoding="utf-8")
+
+        self.assertIn("canonical scoring boundary", contract)
+        self.assertIn("한국어로는", contract)
+        self.assertNotIn("## 한국어", contract)
+        self.assertLess(len(contract), 9000)
+
 
 if __name__ == "__main__":
     unittest.main()
