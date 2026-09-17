@@ -11,13 +11,14 @@ class ScoreContractTests(unittest.TestCase):
         contract = (ROOT / "references" / "SCORE_CONTRACT.md").read_text(encoding="utf-8")
         schema = json.loads((ROOT / "benchmark" / "submission.schema.json").read_text(encoding="utf-8"))
 
-        self.assertIn("five scored dimensions", contract)
-        self.assertIn("AI Access", contract)
-        self.assertIn("AI Delegation", contract)
-        self.assertIn("Enterprise Connection", contract)
-        self.assertIn("Knowledge Compounding", contract)
-        self.assertIn("Role Transformation", contract)
-        self.assertIn("CAMP Score /100", contract)
+        for name in [
+            "AI Access",
+            "AI Delegation",
+            "Enterprise Connection",
+            "Knowledge Compounding",
+            "Role Transformation",
+        ]:
+            self.assertIn(name, contract)
 
         dims = schema["properties"]["dimensions"]
         self.assertEqual(
@@ -28,13 +29,12 @@ class ScoreContractTests(unittest.TestCase):
             self.assertEqual(dims["properties"][key]["enum"], [0, 5, 10, 15, 20])
         self.assertEqual(schema["properties"]["total_score"]["maximum"], 100)
 
-    def test_new_probes_do_not_create_extra_score_buckets(self):
+    def test_evidence_probes_do_not_create_extra_score_buckets(self):
         guide = (ROOT / "references" / "QUESTION_GUIDE.md").read_text(encoding="utf-8")
         contract = (ROOT / "references" / "SCORE_CONTRACT.md").read_text(encoding="utf-8")
 
         self.assertIn("evidence probes, not extra score buckets", guide)
         self.assertIn("Same-card probes never create additional points", guide)
-        self.assertIn("total remains **/100**", guide)
         self.assertIn("metadata and data-mart operations", contract)
         self.assertIn("MCP, plugin, API, tool distribution", contract)
         self.assertIn("workspace/filesystem controls", contract)
@@ -45,27 +45,48 @@ class ScoreContractTests(unittest.TestCase):
         stages = (ROOT / "references" / "STAGES.md").read_text(encoding="utf-8")
 
         self.assertIn("supporting capability, not a sixth score dimension", playbook)
-        self.assertIn("Observability & cost", playbook)
-        self.assertIn("Quality & eval", playbook)
-        self.assertIn("Runtime security", playbook)
-        self.assertIn("Operating ownership", playbook)
+        for phrase in ["Observability & cost", "Quality & eval", "Runtime security", "Operating ownership"]:
+            self.assertIn(phrase, playbook)
         self.assertIn("Stage 4–5 should not receive High confidence", stages)
 
-    def test_skill_master_is_synced_with_refined_methodology(self):
+    def test_skill_is_concise_execution_master_with_canonical_owners(self):
         skill = (ROOT / "SKILL.md").read_text(encoding="utf-8")
+        owners = [
+            "references/SCORE_CONTRACT.md",
+            "references/QUESTION_GUIDE.md",
+            "references/PLAYBOOK.md",
+            "references/STAGES.md",
+            "references/REPORT_TEMPLATE.md",
+            "references/BENCHMARK.md",
+            "references/SUBMISSION.md",
+            "references/NATIVE_SUBMISSION.md",
+            "references/TRANSPORTS.md",
+        ]
+        for path in owners:
+            self.assertIn(path, skill)
+            self.assertTrue((ROOT / path).exists(), path)
 
-        self.assertIn("references/SCORE_CONTRACT.md", skill)
-        self.assertIn("execution master", skill)
-        self.assertIn("five scored dimensions", skill)
+        self.assertIn("Single-source rule", skill)
+        self.assertIn("Change discipline", skill)
+        self.assertIn("five dimensions", skill)
         self.assertIn("Data/metadata operations", skill)
         self.assertIn("Connector operations", skill)
         self.assertIn("augmentation and replication of capable people", skill)
-        self.assertIn("workspace/filesystem", skill)
+        self.assertIn("workspaces/filesystems", skill)
         self.assertIn("Operating ownership", skill)
-        self.assertIn("never add points above 100", skill)
-        self.assertIn("회사를 AI가 더 잘 읽고 실행할 수 있게", skill)
-        self.assertIn("Data/Metadata 운영", skill)
-        self.assertIn("개인을 증강·복제", skill)
+        self.assertIn("never create extra points", skill)
+
+        # Localized participant copy belongs in QUESTION_GUIDE, not a second full master.
+        self.assertNotIn("## 한국어", skill)
+        self.assertLess(len(skill), 16000)
+
+    def test_score_contract_is_one_compact_canonical_definition(self):
+        contract = (ROOT / "references" / "SCORE_CONTRACT.md").read_text(encoding="utf-8")
+
+        self.assertIn("canonical scoring boundary", contract)
+        self.assertIn("한국어로는", contract)
+        self.assertNotIn("## 한국어", contract)
+        self.assertLess(len(contract), 9000)
 
 
 if __name__ == "__main__":

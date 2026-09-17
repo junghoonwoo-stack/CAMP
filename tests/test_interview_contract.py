@@ -13,10 +13,11 @@ class InterviewContractTests(unittest.TestCase):
         self.assertIn("13 cards", skill)
         self.assertIn("Never silently infer or skip the profile", skill)
         self.assertIn("CAMP · Progress n/13", skill)
-        self.assertIn("CAMP · 진행 n/13", skill)
-        self.assertIn("███░░░░░░░░░░", skill)
         self.assertIn("capability existence", skill)
-        self.assertIn("역량의 존재", skill)
+
+        # Localized participant-facing copy belongs in QUESTION_GUIDE.
+        self.assertIn("CAMP · 진행 n/13", guide)
+        self.assertIn("## 한국어 질문", guide)
 
     def test_agent_first_submission_and_missing_profile_gate_are_required(self):
         skill = (ROOT / "SKILL.md").read_text(encoding="utf-8")
@@ -24,11 +25,8 @@ class InterviewContractTests(unittest.TestCase):
         submission = (ROOT / "references" / "SUBMISSION.md").read_text(encoding="utf-8")
 
         self.assertIn("Submission readiness", skill)
-        self.assertIn("제출 준비", skill)
         self.assertIn("explain the CAMP Bench benefit", skill)
-        self.assertIn("CAMP Bench의 혜택을 설명하고 참여 여부를 묻습니다", skill)
         self.assertIn("local agent", skill.lower())
-        self.assertIn("로컬 Agent", skill)
         self.assertIn("official browser submission page", skill)
         self.assertIn("CAMP Bench 제출 페이지", readme)
         self.assertNotIn("python3", readme.lower())
