@@ -17,7 +17,7 @@ class InterviewContractTests(unittest.TestCase):
 
         # Localized participant-facing copy belongs in QUESTION_GUIDE.
         self.assertIn("CAMP · 진행 n/13", guide)
-        self.assertIn("역량의 존재", guide)
+        self.assertIn("## 한국어 질문", guide)
 
     def test_agent_first_submission_and_missing_profile_gate_are_required(self):
         skill = (ROOT / "SKILL.md").read_text(encoding="utf-8")
