@@ -1,22 +1,20 @@
 # CAMP Score Contract
 
-This is the canonical scoring boundary for **CAMP 1.x**. Question wording and evidence probes may evolve; the score shape must not drift silently.
+This is the canonical scoring boundary for **CAMP 1.x**. Question wording and evidence probes may evolve; the score shape and anchor meaning must not drift silently.
 
-## Fixed structure
+## Fixed structure and anchors
 
-CAMP 1.x has five scored dimensions, each worth 20 points:
+CAMP 1.x has five scored dimensions, each worth 20 points. Each dimension uses only `0 / 5 / 10 / 15 / 20`; total is always **CAMP Score /100**.
 
-| Dimension | What it measures |
-|---|---|
-| **AI Access** | How broadly people in the assessed scope repeatedly use approved AI for real work. |
-| **AI Delegation** | How much real work people can delegate to AI, from assistance to agent-first execution. |
-| **Enterprise Connection** | How reliably AI can use governed company context, data, tools, and systems. |
-| **Knowledge Compounding** | Whether useful instructions, decisions, sessions, corrections, and outcomes become reusable organizational assets. |
-| **Role Transformation** | Whether AI augments/replicates capable people, reduces handoffs, and changes responsibility or organization design. |
+| Dimension | 0 | 5 | 10 | 15 | 20 |
+|---|---|---|---|---|---|
+| **AI Access** | <5% recurring users | 5–20% | 21–50% | 51–80% | 81%+ |
+| **AI Delegation** | Search/Q&A/summary | Draft/partial task | Meaningful result for human review | Connected multi-step work with context/tools | AI-first delegation is normal; people review/approve/handle exceptions |
+| **Enterprise Connection** | External/general info only | Company files/docs/search | Managed internal datasets or everyday work tools | Live business data/systems with managed recurring connection | Controlled read + write/action with permissions, approvals, logs |
+| **Knowledge Compounding** | Disappears after sessions | Personal prompts/notes/examples | Shared reusable instructions/examples/methods | Owner + versioning + checks/evals + distribution | Sessions/decisions/corrections/outcomes systematically improve future people/agents |
+| **Role Transformation** | Little change | Same role, faster | Adjacent work previously requiring another specialist | Capable methods replicated through AI + fewer handoffs | R&R/team/workforce design changes around work delegated to AI |
 
-Each dimension uses only `0 / 5 / 10 / 15 / 20`. Total is always **CAMP Score /100**.
-
-한국어로는 각각 **AI 사용범위 / AI 업무위임 / 회사 Data·System 연결 / 지식·업무방식 재사용 / 역할·조직 변화**를 의미하며, 동일하게 각 20점·총 100점임.
+한국어로는 각각 **AI 사용범위 / AI 업무위임 / 회사 Data·System 연결 / 지식·업무방식 재사용 / 역할·조직 변화**를 의미하며, 위 Anchor 의미를 그대로 사용함.
 
 ## Evidence probes are not score buckets
 
@@ -27,6 +25,8 @@ Examples:
 - MCP, plugin, API, tool distribution and lifecycle ownership → **Enterprise Connection** evidence;
 - replication of a strong employee’s way of working → **Knowledge Compounding** and **Role Transformation** evidence;
 - a human-facing dashboard may be useful IT, but does not by itself increase Agent maturity unless it also makes context, tools, permissions, or execution available to AI.
+
+Upper anchors require credible recurring evidence. A personal script, one-off connector, demo, or future plan does not establish an operational capability.
 
 ## AI Operations is separate from /100
 
@@ -55,10 +55,10 @@ If all three are No, classify it as valuable IT or AI-made IT rather than core A
 ## Versioning rule
 
 Within **CAMP 1.x**:
-- the five dimension names and 20-point weights remain fixed;
+- the five dimension names, anchor meanings, and 20-point weights remain fixed;
 - total remains `/100`;
 - historical benchmark records remain comparable at the dimension level;
-- wording, examples, probes, and Stage evidence requirements may become more precise;
-- changing a dimension definition or weight requires a new major score contract and benchmark cohort separation.
+- wording, examples, probes, and Stage evidence requirements may become more precise without changing anchor meaning;
+- changing a dimension definition, anchor meaning, or weight requires a new major score contract and benchmark cohort separation.
 
 Never silently recalculate historical submissions under a materially different score contract.
