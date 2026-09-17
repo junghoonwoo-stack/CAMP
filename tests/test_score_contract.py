@@ -51,6 +51,22 @@ class ScoreContractTests(unittest.TestCase):
         self.assertIn("Operating ownership", playbook)
         self.assertIn("Stage 4–5 should not receive High confidence", stages)
 
+    def test_skill_master_is_synced_with_refined_methodology(self):
+        skill = (ROOT / "SKILL.md").read_text(encoding="utf-8")
+
+        self.assertIn("references/SCORE_CONTRACT.md", skill)
+        self.assertIn("execution master", skill)
+        self.assertIn("five scored dimensions", skill)
+        self.assertIn("Data/metadata operations", skill)
+        self.assertIn("Connector operations", skill)
+        self.assertIn("augmentation and replication of capable people", skill)
+        self.assertIn("workspace/filesystem", skill)
+        self.assertIn("Operating ownership", skill)
+        self.assertIn("never add points above 100", skill)
+        self.assertIn("회사를 AI가 더 잘 읽고 실행할 수 있게", skill)
+        self.assertIn("Data/Metadata 운영", skill)
+        self.assertIn("개인을 증강·복제", skill)
+
 
 if __name__ == "__main__":
     unittest.main()
