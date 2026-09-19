@@ -29,7 +29,7 @@ CAMP diagnoses an organization’s **current recurring operating model with AI**
 
 CAMP asks whether the company is becoming **more usable by AI**, not merely whether people received more software.
 
-CAMP uses **AI-driven** as a diagnostic lens: the model itself does meaningful work, and better models should translate into better organizational capability because the surrounding context and harness are reusable. **AI-driven is not a sixth score dimension or a new Stage.**
+CAMP uses **AI-driven** as a scored principle inside **AI Delegation**: the model itself does meaningful work, and better models should translate into better organizational capability because the surrounding context and harness are reusable. **AI-driven is not a sixth score dimension or a new Stage.**
 
 - Human-facing dashboards, portals, screens, and workflows may be valuable IT, but do not by themselves establish Agent Transformation.
 - Governed data/context/metadata, tools, MCP/API/plugins, permissions, actions, memory, skills, evals, and runtime controls that let AI understand or execute company work are direct AX evidence.
@@ -78,12 +78,12 @@ CAMP Score always has five dimensions, each `/20`:
 
 Each dimension uses only `0 / 5 / 10 / 15 / 20`; total is always **CAMP Score /100**. Exact anchors are owned by `references/SCORE_CONTRACT.md` and participant wording by `references/QUESTION_GUIDE.md`.
 
-Same-card probes are evidence only: they may prevent an unsupported upper anchor but **never create extra points**. Q6 AI Operations and Q7 Sovereign AI are supporting capabilities and do not enter `/100`.
+Same-card probes may prevent an unsupported upper anchor but **never create extra points**. The Q2 **Model Upgrade Gate is scored evidence inside AI Delegation**: A caps Delegation at 10/20, B at 15/20, C adds no cap, and D cannot support 20/20 without sufficient evidence. Q6 AI Operations and Q7 Sovereign AI remain supporting capabilities and do not enter `/100`.
 
 ## 5. Evidence rules that must not be lost
 
-### AI-driven direction
-Use the Q2 direction and model-upgrade probes to distinguish mainly human-facing systems from work the model itself can perform. Do not award maturity merely because a dashboard or workflow was built with AI. Look for a structure where stronger models translate into stronger organizational capability through reusable context and harness.
+### AI-driven scoring
+Use the Q2 direction and Model Upgrade Gate to distinguish mainly human-facing systems from work the model itself can perform. The Model Upgrade Gate directly constrains the **AI Delegation /20** anchor. Do not award high Delegation merely because a dashboard or workflow was built with AI. Look for a structure where stronger models translate into stronger organizational capability through reusable context and harness.
 
 ### Enterprise Connection
 Upper anchors require managed, recurring connectivity, not a personal script or one-off connector. Look for both:
