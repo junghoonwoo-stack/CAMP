@@ -6,6 +6,8 @@ Use [SCORE_CONTRACT.md](SCORE_CONTRACT.md) for the fixed /100 score structure. S
 
 CAMP Stages are not a mandatory sequence.
 
+**AI-driven is a diagnostic lens, not an additional Stage.** Across all Stages, ask whether the model itself is doing meaningful work and whether improvements in model capability can flow into better organizational capability through reusable context and harness.
+
 - **Stage 0 — No AI:** almost no approved work AI.
 - **Stage 1 — AI Access:** AI use exists but access/adoption is still the main constraint. Goal: practical 1 person, 1 AI access where appropriate.
 - **Stage 2 — AI Workforce:** people repeatedly delegate meaningful work to general agents, beyond search, summary, or drafting.
@@ -52,6 +54,8 @@ If the answers are mostly No, it is usually **IT built faster with AI**, not cor
 [SCORE_CONTRACT.md](SCORE_CONTRACT.md)를 고정된 100점 구조의 기준으로 사용함. Stage와 Score는 다름. Score는 고정된 5개 영역을 보고, Stage는 실제로 반복되는 Operating Model을 설명함.
 
 CAMP Stage는 반드시 순서대로 밟는 과정이 아님.
+
+**AI 구동형은 새로운 Stage가 아니라 진단 Lens임.** 모든 Stage에서 Model 자체가 의미 있는 일을 하는지, 그리고 Model 발전이 재사용 가능한 Context/Harness를 통해 조직 Capability 향상으로 바로 이어질 수 있는지를 봄.
 
 - **Stage 0 — No AI:** 승인된 업무용 AI가 거의 없음.
 - **Stage 1 — AI Access:** AI 사용은 시작됐지만 접근성과 보급이 여전히 가장 큰 제약임. 필요한 업무에서 실질적인 1인 1 AI 접근을 목표로 함.
