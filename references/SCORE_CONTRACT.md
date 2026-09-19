@@ -39,18 +39,22 @@ AI Operations is reported as `Weak / Developing / Strong`; it is not a sixth sco
 
 Low-risk assistants do not all need heavy evals. Core value-chain, customer-risk, safety, regulated, or materially consequential workflows do need appropriate repeatable quality and runtime controls. Weak controls on such workflows reduce confidence in a Stage 4–5 diagnosis.
 
-## AI-driven transformation rule
+## AI-driven scoring rule
 
-**AI-driven is an evidence interpretation lens, not a new score bucket or Stage.** It means the model itself performs meaningful work, and improvements in model capability can translate into better outcomes because the organization has reusable context and harness around the model.
+**AI-driven is scored inside the existing AI Delegation dimension; it is not a sixth score bucket or a new Stage.** The five-dimension /100 structure does not change.
 
-CAMP distinguishes systems built mainly for people to use from capabilities that let AI work. Stronger AX evidence makes the company more **legible or executable to AI**: governed data/metadata, searchable context, APIs/MCP/plugins/tools, permissions, action paths, reusable skills, memory, evals, and runtime controls.
+First determine the normal **AI Delegation base anchor** from the table above. Then apply the **Model Upgrade Gate** to the same recurring workflow:
 
-Use three checks:
-1. Does the AI model itself understand, decide, create, or act as part of the real workflow?
-2. Would a materially better model make the workflow more capable without rebuilding the core surrounding IT?
-3. Is the organization building reusable context/harness rather than only another screen or workflow for a person?
+- **A — Hardly:** a better model would add little because capability is mostly fixed in surrounding IT → **AI Delegation is capped at 10/20**.
+- **B — Somewhat:** a better model would improve the workflow, but much of the capability still sits outside the model → **AI Delegation is capped at 15/20**.
+- **C — Yes:** a stronger model would directly expand what the workflow can do without rebuilding the surrounding system → **no additional cap; the base anchor may stand**.
+- **D — Not sure:** resolve with evidence when possible; without sufficient evidence, **do not award 20/20**.
 
-These checks interpret evidence inside the existing five anchors; they never add points. If all three are No, classify it as valuable IT or AI-made IT rather than core Agent Transformation.
+A 15 or 20 therefore requires both: **AI itself performs meaningful work**, and the workflow has real exposure to model capability. A human-facing system built faster with AI cannot receive a high Delegation score merely because AI was used during development.
+
+CAMP still distinguishes systems built mainly for people to use from capabilities that let AI work. Stronger AX evidence makes the company more **legible or executable to AI** through governed data/metadata, searchable context, APIs/MCP/plugins/tools, permissions, action paths, reusable skills, memory, evals, and runtime controls.
+
+The AI-driven gate may lower an unsupported AI Delegation anchor; it never creates points beyond the existing 20-point dimension.
 
 ## Versioning rule
 

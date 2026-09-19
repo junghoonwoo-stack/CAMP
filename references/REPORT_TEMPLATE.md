@@ -31,6 +31,7 @@ Always explain:
 - what the pattern implies for the next CAMP Stage
 - when relevant, the difference between the strongest proven core case and adoption across the full assessed scope
 - whether current AX investment is mainly **AI-assisted/human-facing IT** or **AI-driven capability**
+- for **AI Delegation**, whether the Model Upgrade Gate capped the base anchor at 10 or 15, and why
 
 ### Enterprise connection evidence
 
@@ -144,6 +145,7 @@ The participant may see their own company name. Other participant organizations 
 - 이 패턴이 다음 CAMP Stage에 의미하는 것
 - 필요한 경우 핵심 조직의 가장 앞선 운영사례와 진단 범위 전체 보급 수준의 차이
 - 현재 AX 투자가 주로 **AI 활용형/Human-facing IT**인지 **AI 구동형 Capability**인지
+- **AI Delegation**은 Model Upgrade Gate 때문에 기본 Anchor가 10 또는 15로 제한됐는지와 그 이유
 
 ### Enterprise Connection Evidence
 
