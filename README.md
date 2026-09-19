@@ -4,6 +4,8 @@
 
 CAMP is a practical, 8–10 minute assessment of how effectively a company or team is using AI—and what it should do next.
 
+It also asks a simple question: **if AI models get better, does your organization get better with them?** CAMP distinguishes merely using AI from becoming **AI-driven**.
+
 ## Try CAMP in about 10 minutes
 
 ### ChatGPT, Claude, Gemini, or another chat
@@ -130,6 +132,8 @@ CAMP framework and documentation use **CC BY 4.0**. If you redistribute or publi
 # CAMP
 
 CAMP는 우리 회사나 팀이 **AI를 실제 업무에 얼마나 잘 활용하고 있는지, 다음에는 무엇을 해야 하는지** 약 8–10분 안에 점검하는 진단입니다.
+
+그리고 한 가지를 더 봅니다. **AI Model이 좋아질수록 우리 조직도 같이 좋아지는가?** 단순히 AI를 활용하는 것과 **AI로 구동되는 것**을 구분합니다.
 
 ## 가장 쉽게 시작하기
 

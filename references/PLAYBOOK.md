@@ -56,15 +56,26 @@ The five dimensions remain fixed at 20 points each.
 - Strong evidence means AI lets a capable person cover adjacent work, packages that person’s way of working so others can reproduce it, reduces handoffs, and eventually changes R&R or organization design.
 - Building another system for a person to operate is not enough by itself. CAMP looks for augmentation and replication of people through AI.
 
-### AI-facing vs human-facing transformation
+### AI-driven vs AI-assisted transformation
 
-Ask where transformation energy is going.
+CAMP uses **AI-driven** as a direct diagnostic lens.
 
-**Human-facing:** more dashboards, portals, workflow screens, manual review queues, or systems people must learn to operate.
+**AI-assisted:** people still carry the workflow; AI helps them work faster or helps build the surrounding IT.
 
-**AI-facing:** governed data/metadata, searchable context, APIs/MCP/plugins/tools, permissions, reusable skills, memory, action paths, evals, and runtime controls that let AI understand or execute company work.
+**AI-driven:** the model itself performs meaningful work — understanding, deciding, creating, calling tools, or taking controlled action. People and IT provide reusable data, context, tools, permissions, skills, memory, evals, and runtime controls around the model.
 
-Human-facing systems can still be necessary. The AX distinction is whether the investment increases AI's ability to understand, decide, or act. A data mart with strong metadata exposed safely to agents can be more AX-relevant than a polished dashboard built only for people.
+Human-facing dashboards, portals, workflow screens, and manual review queues can still be necessary. But stronger AX evidence makes work more **AI-facing** and lets the model do more of the real work.
+
+Use the model-upgrade check: **if a materially better model arrived tomorrow, would this workflow become more capable without rebuilding the surrounding system?** A data mart with strong metadata exposed safely to agents can therefore be more AX-relevant than a polished dashboard built only for people.
+
+Supporting signals that an organization is becoming AI-driven include:
+- new frontier models quickly make previously impractical work possible;
+- model/token cost becomes a real operating-cost topic because AI is doing meaningful volume;
+- more capable models create real permission, cybersecurity, and control questions;
+- email, chat, documents, data, and enterprise systems are being connected as model context/tools;
+- sovereign/private model options are considered for cost, security, latency, quality, or strategic control.
+
+These are **signals, not score points**. High spend, fear of a powerful model, or sovereign infrastructure alone does not establish maturity.
 
 ### AI Operations
 
@@ -192,15 +203,26 @@ Power User 한 명, Demo 하나, Pilot 하나만으로 조직 Stage를 높이지
 - 강한 Evidence는 AI로 인접 업무까지 수행하고, 잘하는 개인의 방식이 다른 사람/Agent에게 복제되며, Handoff가 줄고, 결국 R&R이나 조직설계가 바뀌는 것임.
 - 사람이 조작할 시스템 하나를 더 만드는 것만으로는 부족함. CAMP는 AI를 통한 개인의 증강과 복제를 봄.
 
-### AI-facing vs Human-facing Transformation
+### AI 활용형 vs AI 구동형 Transformation
 
-혁신 에너지가 어디로 향하는지 봄.
+CAMP는 **AI 구동형(AI-driven)**을 직접적인 진단 Lens로 사용함.
 
-**Human-facing:** Dashboard, Portal, Workflow Screen, 수동 Review Queue처럼 사람이 더 잘 보고 조작하도록 만드는 것.
+**AI 활용형:** 사람이 기존 Workflow를 수행하고 AI가 더 빨리 일하도록 돕거나, 주변 IT를 더 빨리 만드는 형태임.
 
-**AI-facing:** 관리된 Data/Metadata, 검색 가능한 Context, API/MCP/Plugin/Tool, Permission, 재사용 Skill, Memory, Action Path, Eval, Runtime Control처럼 AI가 회사를 이해하고 실행하도록 만드는 것.
+**AI 구동형:** Model 자체가 실제 업무에서 이해·판단·생성·Tool 호출·통제된 Action을 수행함. 사람과 IT는 Model이 잘 일하도록 재사용 가능한 Data, Context, Tool, Permission, Skill, Memory, Eval, Runtime Control을 붙임.
 
-Human-facing 시스템도 필요할 수 있음. AX 관점의 차이는 그 투자가 AI가 이해·판단·실행할 수 있는 범위를 늘리는지임. Metadata가 잘 관리된 Data Mart를 Agent에게 안전하게 열어주는 것이 사람만 보는 멋진 Dashboard보다 AX에 더 직접적일 수 있음.
+Dashboard, Portal, Workflow Screen, 수동 Review Queue 같은 Human-facing 시스템도 필요할 수 있음. 그러나 더 강한 AX Evidence는 업무가 더 **AI-facing**이 되고 Model 자체가 실제 일을 더 많이 수행하게 만드는 것임.
+
+핵심 확인은 단순함. **내일 훨씬 좋은 Model이 나오면, 주변 시스템을 다시 만들지 않아도 이 Workflow가 바로 더 강해지는가?** 따라서 Metadata가 잘 관리된 Data Mart를 Agent에게 안전하게 열어주는 것이 사람만 보는 멋진 Dashboard보다 AX에 더 직접적일 수 있음.
+
+AI 구동형으로 가고 있다는 보조 Signal은 다음과 같음.
+- 새 Frontier Model이 나오면 과거 안 되던 업무가 빠르게 가능해짐.
+- AI가 실제 업무량을 처리하면서 Token/Model 비용이 운영비 이슈가 됨.
+- Model이 강해질수록 Permission, Cybersecurity, Control 문제가 실제 고민이 됨.
+- Email, Chat, 문서, Data, 기간시스템을 Model의 Context/Tool로 연결하고 있음.
+- 비용, 보안, Latency, 품질, 전략적 통제를 위해 Sovereign/Private Model을 검토함.
+
+이들은 **Signal이지 점수가 아님**. 비용을 많이 쓰거나 강한 Model이 무섭거나 자체 Infra가 있다는 사실만으로 성숙도를 높게 보지 않음.
 
 ### AI Operations
 

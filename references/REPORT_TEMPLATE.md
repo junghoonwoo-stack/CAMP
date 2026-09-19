@@ -11,7 +11,7 @@ Use [SCORE_CONTRACT.md](SCORE_CONTRACT.md) for the stable five-dimension /100 sc
 - **CAMP Score /100**
 - one-line diagnosis
 - biggest bottleneck
-- one-line **AI-facing direction** diagnosis: is transformation energy mainly making work easier for people to operate, or making the company easier for AI to understand and execute?
+- one-line **AI-driven direction** diagnosis: is AI mainly helping people operate/build systems, or is the model itself doing meaningful work with connected context and harness so better models translate into more capability?
 
 ### Five dimensions
 
@@ -30,7 +30,7 @@ Always explain:
 - major gaps or imbalance
 - what the pattern implies for the next CAMP Stage
 - when relevant, the difference between the strongest proven core case and adoption across the full assessed scope
-- whether current AX investment is mainly **human-facing IT** or **AI-facing infrastructure/capability**
+- whether current AX investment is mainly **AI-assisted/human-facing IT** or **AI-driven capability**
 
 ### Enterprise connection evidence
 
@@ -124,7 +124,7 @@ The participant may see their own company name. Other participant organizations 
 - **CAMP 총점 /100**
 - 한 줄 진단
 - 가장 큰 병목
-- 한 줄 **AI-facing 방향 진단**: 혁신 에너지가 사람이 시스템을 더 잘 쓰게 만드는 쪽인지, 회사가 AI에게 더 잘 읽히고 실행되게 만드는 쪽인지
+- 한 줄 **AI 구동형 방향 진단**: AI가 사람의 기존 업무/시스템을 돕는 수준인지, Model 자체가 연결된 Context/Harness를 사용해 실제 일을 하며 Model 발전의 수혜를 바로 받는 구조인지
 
 ### 5개 영역 분석
 
@@ -143,7 +143,7 @@ The participant may see their own company name. Other participant organizations 
 - 영역 간 큰 Gap / 불균형
 - 이 패턴이 다음 CAMP Stage에 의미하는 것
 - 필요한 경우 핵심 조직의 가장 앞선 운영사례와 진단 범위 전체 보급 수준의 차이
-- 현재 AX 투자가 주로 **Human-facing IT**인지 **AI-facing Infrastructure/Capability**인지
+- 현재 AX 투자가 주로 **AI 활용형/Human-facing IT**인지 **AI 구동형 Capability**인지
 
 ### Enterprise Connection Evidence
 

@@ -39,18 +39,18 @@ AI Operations is reported as `Weak / Developing / Strong`; it is not a sixth sco
 
 Low-risk assistants do not all need heavy evals. Core value-chain, customer-risk, safety, regulated, or materially consequential workflows do need appropriate repeatable quality and runtime controls. Weak controls on such workflows reduce confidence in a Stage 4–5 diagnosis.
 
-## AI-facing transformation rule
+## AI-driven transformation rule
 
-CAMP distinguishes systems built mainly for people to use from capabilities that let AI work.
+**AI-driven is an evidence interpretation lens, not a new score bucket or Stage.** It means the model itself performs meaningful work, and improvements in model capability can translate into better outcomes because the organization has reusable context and harness around the model.
 
-Stronger AX evidence makes the company more **legible or executable to AI**: governed data/metadata, searchable context, APIs/MCP/plugins/tools, permissions, action paths, reusable skills, memory, evals, and runtime controls.
+CAMP distinguishes systems built mainly for people to use from capabilities that let AI work. Stronger AX evidence makes the company more **legible or executable to AI**: governed data/metadata, searchable context, APIs/MCP/plugins/tools, permissions, action paths, reusable skills, memory, evals, and runtime controls.
 
 Use three checks:
-1. Does the investment increase what AI can understand, decide, or do?
-2. Would a better model naturally make the capability more useful?
+1. Does the AI model itself understand, decide, create, or act as part of the real workflow?
+2. Would a materially better model make the workflow more capable without rebuilding the core surrounding IT?
 3. Is the organization building reusable context/harness rather than only another screen or workflow for a person?
 
-If all three are No, classify it as valuable IT or AI-made IT rather than core Agent Transformation.
+These checks interpret evidence inside the existing five anchors; they never add points. If all three are No, classify it as valuable IT or AI-made IT rather than core Agent Transformation.
 
 ## Versioning rule
 
