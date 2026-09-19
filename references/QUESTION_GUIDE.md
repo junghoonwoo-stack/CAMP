@@ -76,6 +76,16 @@ Which better describes most recent “AI/AX” development in the assessed scope
 
 Use this probe in the diagnosis. A dashboard can be valuable, but it is not automatically Agent Transformation.
 
+**Same-card model-upgrade probe — do not add points:**
+
+If the AI model became much more capable tomorrow, would this recurring workflow become more capable without rebuilding the surrounding system?
+- A. Hardly; most of the capability is fixed in the surrounding system
+- B. Somewhat
+- C. Yes; a stronger model would directly expand what the workflow can do
+- D. Not sure
+
+Use this as direction evidence only. It does not change the AI Delegation anchor by itself.
+
 ### Q3 — Company data and tools (step 8/13) · Enterprise Connection
 
 **In an important recurring example, what company information and tools can AI actually use?**
@@ -186,6 +196,18 @@ Why we ask: Different jobs may need different tools; later choices are not autom
 
 Using private company data through search or tools is covered in Q3; that alone does not mean C or D here. This question does not enter the /100 score.
 
+**Optional same-card reason probe — do not add score points:**
+
+If the organization is considering private/local models or its own infrastructure, what is the main reason?
+- A. Cost
+- B. Security or data control
+- C. Latency or reliability
+- D. Domain quality or customization
+- E. Strategic control
+- F. Not sure / not relevant
+
+Interest in sovereign AI is a supporting signal, not evidence of higher CAMP maturity by itself.
+
 ### Q8 — How established the examples are (step 13/13) · Evidence basis
 
 **How firmly are the examples you described part of everyday work?**
@@ -240,6 +262,16 @@ One important core-team case can support B or C. It does not imply broad adoptio
 - D. 잘 모르겠음
 
 Dashboard도 가치가 있을 수 있으나 그 자체로 Agent Transformation이라고 보지는 않음.
+
+**같은 카드 Model 발전 확인 — 가산점 없음:**
+
+내일 AI Model이 훨씬 좋아진다면, 주변 시스템을 다시 만들지 않아도 이 Workflow가 바로 더 많은 일을 할 수 있나요?
+- A. 거의 아님. Capability 대부분이 주변 시스템에 고정되어 있음
+- B. 어느 정도 좋아짐
+- C. 그럼. Model이 좋아지면 Workflow가 직접 더 강해짐
+- D. 잘 모르겠음
+
+방향을 판단하는 Evidence로만 사용함. 이 답 하나로 AI Delegation 점수를 바꾸지 않음.
 
 ### Q3 — 회사 Data와 Tool 연결 (8/13) · Enterprise Connection
 
@@ -351,6 +383,18 @@ AI가 Workspace/File System을 쓰거나 PC를 제어하거나 Computer Use로 �
 
 사내 Data를 Search/Tool로 연결하는 것은 Q3에서 봄. 그것만으로 C/D가 되지는 않음. 이 질문은 총점에 포함하지 않음.
 
+**선택 확인 질문 — 총점 가산 없음:**
+
+Private/Local Model 또는 자체 Infrastructure를 검토한다면 가장 큰 이유는 무엇인가요?
+- A. 비용
+- B. 보안 / Data 통제
+- C. Latency / 안정성
+- D. Domain 품질 / 맞춤화
+- E. 전략적 통제
+- F. 잘 모르겠음 / 해당 없음
+
+Sovereign AI에 관심이 있다는 사실만으로 CAMP 성숙도가 높다고 보지 않음.
+
 ### Q8 — 실제 업무에 자리 잡은 정도 (13/13) · Evidence basis
 
 **지금까지 말씀한 사례는 실제 업무에 어느 정도 자리 잡았나요?**
@@ -372,6 +416,7 @@ AI가 Workspace/File System을 쓰거나 PC를 제어하거나 Computer Use로 �
 - For Q3, an upper anchor should have managed data/connectivity evidence: owner, recurring operation, and appropriate permissions. Metadata and connector operations matter even if the participant does not know the technical terms.
 - For Q4/Q5, distinguish a tool that helps one person from a method that can be replicated across people/agents.
 - For Q5, human-facing IT alone does not establish transformation. Look for wider ownership, fewer handoffs, or redesigned roles.
+- Use the Q2 model-upgrade probe only as evidence of AI-driven direction; it is not a sixth dimension and does not add points.
 - Q6 does not add points, but it affects the credibility and safety of higher Stages. Critical action/write paths without quality or security controls should be highlighted as a bottleneck.
 - If the participant is non-technical, ask whether a responsible **data platform team, AI platform team, MCP/tool operations team, cybersecurity review process, or quality/eval owner** exists. Do not force implementation details.
 
