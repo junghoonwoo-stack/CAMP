@@ -29,6 +29,8 @@ CAMP diagnoses an organization’s **current recurring operating model with AI**
 
 CAMP asks whether the company is becoming **more usable by AI**, not merely whether people received more software.
 
+CAMP uses **AI-driven** as a diagnostic lens: the model itself does meaningful work, and better models should translate into better organizational capability because the surrounding context and harness are reusable. **AI-driven is not a sixth score dimension or a new Stage.**
+
 - Human-facing dashboards, portals, screens, and workflows may be valuable IT, but do not by themselves establish Agent Transformation.
 - Governed data/context/metadata, tools, MCP/API/plugins, permissions, actions, memory, skills, evals, and runtime controls that let AI understand or execute company work are direct AX evidence.
 - The target is **augmentation and replication of capable people**: broader individual ownership, fewer handoffs, and proven ways of working reproducible by other people or agents.
@@ -36,10 +38,11 @@ CAMP asks whether the company is becoming **more usable by AI**, not merely whet
 > **Agent = Model + Context + Harness**
 
 Agent Test:
-1. Does the system naturally improve as the model improves?
-2. Is development helping AI work better through context, data, tools, skills, permissions, memory, or runtime?
+1. Does the model itself perform meaningful work, rather than only help build or operate a human-facing system?
+2. Does the system naturally improve as the model improves?
+3. Is development helping AI work better through context, data, tools, skills, permissions, memory, or runtime?
 
-If both are No, it is usually **IT built faster with AI**, not core Agent Transformation. It may still be useful; classify it correctly.
+If the answers are mostly No, it is usually **IT built faster with AI**, not core Agent Transformation. It may still be useful; classify it correctly.
 
 ## 3. Run CAMP
 
@@ -79,8 +82,8 @@ Same-card probes are evidence only: they may prevent an unsupported upper anchor
 
 ## 5. Evidence rules that must not be lost
 
-### AI-facing direction
-Use the Q2 direction probe to distinguish mainly human-facing systems from capabilities AI can use. Do not award maturity merely because a dashboard or workflow was built with AI.
+### AI-driven direction
+Use the Q2 direction and model-upgrade probes to distinguish mainly human-facing systems from work the model itself can perform. Do not award maturity merely because a dashboard or workflow was built with AI. Look for a structure where stronger models translate into stronger organizational capability through reusable context and harness.
 
 ### Enterprise Connection
 Upper anchors require managed, recurring connectivity, not a personal script or one-off connector. Look for both:
@@ -132,7 +135,7 @@ Use `references/REPORT_TEMPLATE.md`. Always include:
 - Stage + Confidence
 - **Score /100** and all five dimension scores
 - strongest/weakest dimensions and major imbalance
-- AI-facing direction
+- AI-driven direction
 - Data/metadata readiness and connector/MCP operating model
 - augmentation/replication and handoff change
 - AI Operations: Observability & cost / Quality & eval / Runtime security / Operating ownership
