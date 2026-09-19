@@ -16,7 +16,7 @@ The five scored dimensions remain fixed at 20 points each:
 4. Knowledge Compounding
 5. Role Transformation
 
-Each dimension uses only `0 / 5 / 10 / 15 / 20`; total remains **/100**. Q6 AI Operations and Q7 Sovereign AI remain supporting capabilities. Same-card probes validate evidence and may prevent an unsupported upper anchor; they never add points above 100.
+Each dimension uses only `0 / 5 / 10 / 15 / 20`; total remains **/100**. Q6 AI Operations and Q7 Sovereign AI remain supporting capabilities. Same-card probes validate evidence and may prevent an unsupported upper anchor; they never add points above 100. The Q2 **Model Upgrade Gate is scored evidence inside AI Delegation** and can cap an unsupported upper anchor.
 
 For Stage 4–5, weak operations around a material-risk workflow reduce confidence. A critical write/action workflow without clear quality checks or permission controls should not be described as mature merely because the agent is technically capable.
 
@@ -76,7 +76,7 @@ Which better describes most recent “AI/AX” development in the assessed scope
 
 Use this probe in the diagnosis. A dashboard can be valuable, but it is not automatically Agent Transformation.
 
-**Same-card model-upgrade probe — do not add points:**
+**Same-card Model Upgrade Gate — affects the AI Delegation score:**
 
 If the AI model became much more capable tomorrow, would this recurring workflow become more capable without rebuilding the surrounding system?
 - A. Hardly; most of the capability is fixed in the surrounding system
@@ -84,7 +84,13 @@ If the AI model became much more capable tomorrow, would this recurring workflow
 - C. Yes; a stronger model would directly expand what the workflow can do
 - D. Not sure
 
-Use this as direction evidence only. It does not change the AI Delegation anchor by itself.
+Apply after the base Q2 anchor:
+- A → cap AI Delegation at **10/20**
+- B → cap AI Delegation at **15/20**
+- C → no additional cap
+- D → resolve with evidence; without enough evidence, do not award **20/20**
+
+This does not create bonus points. It determines whether the existing upper AI Delegation anchor is actually supported.
 
 ### Q3 — Company data and tools (step 8/13) · Enterprise Connection
 
@@ -263,7 +269,7 @@ One important core-team case can support B or C. It does not imply broad adoptio
 
 Dashboard도 가치가 있을 수 있으나 그 자체로 Agent Transformation이라고 보지는 않음.
 
-**같은 카드 Model 발전 확인 — 가산점 없음:**
+**같은 카드 Model Upgrade Gate — AI Delegation 점수에 반영:**
 
 내일 AI Model이 훨씬 좋아진다면, 주변 시스템을 다시 만들지 않아도 이 Workflow가 바로 더 많은 일을 할 수 있나요?
 - A. 거의 아님. Capability 대부분이 주변 시스템에 고정되어 있음
@@ -271,7 +277,13 @@ Dashboard도 가치가 있을 수 있으나 그 자체로 Agent Transformation�
 - C. 그럼. Model이 좋아지면 Workflow가 직접 더 강해짐
 - D. 잘 모르겠음
 
-방향을 판단하는 Evidence로만 사용함. 이 답 하나로 AI Delegation 점수를 바꾸지 않음.
+Q2 기본 Anchor를 정한 뒤 다음처럼 적용함.
+- A → AI Delegation 최대 **10/20**
+- B → 최대 **15/20**
+- C → 추가 제한 없음
+- D → Evidence로 확인하며, 충분한 근거가 없으면 **20/20을 주지 않음**
+
+가산점을 만드는 것이 아니라, 기존 AI Delegation의 높은 점수가 실제 **AI 구동형** 구조인지 확인하는 Gate임.
 
 ### Q3 — 회사 Data와 Tool 연결 (8/13) · Enterprise Connection
 
@@ -416,7 +428,7 @@ Sovereign AI에 관심이 있다는 사실만으로 CAMP 성숙도가 높다고 
 - For Q3, an upper anchor should have managed data/connectivity evidence: owner, recurring operation, and appropriate permissions. Metadata and connector operations matter even if the participant does not know the technical terms.
 - For Q4/Q5, distinguish a tool that helps one person from a method that can be replicated across people/agents.
 - For Q5, human-facing IT alone does not establish transformation. Look for wider ownership, fewer handoffs, or redesigned roles.
-- Use the Q2 model-upgrade probe only as evidence of AI-driven direction; it is not a sixth dimension and does not add points.
+- Apply the Q2 Model Upgrade Gate to the AI Delegation score: A caps at 10, B at 15, C has no added cap, and D cannot support 20 without additional evidence. It is not a sixth dimension and never adds bonus points.
 - Q6 does not add points, but it affects the credibility and safety of higher Stages. Critical action/write paths without quality or security controls should be highlighted as a bottleneck.
 - If the participant is non-technical, ask whether a responsible **data platform team, AI platform team, MCP/tool operations team, cybersecurity review process, or quality/eval owner** exists. Do not force implementation details.
 
