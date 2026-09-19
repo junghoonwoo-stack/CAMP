@@ -29,6 +29,16 @@ class ScoreContractTests(unittest.TestCase):
             self.assertEqual(dims["properties"][key]["enum"], [0, 5, 10, 15, 20])
         self.assertEqual(schema["properties"]["total_score"]["maximum"], 100)
 
+        # CAMP 1.x anchor meanings are intentionally stable.
+        for row in [
+            "| **AI Access** | <5% recurring users | 5–20% | 21–50% | 51–80% | 81%+ |",
+            "| **AI Delegation** | Search/Q&A/summary | Draft/partial task | Meaningful result for human review | Connected multi-step work with context/tools | AI-first delegation is normal; people review/approve/handle exceptions |",
+            "| **Enterprise Connection** | External/general info only | Company files/docs/search | Managed internal datasets or everyday work tools | Live business data/systems with managed recurring connection | Controlled read + write/action with permissions, approvals, logs |",
+            "| **Knowledge Compounding** | Disappears after sessions | Personal prompts/notes/examples | Shared reusable instructions/examples/methods | Owner + versioning + checks/evals + distribution | Sessions/decisions/corrections/outcomes systematically improve future people/agents |",
+            "| **Role Transformation** | Little change | Same role, faster | Adjacent work previously requiring another specialist | Capable methods replicated through AI + fewer handoffs | R&R/team/workforce design changes around work delegated to AI |",
+        ]:
+            self.assertIn(row, contract)
+
     def test_evidence_probes_do_not_create_extra_score_buckets(self):
         guide = (ROOT / "references" / "QUESTION_GUIDE.md").read_text(encoding="utf-8")
         contract = (ROOT / "references" / "SCORE_CONTRACT.md").read_text(encoding="utf-8")
@@ -39,6 +49,19 @@ class ScoreContractTests(unittest.TestCase):
         self.assertIn("MCP, plugin, API, tool distribution", contract)
         self.assertIn("workspace/filesystem controls", contract)
         self.assertIn("human-facing dashboard", contract)
+
+    def test_ai_driven_is_interpretation_not_a_new_score_bucket(self):
+        skill = (ROOT / "SKILL.md").read_text(encoding="utf-8")
+        contract = (ROOT / "references" / "SCORE_CONTRACT.md").read_text(encoding="utf-8")
+        guide = (ROOT / "references" / "QUESTION_GUIDE.md").read_text(encoding="utf-8")
+        playbook = (ROOT / "references" / "PLAYBOOK.md").read_text(encoding="utf-8")
+        stages = (ROOT / "references" / "STAGES.md").read_text(encoding="utf-8")
+
+        self.assertIn("AI-driven", skill)
+        self.assertIn("not a new score bucket or Stage", contract)
+        self.assertIn("model-upgrade probe — do not add points", guide)
+        self.assertIn("signals, not score points", playbook)
+        self.assertIn("not an additional Stage", stages)
 
     def test_operations_are_supporting_but_gate_high_stage_confidence(self):
         playbook = (ROOT / "references" / "PLAYBOOK.md").read_text(encoding="utf-8")
