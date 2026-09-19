@@ -50,18 +50,28 @@ class ScoreContractTests(unittest.TestCase):
         self.assertIn("workspace/filesystem controls", contract)
         self.assertIn("human-facing dashboard", contract)
 
-    def test_ai_driven_is_interpretation_not_a_new_score_bucket(self):
+    def test_ai_driven_is_scored_inside_existing_delegation_dimension(self):
         skill = (ROOT / "SKILL.md").read_text(encoding="utf-8")
         contract = (ROOT / "references" / "SCORE_CONTRACT.md").read_text(encoding="utf-8")
         guide = (ROOT / "references" / "QUESTION_GUIDE.md").read_text(encoding="utf-8")
         playbook = (ROOT / "references" / "PLAYBOOK.md").read_text(encoding="utf-8")
         stages = (ROOT / "references" / "STAGES.md").read_text(encoding="utf-8")
 
-        self.assertIn("AI-driven", skill)
-        self.assertIn("not a new score bucket or Stage", contract)
-        self.assertIn("model-upgrade probe — do not add points", guide)
-        self.assertIn("signals, not score points", playbook)
+        self.assertIn("AI-driven is scored inside the existing AI Delegation dimension", contract)
+        self.assertIn("AI Delegation is capped at 10/20", contract)
+        self.assertIn("AI Delegation is capped at 15/20", contract)
+        self.assertIn("Model Upgrade Gate is scored evidence inside AI Delegation", skill)
+        self.assertIn("Model Upgrade Gate — affects the AI Delegation score", guide)
+        self.assertIn("Model Upgrade Gate", playbook)
         self.assertIn("not an additional Stage", stages)
+
+        # AI-driven changes scoring evidence, not the score structure.
+        schema = json.loads((ROOT / "benchmark" / "submission.schema.json").read_text(encoding="utf-8"))
+        self.assertEqual(
+            schema["properties"]["dimensions"]["required"],
+            ["access", "delegation", "connection", "compounding", "transformation"],
+        )
+        self.assertEqual(schema["properties"]["total_score"]["maximum"], 100)
 
     def test_operations_are_supporting_but_gate_high_stage_confidence(self):
         playbook = (ROOT / "references" / "PLAYBOOK.md").read_text(encoding="utf-8")
