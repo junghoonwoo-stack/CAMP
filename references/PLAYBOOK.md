@@ -37,6 +37,7 @@ The five dimensions remain fixed at 20 points each.
 - Distinguish asking AI for information from delegating a complete piece of work.
 - A person-facing dashboard, form, or workflow built faster with AI is not automatically higher delegation.
 - Higher anchors require AI itself to consume context, reason, use tools, and produce or execute meaningful work.
+- Apply the **AI-driven Model Upgrade Gate** after the base anchor: Hardly → max 10; Somewhat → max 15; Yes → no additional cap; Not sure → do not award 20 without supporting evidence.
 
 **Enterprise Connection**
 - Treat data readiness and tool connectivity as one operating capability.
@@ -58,7 +59,7 @@ The five dimensions remain fixed at 20 points each.
 
 ### AI-driven vs AI-assisted transformation
 
-CAMP uses **AI-driven** as a direct diagnostic lens.
+CAMP uses **AI-driven** as a scoring principle inside AI Delegation, while keeping the same five dimensions and /100 total.
 
 **AI-assisted:** people still carry the workflow; AI helps them work faster or helps build the surrounding IT.
 
@@ -75,7 +76,7 @@ Supporting signals that an organization is becoming AI-driven include:
 - email, chat, documents, data, and enterprise systems are being connected as model context/tools;
 - sovereign/private model options are considered for cost, security, latency, quality, or strategic control.
 
-These are **signals, not score points**. High spend, fear of a powerful model, or sovereign infrastructure alone does not establish maturity.
+The **Model Upgrade Gate above does affect AI Delegation scoring**. The other signals in this list — spend, security concern, enterprise connection pressure, or sovereign infrastructure interest — do not create bonus points by themselves.
 
 ### AI Operations
 
@@ -184,6 +185,7 @@ Power User 한 명, Demo 하나, Pilot 하나만으로 조직 Stage를 높이지
 - 정보를 물어보는 것과 하나의 실제 일을 맡기는 것을 구분함.
 - AI로 더 빨리 만든 Dashboard, Form, Workflow가 있다는 것만으로 Delegation 점수를 높이지 않음.
 - 높은 점수는 AI 자체가 Context를 읽고 판단하고 Tool을 사용해 의미 있는 결과나 실행을 만들어내는 경우임.
+- 기본 Anchor를 정한 뒤 **AI 구동형 Model Upgrade Gate**를 적용함: 거의 영향 없음 → 최대 10, 어느 정도 → 최대 15, Model 향상이 직접 Capability 향상으로 이어짐 → 추가 제한 없음, 잘 모름 → 추가 Evidence 없이는 20 부여하지 않음.
 
 **Enterprise Connection**
 - Data Readiness와 Tool Connectivity를 하나의 운영역량으로 봄.
@@ -205,7 +207,7 @@ Power User 한 명, Demo 하나, Pilot 하나만으로 조직 Stage를 높이지
 
 ### AI 활용형 vs AI 구동형 Transformation
 
-CAMP는 **AI 구동형(AI-driven)**을 직접적인 진단 Lens로 사용함.
+CAMP는 **AI 구동형(AI-driven)**을 AI Delegation 점수 안의 Scoring Principle로 사용함. 5개 Dimension과 /100 총점 구조는 그대로 유지함.
 
 **AI 활용형:** 사람이 기존 Workflow를 수행하고 AI가 더 빨리 일하도록 돕거나, 주변 IT를 더 빨리 만드는 형태임.
 
@@ -222,7 +224,7 @@ AI 구동형으로 가고 있다는 보조 Signal은 다음과 같음.
 - Email, Chat, 문서, Data, 기간시스템을 Model의 Context/Tool로 연결하고 있음.
 - 비용, 보안, Latency, 품질, 전략적 통제를 위해 Sovereign/Private Model을 검토함.
 
-이들은 **Signal이지 점수가 아님**. 비용을 많이 쓰거나 강한 Model이 무섭거나 자체 Infra가 있다는 사실만으로 성숙도를 높게 보지 않음.
+위의 **Model Upgrade Gate는 AI Delegation 점수에 직접 반영함**. 다만 Token 비용, 보안 우려, 연결 압력, Sovereign/Private Infra 관심 같은 나머지 Signal은 그 자체로 가산점을 만들지 않음.
 
 ### AI Operations
 
